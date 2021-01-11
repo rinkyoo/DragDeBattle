@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20df2f0699cc7f644bd66c7116f6c0e2, type: 3}
+  m_Name: Shizuoka
+  m_EditorClassIdentifier: 
+  id: 5
+  name: Shizuoka
+  prefab: {fileID: 1000013291970276, guid: 7cbed4e134f2a974aa93ebdb80d281c1, type: 3}
+  icon: {fileID: 21300000, guid: 8574db061ac494ab2b91a1c591a22cd6, type: 3}
+  level: 1
+  nextEXP: 2
+  nowEXP: 0
+  hp: 0
+  addHp: 5
+  sp: 0
+  skillInfo: "20\u79D2\u9593\u306E\u95932\u56DE\u9023\u7D9A\u653B\u6483\u306B\u306A\u308B"
+  str: 0
+  addStr: 1
+  vit: 0
+  addVit: 1
+  agi: 1
+  speed_atk: 2
+  range_atk: 50
+  maxLevel: 100
+  level1NextEXP: 2
+  level1HP: 600
+  level1STR: 100
+  level1VIT: 60

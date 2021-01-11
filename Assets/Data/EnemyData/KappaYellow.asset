@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc2ceec3e1a14519a4d5dbefd6308cc, type: 3}
+  m_Name: KappaYellow
+  m_EditorClassIdentifier: 
+  chara_name: KappaYellow
+  prefab: {fileID: 5318934619437692287, guid: 68e1c873804404238a1ce78a7c7f5d75, type: 3}
+  level: 0
+  hp: 200
+  sp: 2
+  str: 30
+  vit: 2
+  agi: 1
+  speed_atk: 2
+  range_atk: 60
+  dropCoin: 20000
+  dropExpItem: {fileID: 11400000, guid: 0e64b53b295aeac45b05d1de0ee7a170, type: 2}
+  expItem_Kakuritsu: 10
