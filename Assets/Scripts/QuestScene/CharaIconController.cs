@@ -1,0 +1,187 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using StateManager;
+using DG.Tweening;
+using Common;
+
+public class CharaIconController : MonoBehaviour
+{
+    #region マウスとタップ両方に適応するため
+    TouchManager touch_manager = new TouchManager();
+    TouchManager touch_state;
+    void touch()
+    {
+        touch_manager.update();
+        touch_state = touch_manager.getTouch();
+    }
+    #endregion
+
+    private QuestController questController;
+    private CharaController charaController;
+    private CharaEffect charaEffect;
+    private IconTouchUI iconTouchUI; //キャラアイコンをタッチした時に使用
+    private RaycastHit hit;
+    
+    GameObject dragPanel;
+    Image waitGageImage;
+
+    Vector3 canvasPosi = new Vector3();
+    float canvasScale;
+    bool isDragging = false; //タッチとドラッグを区別するため
+    bool ignoreDrag = false;
+    
+    Vector3 initialPosi = new Vector3(-10f, 0f, 0f);
+
+    void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Home")
+        {
+            Destroy(GetComponent<CharaIconController>());
+            return;
+        }
+    }
+
+    void Start()
+    {
+        questController = GameObject.Find("QuestController").GetComponent<QuestController>();
+        charaEffect = GameObject.Find("CharaScript").GetComponent<CharaEffect>();
+        iconTouchUI = GameObject.Find("CharaScript").GetComponent<IconTouchUI>();
+        charaController = gameObject.GetComponent<CharaController>();
+
+        var canvas = GameObject.Find("QuestCanvas");
+        canvasPosi = canvas.GetComponent<CanvasInfo>().GetCanvasPosi();
+        canvasScale = canvas.GetComponent<CanvasInfo>().GetCanvasScale();
+        dragPanel = canvas.transform.Find("PCDragPanel/#" + transform.name).gameObject;
+        waitGageImage = dragPanel.transform.Find("WaitGageImage").gameObject.GetComponent<Image>();
+    }
+
+    #region アイコンに適用するEvent Trigger関連
+    public void PointerClick()
+    {
+        if(isDragging || iconTouchUI.skillTextFlag || charaController.IsStateNone())
+            return; //ドラッグ中 or スキル演出中 or PC召喚中はクリック無効
+        questController.PauseBattle();
+        iconTouchUI.SetCharaInfoUI(transform.name);
+    }
+    public void BeginDrag()
+    {
+        //同時召喚可能数を超える場合はドラッグ無視
+        if (questController.GetFieldPCNum() >= Define.maxFieldPCNum || charaController.IsStateNone())
+        {
+            ignoreDrag = true;
+            return;
+        }
+        //timeScale==0でも、PCInfoPanelがアクティブだったらドラッグ開始（操作性向上のため）
+        else if(charaController.IsStateIcon() && iconTouchUI.PCInfoPanel.activeSelf)
+        {
+            iconTouchUI.PCInfoPanel.SetActive(false);
+        }
+        //PCのState!=Icon、または、timeScale==0の場合もドラッグ無視
+        else if (!charaController.IsStateIcon() || Time.timeScale == 0)
+        {
+            ignoreDrag = true;
+            return;
+        }
+
+        ignoreDrag = false;
+        isDragging = true;
+        touch();
+        questController.PauseBattle();
+        Vector3 posi = canvasPosi;
+        posi.x += touch_manager.touch_position.x * canvasScale;
+        posi.y += touch_manager.touch_position.y * canvasScale;
+        transform.position = posi;
+    }
+    public void Dragging()
+    {
+        if(ignoreDrag)return;
+        touch();
+        Vector3 posi = canvasPosi;
+        posi.x += touch_manager.touch_position.x * canvasScale;
+        posi.y += touch_manager.touch_position.y * canvasScale;
+        transform.position = posi;
+    }
+    public void EndDrag()
+    {
+        if(ignoreDrag)return;
+        isDragging = false;
+        touch();
+        Vector3 posi = touch_manager.touch_position;
+        posi.z = 0f;
+        Vector3 worldPosi = Camera.main.ScreenToWorldPoint(posi);
+        int layerMask = 1 << 9;
+        Ray ray = new Ray(worldPosi,Camera.main.transform.forward);
+        Debug.DrawRay (ray.origin, ray.direction * 400f, Color.red, 30, false);
+        bool hitFieldFlag = false;
+        foreach(RaycastHit hit in Physics.RaycastAll(ray,layerMask))
+        {
+            //フィールド上でドラッグ終了した場合はPC召喚
+            if(hit.transform.name == "Field")
+            {
+                Sequence seq = DOTween.Sequence();
+                seq.AppendCallback(()=>
+                {
+                    charaController.SetStateNone();
+                    hitFieldFlag = true;
+                    gameObject.SetActive(false);
+                    transform.position = hit.point;
+                    charaEffect.SetPCAppearParticle(hit.point);
+                })
+                .AppendInterval(0.4f)
+                .AppendCallback(()=>
+                {
+                    SetPCInField();
+                });
+                seq.Play();
+            }
+        }
+        //フィールド外でドラッグ終了した場合は初期位置に戻す
+        if(!hitFieldFlag)
+        {
+            transform.position = initialPosi;
+        }
+        questController.ResumeBattle();
+    }
+    #endregion
+
+    //通常のアイコンの色に設定（召喚可能状態）
+    public void NormalIcon()
+    {
+        dragPanel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+    }
+
+    //フィールド上にキャラを召喚
+    void SetPCInField()
+    {
+        gameObject.SetActive(true);
+        charaController.animator.enabled = true;
+        dragPanel.GetComponent<Image>().color = new Color(1f, 0, 0, 0.6f);
+        questController.SetPCInField();
+    }
+
+    //死亡したらキャラのアイコンの色を変更
+    public void Died()
+    {
+        dragPanel.GetComponent<Image>().color = new Color(0,0,0,0.7f);
+    }
+
+    public void SetWaitGageImage()
+    {
+        dragPanel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        waitGageImage.fillAmount = Define.waitTime;
+        waitGageImage.gameObject.SetActive(true);
+    }
+    public void UpdateWaitGageImage(float setTime)
+    {
+        int i = Mathf.CeilToInt(setTime);
+        waitGageImage.fillAmount = i / Define.waitTime;
+    }
+    public void HideWaitGageImage()
+    {
+        waitGageImage.gameObject.SetActive(false);
+    }
+
+}

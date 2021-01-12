@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 04de02682fdf742ae8365297188a4304
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - appearCircle: {fileID: 8436643638221964773, guid: e68241abacba9471391f045355329e8d,
+      type: 3}
+  - appearParticle: {fileID: 3588648880576337862, guid: 5ba15f385c28a41478e3b053659c3d0e,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
