@@ -5,6 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class AccountData
 {
+    //プレイヤーレベル
+    public int level;
+    //合計経験値
+    public int exp;
+    //レベルアップに必要な経験値
+    public int nextExp;
+    //nextExpに加算する経験値量
+    public int plusNextExp;
+
     //所持コイン
     public int coin;
 

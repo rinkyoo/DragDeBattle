@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public GameObject lockObj;
 
     #region ドロップ関連
+    private int dropExp = 0;
     private int dropCoin = 0;
     private EXPItem_Info dropExpItem;
     private int expItemKakuritsu = 0;
@@ -150,17 +151,18 @@ public class EnemyController : MonoBehaviour
                 gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 animator.SetTrigger("Die");
                 #region ドロップ関連
+                questController.PlusExp(dropExp);
                 if (dropCoin != 0)
                 {
                     questController.SetDropItem(transform.position + new Vector3(0,10f,0), "coin");
-                    questController.GetCoin(dropCoin);
+                    questController.PlusCoin(dropCoin);
                 }
                 if (dropExpItem != null)
                 {
                     if(Probability(expItemKakuritsu))
                     {
                         questController.SetDropItem(transform.position + new Vector3(0, 10f, 0), "exp");
-                        questController.GetEXPItem(dropExpItem);
+                        questController.PlusEXPItem(dropExpItem);
                     }
                 }
                 #endregion
@@ -269,6 +271,7 @@ public class EnemyController : MonoBehaviour
         es.SetStatus(enemy);
         hpSlider.maxValue = es.maxHP;
         hpSlider.value = es.maxHP;
+        dropExp = enemy.DropEXP;
         dropCoin = enemy.DropCoin;
         dropExpItem = enemy.DropEXPItem;
         expItemKakuritsu = enemy.EXPItemKakuritsu;

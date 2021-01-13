@@ -42,7 +42,9 @@ public class TrainingApplyManager : MonoBehaviour
     int sumLevel; //アイテム使用後のレベル
     int nowEXP;  //キャラが保持する現在の経験値
     int sumEXP;  //アイテム使用後のキャラが保持する経験値
-    List<int> nextEXPList; //各レベルで、レベルアップに必要な経験値のリスト
+    int nextEXP;
+    List<int> plusNextEXPList; //各レベルで、nextEXPに加算する値のリスト
+    int expSliderMin = 0; //経験値用のSliderの下限値格納用
     int sumCoin = 0; //強化に必要なコインの合計
     [SerializeField] TextMeshProUGUI sumLevelText;
     [SerializeField] TextMeshProUGUI beforeHPText;
@@ -69,6 +71,7 @@ public class TrainingApplyManager : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
+    //長押し判定を行い、適宜アイテム数を加算
     void Update()
     {
         if (isClicking)
@@ -103,7 +106,7 @@ public class TrainingApplyManager : MonoBehaviour
         }
         foreach(EXPItem_Info item in itemManager.GetEXPItemList())
         {
-            //所持数が０の場合はスキップ
+            //所持数が０の場合はスキップ（アイテムパネルを表示しない）
             if (itemManager.GetEXPItemNum(item.Name) <= 0) continue;
 
             GameObject itemPanel = Instantiate(expItemPanel,expItemContent.transform.position,Quaternion.identity) as GameObject;
@@ -156,13 +159,18 @@ public class TrainingApplyManager : MonoBehaviour
         charaNameText.text = chara.Name;
         nowLevel = sumLevel = chara.Level;
         nowEXP = sumEXP = chara.NowEXP;
-        nextEXPList = new List<int>() { nowEXP, chara.NextEXP };
+        nextEXP = chara.NextEXP;
+        plusNextEXPList = new List<int>() { chara.PlusNextEXP };
+        /*expSliderのMinの値の設定
+        厳密には値が少し違うけど、視覚的に問題はなく、
+        設計上の都合によりこの設定方法のまま*/
+        if(expSliderMin == 0) expSliderMin = nextEXP - chara.PlusNextEXP;
         beforeHPText.text = chara.HP.ToString();
         beforeSTRText.text = chara.STR.ToString();
         beforeVITText.text = chara.VIT.ToString();
         ChangeLevel();
     }
-
+    
     public void PlusPointerDown(string itemName)
     {
         clickingName = itemName;
@@ -185,7 +193,7 @@ public class TrainingApplyManager : MonoBehaviour
         isClicking = false;
         isLongPressing = false;
     }
-
+    //アイテム数の加算・減算（引数で正負判定）
     void AddNum(string itemName)
     {
         //キャラがMaxLevelに達している場合はアイテム使用不可
@@ -208,19 +216,20 @@ public class TrainingApplyManager : MonoBehaviour
         //増減後のアイテム数を画面に反映
         expItemContent.transform.Find(itemName + "Panel/ApplyItemNum").gameObject.GetComponent<TextMeshProUGUI>().text = itemCounter.EXPItemNum[itemName].ToString();
     }
-
+    //キャラに経験値を加算・減算
     void AddEXP(int expValue)
     {
         if (expValue > 0 && sumLevel < trainingChara.MaxLevel)
         {
-            int tempEXP = nowEXP + expValue - nextEXPList.Last();
+            int tempEXP = nowEXP + expValue - nextEXP;
             //レベルアップする場合
             if (tempEXP >= 0)
             {
-                nowEXP = nextEXPList.Last();
-                float tempNextEXP = (float)nextEXPList.Last();
-                nextEXPList.Add((int)(Math.Ceiling(tempNextEXP * 1.1)));
+                nowEXP = nextEXP;
+                plusNextEXPList.Add((int)(Math.Ceiling(plusNextEXPList.Last() * 1.1)));
+                nextEXP += plusNextEXPList.Last();
                 sumLevel++;
+                expSliderMin = nextEXP - plusNextEXPList.Last();
                 ChangeLevel();
                 AddEXP(tempEXP);
             }
@@ -235,13 +244,15 @@ public class TrainingApplyManager : MonoBehaviour
         else if(expValue < 0)
         {
             int tempEXP;
-            tempEXP = nowEXP + expValue - nextEXPList[nextEXPList.Count - 2];
+            tempEXP = nowEXP + expValue - (nextEXP - plusNextEXPList.Last());
             //レベルが下がる場合
             if (tempEXP < 0)
             {
-                nextEXPList.RemoveAt(nextEXPList.Count-1);
-                nowEXP = nextEXPList.Last();
+                nextEXP -= plusNextEXPList.Last();
+                nowEXP = nextEXP;
+                plusNextEXPList.RemoveAt(plusNextEXPList.Count - 1);
                 sumLevel--;
+                expSliderMin = nextEXP - plusNextEXPList.Last();
                 ChangeLevel();
                 AddEXP(tempEXP);
             }
@@ -261,7 +272,7 @@ public class TrainingApplyManager : MonoBehaviour
         afterHPText.text = (trainingChara.HP + (sumLevel - nowLevel) * trainingChara.AddHP).ToString();
         afterSTRText.text = (trainingChara.STR + (sumLevel - nowLevel) * trainingChara.AddSTR).ToString();
         afterVITText.text = (trainingChara.VIT + (sumLevel - nowLevel) * trainingChara.AddVIT).ToString();
-        SetEXPSlider(nextEXPList[nextEXPList.Count - 2], nextEXPList.Last());
+        SetEXPSlider(expSliderMin, nextEXP);
     }
 
     void SetEXPSlider(int minValue,int maxValue)
@@ -281,7 +292,7 @@ public class TrainingApplyManager : MonoBehaviour
             nextEXPText.text = maxValue.ToString();
         }
     }
-
+    //経験値アイテムの使用
     public void ApplyButtonClicked()
     {
         if (sumCoin <= 0) return;
@@ -294,21 +305,23 @@ public class TrainingApplyManager : MonoBehaviour
                 itemManager.PlusEXPItemNum(item.Name, -itemCounter.EXPItemNum[item.Name]);
             }
         }
-        //アカウントのコイン情報を更新
+        #region セーブ関連
+        //アカウントのコイン情報のセーブ
         accountManager.PlusCoin(-sumCoin);
         //アカウント情報のセーブ
         accountManager.SaveAccountData();
         //キャラ情報のセーブ
         trainingChara.Level = sumLevel;
         trainingChara.NowEXP = nowEXP;
-        trainingChara.NextEXP = nextEXPList.Last();
+        trainingChara.NextEXP = nextEXP;
         trainingChara.HP += (sumLevel - nowLevel) * trainingChara.AddHP;
         trainingChara.STR += (sumLevel - nowLevel) * trainingChara.AddSTR;
         trainingChara.VIT += (sumLevel - nowLevel) * trainingChara.AddVIT;
         this.gameObject.GetComponent<TrainingCharaManager>().SaveCharaInfo(trainingChara);
+        #endregion
 
         //ちょっとした画面上の演出（レベルが上がったときのみ）
-        if(trainingChara.Level > nowLevel)
+        if (trainingChara.Level > nowLevel)
         {
             levelUpObj.SetActive(true);
             audioManager.LevelUp();
@@ -319,6 +332,7 @@ public class TrainingApplyManager : MonoBehaviour
         }
         Invoke("HideApplyEffect", 1f);
 
+        expSliderMin = (int)expSlider.minValue;
         //画面上のデータ更新
         SetPanel(trainingChara);
     }
@@ -329,6 +343,7 @@ public class TrainingApplyManager : MonoBehaviour
 
     public void ItemResetButtonClicked()
     {
+        expSliderMin = 0;
         SetPanel(trainingChara);
     }
 
@@ -352,12 +367,15 @@ public class TrainingApplyManager : MonoBehaviour
     }
     public void LevelResetCancel()
     {
+        expSliderMin = 0;
         SetPanel(trainingChara);
         levelResetPanel.SetActive(false);
     }
     #endregion
+
     public void BackButtonClicked()
     {
+        expSliderMin = 0;
         trainingApplyPanel.SetActive(false);
         audioManager.Button1();
     }

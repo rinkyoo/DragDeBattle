@@ -54,6 +54,14 @@ public class Chara_Info : ScriptableObject
         set { nextEXP = value; }
         get { return nextEXP; }
     }
+    //nextEXPの加算値
+    [SerializeField]
+    private int plusNextEXP;
+    public int PlusNextEXP
+    {
+        set { plusNextEXP = value; }
+        get { return plusNextEXP; }
+    }
     //現在の所持経験値
     [SerializeField]
     private int nowEXP;
@@ -153,6 +161,13 @@ public class Chara_Info : ScriptableObject
     public int Level1NextEXP
     {
         get { return level1NextEXP; }
+    }
+    //レベル１のときのplusNextEXP
+    [SerializeField]
+    private int level1PlusNextEXP;
+    public int Level1PlusNextEXP
+    {
+        get { return level1PlusNextEXP; }
     }
     //レベル１のときのhp
     [SerializeField]

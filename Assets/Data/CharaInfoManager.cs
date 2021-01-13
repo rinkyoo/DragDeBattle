@@ -62,6 +62,7 @@ public class CharaInfoManager : MonoBehaviour
         setMyChara.Level = setCharaInfo.Level;
         setMyChara.NowEXP = setCharaInfo.NowEXP;
         setMyChara.NextEXP = setCharaInfo.NextEXP;
+        setMyChara.PlusNextEXP = setCharaInfo.PlusNextEXP;
         setMyChara.HP = setCharaInfo.HP;
         setMyChara.SP = setCharaInfo.SP;
         setMyChara.STR = setCharaInfo.STR;
@@ -118,6 +119,7 @@ public class CharaInfoManager : MonoBehaviour
         setCharaInfo.Level = setMyChara.Level;
         setCharaInfo.NowEXP = setMyChara.NowEXP;
         setCharaInfo.NextEXP = setMyChara.NextEXP;
+        setCharaInfo.PlusNextEXP = setMyChara.PlusNextEXP;
         setCharaInfo.HP = setMyChara.HP;
         setCharaInfo.STR = setMyChara.STR;
         setCharaInfo.VIT = setMyChara.VIT;

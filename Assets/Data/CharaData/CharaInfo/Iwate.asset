@@ -18,6 +18,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: dca381d717794254cb81d78c050ccb2b, type: 3}
   level: 1
   nextEXP: 2
+  plusNextEXP: 0
   nowEXP: 0
   hp: 0
   addHp: 5
@@ -31,7 +32,8 @@ MonoBehaviour:
   speed_atk: 0.6
   range_atk: 60
   maxLevel: 100
-  level1NextEXP: 2
+  level1NextEXP: 100
+  level1PlusNextEXP: 100
   level1HP: 500
   level1STR: 50
   level1VIT: 30

@@ -78,6 +78,7 @@ public class QuestController : MonoBehaviour
     private float second = 0;
 
     #region ドロップ関連
+    private int totalExp = 0; //獲得プレイヤー経験値
     private int totalCoin = 0; //獲得コイン
     private List<EXPItem_Info> expItemList = new List<EXPItem_Info>(); //獲得経験値アイテム
     [SerializeField] GameObject dropItemParticle;
@@ -395,12 +396,6 @@ public class QuestController : MonoBehaviour
 
         string clearTime = minute.ToString() + "分" + second.ToString("F2") + "秒";
 
-        #region アカウントデータの更新
-        dataHolder.SaveClearData();
-        dataHolder.PlusCoin(totalCoin);
-        dataHolder.PlusEXPItem(expItemList);
-        dataHolder.SaveAccountData();
-        #endregion
         audioManager.PauseBGM();
         audioManager.LastEnemyDie();
 
@@ -409,7 +404,7 @@ public class QuestController : MonoBehaviour
         {
             Time.timeScale = 1f;
             audioManager.UnPauseBGM();
-            questClearManager.QuestClear(clearTime,totalCoin, expItemList);
+            questClearManager.QuestClear(clearTime, totalExp, totalCoin, expItemList);
             charaManager.QuestClear();
         }));
     }
@@ -520,11 +515,15 @@ public class QuestController : MonoBehaviour
                 break;
         }
     }
-    public void GetCoin(int coin)
+    public void PlusExp(int exp)
+    {
+        totalExp += exp;
+    }
+    public void PlusCoin(int coin)
     {
         totalCoin += coin;
     }
-    public void GetEXPItem(EXPItem_Info expItem)
+    public void PlusEXPItem(EXPItem_Info expItem)
     {
         expItemList.Add(expItem);
     }

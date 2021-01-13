@@ -61,6 +61,10 @@ public class DataHolder : MonoBehaviour
         accountManager.SaveClearedData(playQuest);
     }
 
+    public void PlusEXP(int exp)
+    {
+        accountManager.PlusEXP(exp);
+    }
     public void PlusCoin(int coin)
     {
         accountManager.PlusCoin(coin);

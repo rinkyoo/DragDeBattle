@@ -8,14 +8,6 @@ using UnityEngine;
 [System.Serializable]
 public class MyChara
 {
-    /*
-    public int id;
-    public int ID
-    {
-        set { id = value; }
-        get{ return id; }
-    }
-    */
     public string name;
     public string Name
     {
@@ -44,6 +36,13 @@ public class MyChara
         get { return nextEXP; }
     }
 
+    public int plusNextEXP;
+    public int PlusNextEXP
+    {
+        set { plusNextEXP = value; }
+        get { return plusNextEXP; }
+    }
+
     public int hp;
     public int HP
     {
@@ -57,14 +56,6 @@ public class MyChara
         set{ sp = value; }
         get{ return sp; }
     }
-    /*
-    public string skillInfo;
-    public string SkillInfo
-    {
-
-        get{ return skillInfo; }
-    }
-    */
     public int str;
     public int STR
     {

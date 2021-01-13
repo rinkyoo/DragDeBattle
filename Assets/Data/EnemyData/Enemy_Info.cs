@@ -11,11 +11,6 @@ public class Enemy_Info : ScriptableObject
     //キャラ名
     [SerializeField]
     public string chara_name;
-    /*
-    //プレハブ名
-    [SerializeField]
-    public string prefab_name;
-    */
     //プレハブ
     [SerializeField]
     private GameObject prefab;
@@ -67,6 +62,13 @@ public class Enemy_Info : ScriptableObject
     private float range_atk;
     public float RANGE_ATK{
         get{ return range_atk;}
+    }
+    //ドロップするプレイヤー経験値
+    [SerializeField]
+    private int dropExp;
+    public int DropEXP
+    {
+        get { return dropExp; }
     }
     //ドロップするコイン
     [SerializeField]

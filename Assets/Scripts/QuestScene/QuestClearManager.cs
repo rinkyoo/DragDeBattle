@@ -8,6 +8,7 @@ using TMPro;
 
 public class QuestClearManager : MonoBehaviour
 {
+    private DataHolder dataHolder;
     private AudioManager audioManager;
 
     #region Inspectorで取得するGameObject関連
@@ -24,6 +25,9 @@ public class QuestClearManager : MonoBehaviour
     [SerializeField] GameObject titleObj;
     [SerializeField] GameObject timeObj;
     [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] GameObject expObj;
+    [SerializeField] TextMeshProUGUI expText;
+    [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] GameObject coinObj;
     [SerializeField] TextMeshProUGUI coinText;
     [SerializeField] GameObject itemScrollView;
@@ -33,16 +37,17 @@ public class QuestClearManager : MonoBehaviour
 
     void Start()
     {
+        dataHolder = GameObject.Find("DataHolder").GetComponent<DataHolder>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         sceneLoadCanvasGroup = sceneLoadPanel.GetComponent<CanvasGroup>();
     }
 
-    public void QuestClear(string clearTime,int totalCoin,List<EXPItem_Info> expItemList)
+    public void QuestClear(string clearTime,int totalExp,int totalCoin,List<EXPItem_Info> expItemList)
     {
         audioManager.QuestClearBGM();
 
         timeText.text = clearTime;
-
+        expText.text = totalExp.ToString();
         coinText.text = totalCoin.ToString();
         foreach(EXPItem_Info item in expItemList)
         {
@@ -58,6 +63,14 @@ public class QuestClearManager : MonoBehaviour
         questFinCamera.GetComponent<Animator>().SetTrigger("QuestFin");
         clearText.SetActive(true);
         Invoke("AppearResult", 5.5f);
+
+        #region アカウントデータの更新
+        dataHolder.SaveClearData();
+        dataHolder.PlusEXP(totalExp);
+        dataHolder.PlusCoin(totalCoin);
+        dataHolder.PlusEXPItem(expItemList);
+        dataHolder.SaveAccountData();
+        #endregion
     }
 
     void AppearResult()
@@ -82,12 +95,17 @@ public class QuestClearManager : MonoBehaviour
                  audioManager.System24();
                  coinObj.SetActive(true);
              })
-            .InsertCallback(3.5f,()=>
+            .InsertCallback(3.5f, () =>
+            {
+                audioManager.System24();
+                expObj.SetActive(true);
+            })
+            .InsertCallback(4f,()=>
             {
                 audioManager.System24();
                 itemScrollView.SetActive(true);
             })
-            .InsertCallback(4f, () =>
+            .InsertCallback(4.5f, () =>
             {
                 audioManager.System24();
                 goHomeButton.SetActive(true);

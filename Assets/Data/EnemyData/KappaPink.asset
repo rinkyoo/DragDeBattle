@@ -22,6 +22,7 @@ MonoBehaviour:
   agi: 2
   speed_atk: 2
   range_atk: 7
+  dropExp: 10
   dropCoin: 10000
   dropExpItem: {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}
   expItem_Kakuritsu: 20

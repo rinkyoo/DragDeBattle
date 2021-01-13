@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using System.IO;
 using System.Diagnostics;
 using TMPro;
+using AccountCommonData;
 
 public class AccountManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class AccountManager : MonoBehaviour
     private AccountData accountData;
     private AudioManager audioManager;
 
+    [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI coinText;
 
     void Awake()
@@ -28,6 +31,7 @@ public class AccountManager : MonoBehaviour
         reader.Close();
 
         accountData =  JsonUtility.FromJson<AccountData>(datastr);
+        levelText.text = accountData.level.ToString();
         coinText.text = accountData.coin.ToString();
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -43,11 +47,28 @@ public class AccountManager : MonoBehaviour
         writer.Close();
     }
 
+    public void PlusEXP(int plusExp)
+    {
+        accountData.exp += plusExp;
+        while(accountData.exp >= accountData.nextExp)
+        {
+            if(accountData.level < AccountDefine.maxLevel)
+                accountData.level++;
+            accountData.plusNextExp = (int)(Math.Ceiling(accountData.plusNextExp * AccountDefine.rateNextExp));
+            accountData.nextExp += accountData.plusNextExp;
+        }
+        levelText.text = accountData.level.ToString();
+    }
+
     public void PlusCoin(int plusNum)
     {
         accountData.coin += plusNum;
         if (accountData.coin < 0) accountData.coin = 0;
         coinText.text = accountData.coin.ToString();
+    }
+    public int GetCoin()
+    {
+        return accountData.coin;
     }
 
     public void SaveClearedData(int[] questData)
@@ -71,15 +92,11 @@ public class AccountManager : MonoBehaviour
     {
         accountData.expItemData.EXPItemNum[itemName] += plusNum;
     }
-
-    public int GetCoin()
-    {
-        return accountData.coin;
-    }
     public EXPItemData GetEXPItemData()
     {
         return accountData.expItemData;
     }
+
     public int[] GetClearedQuest()
     {
         return accountData.clearedQuest;
