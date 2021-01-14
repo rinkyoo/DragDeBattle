@@ -53,7 +53,7 @@ public class CharaController : MonoBehaviour
     private bool isInAttackRange = false;
     private bool auto = false;
     
-    protected void Awake()
+    public void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Home")
         {
@@ -69,7 +69,7 @@ public class CharaController : MonoBehaviour
         animator.enabled = false;
     }
 
-    protected void Start()
+    public void Start()
     {
         charaIconController = gameObject.GetComponent<CharaIconController>();
         state = State.Icon;

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using System.IO;
@@ -18,7 +17,6 @@ public class AccountManager : MonoBehaviour
     private AudioManager audioManager;
 
     [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] Image levelGageImage;
     [SerializeField] TextMeshProUGUI coinText;
 
     void Awake()
@@ -33,17 +31,12 @@ public class AccountManager : MonoBehaviour
         reader.Close();
 
         accountData =  JsonUtility.FromJson<AccountData>(datastr);
+        levelText.text = accountData.level.ToString();
+        coinText.text = accountData.coin.ToString();
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-
-    void Start()
-    {
-        //起動時のアカウントパネルの値を設定
-        PlusEXP(0);
-        coinText.text = accountData.coin.ToString();
-    }
     public void SaveAccountData()
     {
         StreamWriter writer;
@@ -54,19 +47,17 @@ public class AccountManager : MonoBehaviour
         writer.Close();
     }
 
-    public void PlusEXP(int plusEXP)
+    public void PlusEXP(int plusExp)
     {
-        accountData.exp += plusEXP;
-        while(accountData.exp >= accountData.nextEXP)
+        accountData.exp += plusExp;
+        while(accountData.exp >= accountData.nextExp)
         {
             if(accountData.level < AccountDefine.maxLevel)
                 accountData.level++;
-            accountData.plusNextEXP = (int)(Math.Ceiling(accountData.plusNextEXP * AccountDefine.rateNextEXP));
-            accountData.nextEXP += accountData.plusNextEXP;
+            accountData.plusNextExp = (int)(Math.Ceiling(accountData.plusNextExp * AccountDefine.rateNextExp));
+            accountData.nextExp += accountData.plusNextExp;
         }
         levelText.text = accountData.level.ToString();
-        float temp = accountData.exp - (accountData.nextEXP - accountData.plusNextEXP);
-        levelGageImage.fillAmount = temp / accountData.plusNextEXP;
     }
 
     public void PlusCoin(int plusNum)

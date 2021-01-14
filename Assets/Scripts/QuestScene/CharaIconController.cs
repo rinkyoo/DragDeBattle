@@ -176,8 +176,8 @@ public class CharaIconController : MonoBehaviour
     }
     public void UpdateWaitGageImage(float setTime)
     {
-        //int i = Mathf.CeilToInt(setTime);
-        waitGageImage.fillAmount = setTime / (float)Define.waitTime;
+        int i = Mathf.CeilToInt(setTime);
+        waitGageImage.fillAmount = i / Define.waitTime;
     }
     public void HideWaitGageImage()
     {
