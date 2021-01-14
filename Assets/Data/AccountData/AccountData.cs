@@ -21,7 +21,7 @@ public class AccountData
     public int[] clearedQuest = new int[2];
 
     //経験値アイテムの所持データ
-    public EXPItemData expItemData = new EXPItemData();
+    public ExpItemData expItemData = new ExpItemData();
 
 
 }

@@ -14,7 +14,7 @@ public class TrainingApplyManager : MonoBehaviour
     private AccountManager accountManager;
     private AudioManager audioManager;
 
-    private EXPItemData itemCounter = new EXPItemData(); //EXPItemの使用個数を保持
+    private ExpItemData itemCounter = new ExpItemData(); //EXPItemの使用個数を保持
     private Dictionary<string, int> expValueDic = new Dictionary<string, int>(); //アイテム名と経験値量のDic
     private Dictionary<string, int> itemCoinDic = new Dictionary<string, int>(); //アイテム名と必要コインのDic
 
@@ -62,9 +62,9 @@ public class TrainingApplyManager : MonoBehaviour
     void Awake()
     {
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        foreach(EXPItem_Info item in itemManager.GetEXPItemList())
+        foreach(ExpItem_Info item in itemManager.GetExpItemList())
         {
-            expValueDic.Add(item.Name, item.EXPValue);
+            expValueDic.Add(item.Name, item.ExpValue);
             itemCoinDic.Add(item.Name, item.Coin);
         }
         accountManager = GameObject.Find("AccountManager").GetComponent<AccountManager>();
@@ -99,15 +99,15 @@ public class TrainingApplyManager : MonoBehaviour
     public void SetPanel(Chara_Info chara)
     {
         trainingChara = chara;
-        itemCounter = new EXPItemData();
+        itemCounter = new ExpItemData();
         foreach (Transform child in expItemContent.transform)
         {
             Destroy(child.gameObject);
         }
-        foreach(EXPItem_Info item in itemManager.GetEXPItemList())
+        foreach(ExpItem_Info item in itemManager.GetExpItemList())
         {
             //所持数が０の場合はスキップ（アイテムパネルを表示しない）
-            if (itemManager.GetEXPItemNum(item.Name) <= 0) continue;
+            if (itemManager.GetExpItemNum(item.Name) <= 0) continue;
 
             GameObject itemPanel = Instantiate(expItemPanel,expItemContent.transform.position,Quaternion.identity) as GameObject;
             itemPanel.name = item.Name + "Panel";
@@ -116,7 +116,7 @@ public class TrainingApplyManager : MonoBehaviour
             //アイテムアイコンを表示
             itemPanel.transform.Find("IconImage").gameObject.GetComponent<Image>().sprite = item.Icon;
             //アイテムの所持数を表示
-            itemPanel.transform.Find("ItemNum").gameObject.GetComponent<TextMeshProUGUI>().text = itemManager.GetEXPItemNum(item.Name).ToString();
+            itemPanel.transform.Find("ItemNum").gameObject.GetComponent<TextMeshProUGUI>().text = itemManager.GetExpItemNum(item.Name).ToString();
             #region Itemの増減用Event Triggerの設定
             //Item増加用のPointerClickの設定
             string itemName = item.Name;
@@ -199,9 +199,9 @@ public class TrainingApplyManager : MonoBehaviour
         //キャラがMaxLevelに達している場合はアイテム使用不可
         if (addNum > 0 && sumLevel >= trainingChara.MaxLevel) return;
 
-        int newNum = itemCounter.EXPItemNum[itemName] + addNum;
+        int newNum = itemCounter.ExpItemNum[itemName] + addNum;
         if (newNum < 0) newNum = 0;
-        else if (newNum > itemManager.GetEXPItemNum(itemName)) newNum = itemManager.GetEXPItemNum(itemName);
+        else if (newNum > itemManager.GetExpItemNum(itemName)) newNum = itemManager.GetExpItemNum(itemName);
         else
         {
             sumCoin += itemCoinDic[itemName] * addNum;
@@ -209,12 +209,12 @@ public class TrainingApplyManager : MonoBehaviour
             AddEXP(expValueDic[itemName] * addNum);
         }
 
-        itemCounter.EXPItemNum[itemName] = newNum;
+        itemCounter.ExpItemNum[itemName] = newNum;
 
         //アイテム数が０ならアイテム数の表記なし
         expItemContent.transform.Find(itemName + "Panel/ApplyItemNum").gameObject.SetActive(newNum != 0);
         //増減後のアイテム数を画面に反映
-        expItemContent.transform.Find(itemName + "Panel/ApplyItemNum").gameObject.GetComponent<TextMeshProUGUI>().text = itemCounter.EXPItemNum[itemName].ToString();
+        expItemContent.transform.Find(itemName + "Panel/ApplyItemNum").gameObject.GetComponent<TextMeshProUGUI>().text = itemCounter.ExpItemNum[itemName].ToString();
     }
     //キャラに経験値を加算・減算
     void AddEXP(int expValue)
@@ -298,11 +298,11 @@ public class TrainingApplyManager : MonoBehaviour
         if (sumCoin <= 0) return;
 
         //アカウントの経験値アイテム情報を更新
-        foreach (EXPItem_Info item in itemManager.GetEXPItemList())
+        foreach (ExpItem_Info item in itemManager.GetExpItemList())
         {
-            if (itemCounter.EXPItemNum[item.Name] != 0)
+            if (itemCounter.ExpItemNum[item.Name] != 0)
             {
-                itemManager.PlusEXPItemNum(item.Name, -itemCounter.EXPItemNum[item.Name]);
+                itemManager.PlusExpItemNum(item.Name, -itemCounter.ExpItemNum[item.Name]);
             }
         }
         #region セーブ関連

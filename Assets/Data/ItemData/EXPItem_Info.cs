@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 //経験値アイテムの情報
 [SerializeField]
-[CreateAssetMenu(fileName = "EXPItem_Info", menuName = "Create_EXPItem_Info")]
-public class EXPItem_Info : ScriptableObject
+[CreateAssetMenu(fileName = "ExpItem_Info", menuName = "Create_ExpItem_Info")]
+public class ExpItem_Info : ScriptableObject
 {
     //アイテムID
     [SerializeField]
@@ -42,7 +42,7 @@ public class EXPItem_Info : ScriptableObject
     //経験値量
     [SerializeField]
     private int expValue;
-    public int EXPValue
+    public int ExpValue
     {
         get { return expValue; }
     }

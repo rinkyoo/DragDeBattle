@@ -69,10 +69,10 @@ public class DataHolder : MonoBehaviour
     {
         accountManager.PlusCoin(coin);
     }
-    public void PlusExpItem(List<EXPItem_Info> expItemList)
+    public void PlusExpItem(List<ExpItem_Info> expItemList)
     {
         Dictionary<string, int> expItemDic = new Dictionary<string, int>();
-        foreach(EXPItem_Info item in expItemList)
+        foreach(ExpItem_Info item in expItemList)
         {
             if(expItemDic.ContainsKey(item.Name))
                 expItemDic[item.Name]++;

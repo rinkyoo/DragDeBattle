@@ -42,14 +42,14 @@ public class QuestClearManager : MonoBehaviour
         sceneLoadCanvasGroup = sceneLoadPanel.GetComponent<CanvasGroup>();
     }
 
-    public void QuestClear(string clearTime,int totalExp,int totalCoin,List<EXPItem_Info> expItemList)
+    public void QuestClear(string clearTime,int totalExp,int totalCoin,List<ExpItem_Info> expItemList)
     {
         audioManager.QuestClearBGM();
 
         timeText.text = clearTime;
         expText.text = totalExp.ToString();
         coinText.text = totalCoin.ToString();
-        foreach(EXPItem_Info item in expItemList)
+        foreach(ExpItem_Info item in expItemList)
         {
             Image itemImage = Instantiate(dropItemImage, dropItemContent.transform.position, Quaternion.identity) as Image;
             itemImage.gameObject.transform.SetParent(dropItemContent.transform);

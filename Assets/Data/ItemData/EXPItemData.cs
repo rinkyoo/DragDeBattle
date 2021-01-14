@@ -4,9 +4,9 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
-public class EXPItemData : ISerializationCallbackReceiver
+public class ExpItemData : ISerializationCallbackReceiver
 {
-    public Dictionary<string, int> EXPItemNum = new Dictionary<string, int>()
+    public Dictionary<string, int> ExpItemNum = new Dictionary<string, int>()
     {
         {"SmallEXP",0 },
         {"MediumEXP",0 },
@@ -23,7 +23,7 @@ public class EXPItemData : ISerializationCallbackReceiver
         //Dictionary（EXPItemData）をListに保存
         dicKey.Clear();
         dicValue.Clear();
-        foreach(var dic in EXPItemNum)
+        foreach(var dic in ExpItemNum)
         {
             dicKey.Add(dic.Key);
             dicValue.Add(dic.Value);
@@ -34,10 +34,10 @@ public class EXPItemData : ISerializationCallbackReceiver
     public void OnAfterDeserialize()
     {
         //List->Dictionaryに変換
-        EXPItemNum = new Dictionary<string, int>();
+        ExpItemNum = new Dictionary<string, int>();
         for(int i=0;i<Math.Min(dicKey.Count,dicValue.Count);i++)
         {
-            EXPItemNum.Add(dicKey[i], dicValue[i]);
+            ExpItemNum.Add(dicKey[i], dicValue[i]);
         }
     }
 }

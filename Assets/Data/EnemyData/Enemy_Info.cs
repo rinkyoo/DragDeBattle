@@ -79,15 +79,15 @@ public class Enemy_Info : ScriptableObject
     }
     //ドロップする経験値アイテム
     [SerializeField]
-    private EXPItem_Info dropExpItem;
-    public EXPItem_Info DropEXPItem
+    private ExpItem_Info dropExpItem;
+    public ExpItem_Info DropEXPItem
     {
         get { return dropExpItem; }
     }
     //経験値アイテムのドロップ確率
     [SerializeField]
     private int expItem_Kakuritsu;
-    public int EXPItemKakuritsu
+    public int ExpItemKakuritsu
     {
         get { return expItem_Kakuritsu; }
     }

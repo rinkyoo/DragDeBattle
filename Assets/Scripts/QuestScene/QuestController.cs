@@ -80,7 +80,7 @@ public class QuestController : MonoBehaviour
     #region ドロップ関連
     private int totalExp = 0; //獲得プレイヤー経験値
     private int totalCoin = 0; //獲得コイン
-    private List<EXPItem_Info> expItemList = new List<EXPItem_Info>(); //獲得経験値アイテム
+    private List<ExpItem_Info> expItemList = new List<ExpItem_Info>(); //獲得経験値アイテム
     [SerializeField] GameObject dropItemParticle;
     Transform dropParent;
     #endregion
@@ -523,7 +523,7 @@ public class QuestController : MonoBehaviour
     {
         totalCoin += coin;
     }
-    public void PlusExpItem(EXPItem_Info expItem)
+    public void PlusExpItem(ExpItem_Info expItem)
     {
         expItemList.Add(expItem);
     }

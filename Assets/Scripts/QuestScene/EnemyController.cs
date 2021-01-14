@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     #region ドロップ関連
     private int dropExp = 0;
     private int dropCoin = 0;
-    private EXPItem_Info dropExpItem;
+    private ExpItem_Info dropExpItem;
     private int expItemKakuritsu = 0;
     #endregion
 
@@ -274,7 +274,7 @@ public class EnemyController : MonoBehaviour
         dropExp = enemy.DropEXP;
         dropCoin = enemy.DropCoin;
         dropExpItem = enemy.DropEXPItem;
-        expItemKakuritsu = enemy.EXPItemKakuritsu;
+        expItemKakuritsu = enemy.ExpItemKakuritsu;
     }
 
     //ドロップアイテム用の確率

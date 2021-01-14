@@ -102,9 +102,9 @@ public class AccountManager : MonoBehaviour
 
     public void PlusExpItemNum(string itemName,int plusNum)
     {
-        accountData.expItemData.EXPItemNum[itemName] += plusNum;
+        accountData.expItemData.ExpItemNum[itemName] += plusNum;
     }
-    public EXPItemData GetExpItemData()
+    public ExpItemData GetExpItemData()
     {
         return accountData.expItemData;
     }

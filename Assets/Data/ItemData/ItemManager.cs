@@ -10,8 +10,8 @@ public class ItemManager : MonoBehaviour
     private AccountManager accountManager;
     private AudioManager audioManager;
 
-    [SerializeField] private List<EXPItem_Info> expItemList = new List<EXPItem_Info>(); //EXPItemの情報リスト
-    private EXPItemData expItemData; //保持しているEXPItemの数
+    [SerializeField] private List<ExpItem_Info> expItemList = new List<ExpItem_Info>(); //EXPItemの情報リスト
+    private ExpItemData expItemData; //保持しているExpItemの数
 
     void Awake()
     {
@@ -24,20 +24,20 @@ public class ItemManager : MonoBehaviour
         expItemData = accountManager.GetExpItemData();
     }
 
-    public void PlusEXPItemNum(string itemName, int plusNum)
+    public void PlusExpItemNum(string itemName, int plusNum)
     {
         accountManager.PlusExpItemNum(itemName, plusNum);
     }
     
-    public List< EXPItem_Info> GetEXPItemList()
+    public List<ExpItem_Info> GetExpItemList()
     {
         return expItemList;
     }
     
     //EXPアイテムの所持個数を取得
-    public int GetEXPItemNum(string itemName)
+    public int GetExpItemNum(string itemName)
     {
-        return expItemData.EXPItemNum[itemName];
+        return expItemData.ExpItemNum[itemName];
     }
 
 }
