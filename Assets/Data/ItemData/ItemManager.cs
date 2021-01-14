@@ -21,12 +21,12 @@ public class ItemManager : MonoBehaviour
 
     void Start()
     {
-        expItemData = accountManager.GetEXPItemData();
+        expItemData = accountManager.GetExpItemData();
     }
 
     public void PlusEXPItemNum(string itemName, int plusNum)
     {
-        accountManager.PlusEXPItemNum(itemName, plusNum);
+        accountManager.PlusExpItemNum(itemName, plusNum);
     }
     
     public List< EXPItem_Info> GetEXPItemList()

@@ -162,7 +162,7 @@ public class EnemyController : MonoBehaviour
                     if(Probability(expItemKakuritsu))
                     {
                         questController.SetDropItem(transform.position + new Vector3(0, 10f, 0), "exp");
-                        questController.PlusEXPItem(dropExpItem);
+                        questController.PlusExpItem(dropExpItem);
                     }
                 }
                 #endregion

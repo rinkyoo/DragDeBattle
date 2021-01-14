@@ -66,9 +66,9 @@ public class QuestClearManager : MonoBehaviour
 
         #region アカウントデータの更新
         dataHolder.SaveClearData();
-        dataHolder.PlusEXP(totalExp);
+        dataHolder.PlusExp(totalExp);
         dataHolder.PlusCoin(totalCoin);
-        dataHolder.PlusEXPItem(expItemList);
+        dataHolder.PlusExpItem(expItemList);
         dataHolder.SaveAccountData();
         #endregion
     }

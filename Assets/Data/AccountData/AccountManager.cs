@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using System.IO;
@@ -17,6 +18,7 @@ public class AccountManager : MonoBehaviour
     private AudioManager audioManager;
 
     [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] Image levelGageImage;
     [SerializeField] TextMeshProUGUI coinText;
 
     void Awake()
@@ -31,10 +33,15 @@ public class AccountManager : MonoBehaviour
         reader.Close();
 
         accountData =  JsonUtility.FromJson<AccountData>(datastr);
-        levelText.text = accountData.level.ToString();
-        coinText.text = accountData.coin.ToString();
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
+    void Start()
+    {
+        //起動時のアカウントパネルの値を設定
+        PlusExp(0);
+        coinText.text = accountData.coin.ToString();
     }
 
     public void SaveAccountData()
@@ -47,7 +54,7 @@ public class AccountManager : MonoBehaviour
         writer.Close();
     }
 
-    public void PlusEXP(int plusExp)
+    public void PlusExp(int plusExp)
     {
         accountData.exp += plusExp;
         while(accountData.exp >= accountData.nextExp)
@@ -57,14 +64,19 @@ public class AccountManager : MonoBehaviour
             accountData.plusNextExp = (int)(Math.Ceiling(accountData.plusNextExp * AccountDefine.rateNextExp));
             accountData.nextExp += accountData.plusNextExp;
         }
-        levelText.text = accountData.level.ToString();
+        if (levelText != null)
+        {
+            levelText.text = accountData.level.ToString();
+            float temp = accountData.exp - (accountData.nextExp - accountData.plusNextExp);
+            levelGageImage.fillAmount = temp / accountData.plusNextExp;
+        }
     }
 
     public void PlusCoin(int plusNum)
     {
         accountData.coin += plusNum;
         if (accountData.coin < 0) accountData.coin = 0;
-        coinText.text = accountData.coin.ToString();
+        if (coinText != null)  coinText.text = accountData.coin.ToString();
     }
     public int GetCoin()
     {
@@ -88,11 +100,11 @@ public class AccountManager : MonoBehaviour
         }
     }
 
-    public void PlusEXPItemNum(string itemName,int plusNum)
+    public void PlusExpItemNum(string itemName,int plusNum)
     {
         accountData.expItemData.EXPItemNum[itemName] += plusNum;
     }
-    public EXPItemData GetEXPItemData()
+    public EXPItemData GetExpItemData()
     {
         return accountData.expItemData;
     }

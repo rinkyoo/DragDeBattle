@@ -61,15 +61,15 @@ public class DataHolder : MonoBehaviour
         accountManager.SaveClearedData(playQuest);
     }
 
-    public void PlusEXP(int exp)
+    public void PlusExp(int exp)
     {
-        accountManager.PlusEXP(exp);
+        accountManager.PlusExp(exp);
     }
     public void PlusCoin(int coin)
     {
         accountManager.PlusCoin(coin);
     }
-    public void PlusEXPItem(List<EXPItem_Info> expItemList)
+    public void PlusExpItem(List<EXPItem_Info> expItemList)
     {
         Dictionary<string, int> expItemDic = new Dictionary<string, int>();
         foreach(EXPItem_Info item in expItemList)
@@ -81,7 +81,7 @@ public class DataHolder : MonoBehaviour
         }
         foreach (string name in expItemDic.Keys)
         {
-            accountManager.PlusEXPItemNum(name, expItemDic[name]);
+            accountManager.PlusExpItemNum(name, expItemDic[name]);
         }
     }
 

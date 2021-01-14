@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5505362, b: 0, a: 1}
+  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5225,7 +5225,7 @@ RectTransform:
   - {fileID: 1791961717}
   - {fileID: 798853579}
   m_Father: {fileID: 1883827291}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7771,7 +7771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -272, y: -29}
+  m_AnchoredPosition: {x: -272, y: -22}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711897303
@@ -8503,7 +8503,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 752237101}
   m_TextComponent: {fileID: 1510568001}
   m_materialReferenceIndex: 1
@@ -9460,7 +9460,7 @@ RectTransform:
   - {fileID: 1265433009}
   - {fileID: 1982526661}
   m_Father: {fileID: 1883827291}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9844,6 +9844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   str: []
   levelText: {fileID: 711897303}
+  levelGageImage: {fileID: 2103973101}
   coinText: {fileID: 2102279466}
 --- !u!4 &857714781
 Transform:
@@ -10798,7 +10799,7 @@ RectTransform:
   - {fileID: 1811237937}
   - {fileID: 327442211}
   m_Father: {fileID: 1883827291}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12887,7 +12888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -271, y: 30}
+  m_AnchoredPosition: {x: -271, y: 32}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151836444
@@ -12938,8 +12939,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 54
-  m_fontSizeBase: 54
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15555,7 +15556,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1342212237}
   m_TextComponent: {fileID: 612730720}
   m_materialReferenceIndex: 1
@@ -17034,7 +17035,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1400112411}
   m_TextComponent: {fileID: 1133370099}
   m_materialReferenceIndex: 1
@@ -28807,10 +28808,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 496133725}
-  - {fileID: 934266193}
   - {fileID: 816166242}
   - {fileID: 487661275}
   - {fileID: 1934632564}
+  - {fileID: 934266193}
   - {fileID: 638024974}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -29029,7 +29030,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1886857330}
   m_TextComponent: {fileID: 1353781513}
   m_materialReferenceIndex: 1
@@ -29779,7 +29780,7 @@ RectTransform:
   - {fileID: 966255310}
   - {fileID: 1503175000}
   m_Father: {fileID: 1883827291}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -31532,7 +31533,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2091400923}
   m_TextComponent: {fileID: 910065989}
   m_materialReferenceIndex: 1
@@ -31836,7 +31837,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.42
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0

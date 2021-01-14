@@ -523,7 +523,7 @@ public class QuestController : MonoBehaviour
     {
         totalCoin += coin;
     }
-    public void PlusEXPItem(EXPItem_Info expItem)
+    public void PlusExpItem(EXPItem_Info expItem)
     {
         expItemList.Add(expItem);
     }
