@@ -10,9 +10,9 @@ public class AccountData
     //合計経験値
     public int exp;
     //レベルアップに必要な経験値
-    public int nextExp;
+    public int nextEXP;
     //nextExpに加算する経験値量
-    public int plusNextExp;
+    public int plusNextEXP;
 
     //所持コイン
     public int coin;
