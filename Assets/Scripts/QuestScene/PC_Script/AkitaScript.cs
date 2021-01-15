@@ -1,13 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using System;
 using Common;
 
-public class TokyoScript : CharaController
+public class AkitaScript : CharaController
 {
     private CharaManager charaManager;
 
     public GameObject HealEffect;
+
 
     void Awake()
     {
@@ -24,43 +27,30 @@ public class TokyoScript : CharaController
     {
         base.FixedUpdate();
     }
-    
+
     public override void Attack()
     {
-        //対象キャラが有効であれば
-        if(base.lockObj.activeSelf)
+        //攻撃対象のキャラが有効であれば
+        if (base.lockObj.activeSelf)
         {
-            animator.SetTrigger("Throw");
+            base.animator.SetTrigger("Water");
         }
         else
         {
             base.SetState(State.Idle);
         }
-        
+
     }
 
     //Animation内で実行
-    void SetThrowAttack()
+    void SetWaterAttack()
     {
         if (base.lockObj != null)
         {
-            GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
-            obj.GetComponent<ThrowObject>().charaController = this;
-            obj.GetComponent<ThrowObject>().SetThrow(base.lockObj.transform.position);
+            base.audioManager.Water();
+            HitAttack(base.lockObj); //AkitaScript内のHitAttackを実行
         }
     }
-
-    public override void LockEnemy(GameObject obj)
-    {
-        //自身の回復はできない
-        if (obj == this.gameObject) return;
-
-        if (lockObj == obj) return;
-        this.transform.LookAt(obj.transform.position);
-        SetState(State.Lock);
-        lockObj = obj;
-    }
-
 
     public override void Skill()
     {
@@ -77,26 +67,29 @@ public class TokyoScript : CharaController
 
         }
     }
-    
+
     public override void HitAttack(GameObject obj)
     {
-        if(obj == lockObj)
+        if (obj == lockObj)
         {
             cs.GetSP(1);
             spSlider.value = cs.nowSP;
-            
-            if(obj.CompareTag("Enemy"))
+
+            if (obj.CompareTag("Enemy"))
             {
+                //敵位置に攻撃エフェクトを表示
+                Vector3 targetPosi = base.lockObj.transform.position;
+                targetPosi.y = 0f;
+                Instantiate(base.attackObj, targetPosi, Quaternion.Euler(-90f, 0f, 0f));
+
                 base.HitAttack(obj);
             }
-            else if(obj.CompareTag("PC_Field"))
+            else if (obj.CompareTag("PC_Field"))
             {
                 obj.GetComponent<CharaController>().Healed(cs.str * 1);
                 GameObject healEffect = Instantiate(HealEffect, new Vector3(0, 0, 0), Quaternion.Euler(-90f, 0f, 0f));
                 healEffect.transform.SetParent(obj.transform, false);
             }
         }
-        
-        
     }
 }

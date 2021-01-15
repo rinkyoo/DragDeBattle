@@ -19,7 +19,7 @@ MonoBehaviour:
   sp: 2
   str: 100
   vit: 2
-  agi: 2
+  agi: 1.5
   speed_atk: 2
   range_atk: 7
   dropExp: 100

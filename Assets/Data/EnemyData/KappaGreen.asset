@@ -17,9 +17,9 @@ MonoBehaviour:
   level: 0
   hp: 1000
   sp: 2
-  str: 30
-  vit: 2
-  agi: 2
+  str: 50
+  vit: 10
+  agi: 1.5
   speed_atk: 2
   range_atk: 7
   dropExp: 10

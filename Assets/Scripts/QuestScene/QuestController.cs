@@ -226,8 +226,8 @@ public class QuestController : MonoBehaviour
                         PCTouching = true;
                         befoPosi = hit.transform.position;
                         fieldEffect.SetLineRen(befoPosi);
-                        //ヒーラーキャラの場合はFlagを変更（ヒーラーが複数キャラ存在する場合でも対応できるように改良が必要）
-                        if(hit.transform.gameObject.GetComponent<TokyoScript>())
+                        //ヒーラーの場合はFlagを立てる（ヒーラーのみPCもロック対象にできるから）
+                        if(hit.transform.gameObject.GetComponent<CharaController>().isHealer)
                         {
                             healerTouchFlag = true;
                         }

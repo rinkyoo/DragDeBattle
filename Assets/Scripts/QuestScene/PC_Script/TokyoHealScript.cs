@@ -16,10 +16,6 @@ public class TokyoHealScript : MonoBehaviour
             if(collider.gameObject == charaController.lockObj)
             {
                 charaController.HitAttack(collider.gameObject);
-                /*
-                GameObject effect = Instantiate(HealEffect) as GameObject;
-                effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
-                */
                 Destroy(this.gameObject);
             }
         }

@@ -27,8 +27,8 @@ public class CharaController : MonoBehaviour
     [HideInInspector] public Slider hpSlider; //hpバー
     [HideInInspector] public Slider spSlider; //spバー
 
-    private float elapsedTime = 100f; //攻撃間隔の時間判定用
-    private float waitingTime;
+    private float elapsedTime = 100f; //攻撃間隔の時間計算用
+    private float waitingTime; //キャラの再召喚にかかる時間計算用
     public float GetWaitingTime()
     {
         return waitingTime;
@@ -52,7 +52,8 @@ public class CharaController : MonoBehaviour
     State preState;
     private bool isInAttackRange = false;
     private bool auto = false;
-    
+    public bool isHealer = false;
+
     public void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Home")

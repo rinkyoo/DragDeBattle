@@ -36,4 +36,4 @@ MonoBehaviour:
   level1PlusNextEXP: 100
   level1HP: 300
   level1STR: 200
-  level1VIT: 10
+  level1VIT: 5
