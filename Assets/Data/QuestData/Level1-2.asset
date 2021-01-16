@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level1-2
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: 851a5294b491b474f9f189e3d59ed17f, type: 2}
-  - {fileID: 11400000, guid: 54261b00509db49f3827adf781ca91f7, type: 2}
-  - {fileID: 11400000, guid: a1d7c475308be4870a4af79cdd06920a, type: 2}
+  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}
+  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}
+  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}

@@ -33,7 +33,7 @@ public class AkitaScript : CharaController
         //攻撃対象のキャラが有効であれば
         if (base.lockObj.activeSelf)
         {
-            base.animator.SetTrigger("Water");
+            base.animator.SetTrigger("Jump");
         }
         else
         {

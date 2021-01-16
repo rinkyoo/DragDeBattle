@@ -29,7 +29,7 @@ public class NiigataScript : CharaController
         //UŒ‚‘ÎÛ‚ÌƒLƒƒƒ‰‚ª—LŒø‚Å‚ ‚ê‚Î
         if (base.lockObj.activeSelf)
         {
-            base.animator.SetTrigger("Water");
+            base.animator.SetTrigger("Jump");
         }
         else
         {

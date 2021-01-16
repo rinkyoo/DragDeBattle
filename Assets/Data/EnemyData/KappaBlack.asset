@@ -15,7 +15,7 @@ MonoBehaviour:
   chara_name: KappaBlack
   prefab: {fileID: 2838322568845606041, guid: 99966e62501e8994c8a805bb2f7526b8, type: 3}
   level: 0
-  hp: 500
+  hp: 1000
   sp: 2
   str: 100
   vit: 2

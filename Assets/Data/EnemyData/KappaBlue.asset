@@ -15,12 +15,12 @@ MonoBehaviour:
   chara_name: KappaBlue
   prefab: {fileID: 1494926315206257646, guid: 3a0ec05b671c6934d8087c12a52afb66, type: 3}
   level: 0
-  hp: 200
+  hp: 500
   sp: 2
-  str: 40
+  str: 50
   vit: 2
   agi: 1
-  speed_atk: 2
+  speed_atk: 1.7
   range_atk: 60
   dropExp: 10
   dropCoin: 500

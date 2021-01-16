@@ -15,13 +15,13 @@ MonoBehaviour:
   chara_name: KappaPink
   prefab: {fileID: 7641089560107826178, guid: d389a534915f08641acba7e624bf05e2, type: 3}
   level: 0
-  hp: 200
+  hp: 800
   sp: 2
-  str: 30
-  vit: 2
+  str: 60
+  vit: 10
   agi: 1.5
   speed_atk: 2
-  range_atk: 7
+  range_atk: 30
   dropExp: 10
   dropCoin: 10000
   dropExpItem: {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}

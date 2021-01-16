@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class YellowScript : EnemyController
 {
-    bool isInSkill = false;
-
     void Awake()
     {
         base.Awake();
@@ -38,28 +36,10 @@ public class YellowScript : EnemyController
     {
         if (base.lockObj != null)
         {
-            if (base.lockObj.GetComponent<CharaController>().IsInField())
-            {
-                //base.audioManager.Shoot();
-                GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-                obj.GetComponent<EnemyShootObject>().enemyController = this;
-                obj.GetComponent<EnemyShootObject>().SetShoot(base.lockObj.transform.position);
-            }
-            else
-            {
-                animator.SetTrigger("Idle");
-            }
+            //base.audioManager.Shoot();
+            GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
+            obj.GetComponent<EnemyShootObject>().enemyController = this;
+            obj.GetComponent<EnemyShootObject>().SetShoot(base.lockObj.transform.position);
         }
-    }
-
-    //animation内で実行
-    public void SetAttack()
-    {
-        base.attackCollider.enabled = true;
-
-    }
-    public void ResetAttack()
-    {
-        base.attackCollider.enabled = false;
     }
 }

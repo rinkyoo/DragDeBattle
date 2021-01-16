@@ -2,49 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShootObject : MonoBehaviour
+public class EnemyCircleObject : MonoBehaviour
 {
     [HideInInspector] public EnemyController enemyController;
 
-    //進む方向ベクトル
-    Vector3 moveDirection;
-
-    bool isShooted = false;
-
     public GameObject damageEffect;
 
-
-    public void SetShoot(Vector3 posi)
-    {
-        posi.y = 3f;
-        moveDirection = (posi - transform.position).normalized;
-        this.transform.LookAt(posi);
-        this.transform.Rotate(new Vector3(-90, 0, 0));
-
-        isShooted = true;
-    }
+    private float expandRate = 1.05f;
 
     void FixedUpdate()
     {
-        if (isShooted)
+        transform.localScale = transform.localScale * expandRate;
+        if (transform.localScale.x >= 7f)
         {
-            transform.position += moveDirection * Time.deltaTime * 80f;
+            Destroy(this.gameObject);
         }
     }
 
+   
+
     void OnTriggerEnter(Collider collider)
     {
+        print("hit circle trigger");
+
         if (enemyController == null) return;
         if (collider.gameObject.CompareTag("PC_Field")) //PC全てに攻撃を適用
         {
+            print("hit circle atk");
             enemyController.HitAttack(collider.gameObject);
             GameObject effect = Instantiate(damageEffect) as GameObject;
             effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
-        }
-
-        if (collider.gameObject.CompareTag("Wall"))
-        {
-            Destroy(this.gameObject);
         }
     }
 }

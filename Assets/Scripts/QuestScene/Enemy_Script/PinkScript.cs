@@ -12,7 +12,6 @@ public class PinkScript : EnemyController
     void Start()
     {
         base.Start();
-        base.attackCollider = base.attackObj.GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()
@@ -20,14 +19,16 @@ public class PinkScript : EnemyController
         base.FixedUpdate();
     }
 
-    //animation内で実行
-    public void SetAttack()
+    public override void Attack()
     {
-        base.attackCollider.enabled = true;
+        animator.SetTrigger("Jump");
 
     }
-    public void ResetAttack()
+
+    //animation内で実行
+    void SetCircleAttack()
     {
-        base.attackCollider.enabled = false;
+        GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 1f, 0), Quaternion.Euler(0,0,0));
+        obj.GetComponent<EnemyCircleObject>().enemyController = this;
     }
 }

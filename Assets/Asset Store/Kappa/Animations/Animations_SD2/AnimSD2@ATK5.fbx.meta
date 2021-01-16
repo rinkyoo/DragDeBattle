@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55e55d434b2d3e84e85d3f2bc1fc5a77
+guid: b60b88335f8383745af7e77feee7341e
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -371,7 +371,7 @@ ModelImporter:
     second: upperarm_twist_01_r
   - first:
       74: 7400000
-    second: Jump
+    second: ATK3
   - first:
       95: 9500000
     second: //RootNode
@@ -393,12 +393,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'AnimSD2@Jump' has import animation warnings
+    animationImportWarnings: "\nClip 'AnimSD2@ATK3' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'spine_01' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'lowerarm_l' has translation
       animation that will be discarded.\n\t'calf_l' has translation animation that
-      will be discarded.\n\t'calf_r' has translation animation that will be discarded.\n"
+      will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -412,11 +412,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump
-      takeName: AnimSD2@Jump
+      name: ATK3
+      takeName: AnimSD2@ATK3
       internalID: 0
-      firstFrame: 1001
-      lastFrame: 1030
+      firstFrame: 621
+      lastFrame: 645
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -436,11 +436,11 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6868682
-        functionName: SetCircleAttack
+      - time: 0.668942
+        functionName: SetWaterAttack
         data: 
-        objectReferenceParameter: {fileID: 11400000, guid: 3efed7f15f8e6430ab6c3e0d82750c23,
-          type: 2}
+        objectReferenceParameter: {fileID: 1000012090859144, guid: c2b420d758f13cc418bf89f8fed0343b,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -573,7 +573,7 @@ ModelImporter:
         weight: 1
       maskType: 1
       maskSource: {fileID: 31900000, guid: 5d278c77cbdf9be4799b69e094206b26, type: 2}
-      additiveReferencePoseFrame: 1000.80005
+      additiveReferencePoseFrame: 620.88
     isReadable: 1
   meshes:
     lODScreenPercentages: []

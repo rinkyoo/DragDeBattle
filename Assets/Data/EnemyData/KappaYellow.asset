@@ -15,9 +15,9 @@ MonoBehaviour:
   chara_name: KappaYellow
   prefab: {fileID: 5318934619437692287, guid: 68e1c873804404238a1ce78a7c7f5d75, type: 3}
   level: 0
-  hp: 200
+  hp: 500
   sp: 2
-  str: 30
+  str: 60
   vit: 2
   agi: 1
   speed_atk: 2

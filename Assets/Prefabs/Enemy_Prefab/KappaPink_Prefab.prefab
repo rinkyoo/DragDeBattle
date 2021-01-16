@@ -1,114 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &241351672784091876
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3113397235336283205}
-  - component: {fileID: 600678272036059264}
-  - component: {fileID: 3937653746591904901}
-  - component: {fileID: 8555448801891118132}
-  - component: {fileID: 6242555125287954434}
-  m_Layer: 11
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3113397235336283205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241351672784091876}
-  m_LocalRotation: {x: 0.47379056, y: 0.11617562, z: 0.1291265, w: 0.86333776}
-  m_LocalPosition: {x: -0.113, y: 0.502, z: 0.831}
-  m_LocalScale: {x: 0.039, y: 2.1795995, z: 0.092999995}
-  m_Children: []
-  m_Father: {fileID: 7641089560107786266}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 52.006004, y: 31.644001, z: 32.754}
---- !u!33 &600678272036059264
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241351672784091876}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3937653746591904901
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241351672784091876}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 48a9c95f73a054af9ab54afde7755a76, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!65 &8555448801891118132
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241351672784091876}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
---- !u!114 &6242555125287954434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241351672784091876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c66a66e1262c4801aaf78e4dc1b6b3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyController: {fileID: 0}
-  damageEffect: {fileID: 347028340141000812, guid: f32e94e4ff51e4718bb01007c9f8d505,
-    type: 3}
 --- !u!1 &1102458457442871036
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4515787f2cbc0ef41b47bfe077a60a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackObj: {fileID: 241351672784091876}
+  attackObj: {fileID: 4169907655687374996, guid: dd134c053bc66a247a90e632331e0967,
+    type: 3}
   lockObj: {fileID: 0}
 --- !u!1 &7641089560107826180
 GameObject:
@@ -1563,7 +1455,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7641089560107786278}
-  - {fileID: 3113397235336283205}
   m_Father: {fileID: 7641089560107786270}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
