@@ -8,15 +8,10 @@ using Debug = UnityEngine.Debug;
 
 public class ShootObject : MonoBehaviour
 {
-    [HideInInspector] public CharaController charaController;
-
     //進む方向ベクトル
     Vector3 moveDirection;
 
     bool isShooted = false;
-
-    public GameObject damageEffect;
-
 
     public void SetShoot(Vector3 posi)
     {
@@ -36,16 +31,6 @@ public class ShootObject : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if (charaController == null) return;
-        if (collider.gameObject.CompareTag("Enemy")) //ロック対象以外の敵にも攻撃を適用
-        {
-            charaController.HitAttack(collider.gameObject);
-            GameObject effect = Instantiate(damageEffect) as GameObject;
-            effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
-        }
-    }
     void OnTriggerExit(Collider collider)
     {
         if (collider.gameObject.CompareTag("Wall"))

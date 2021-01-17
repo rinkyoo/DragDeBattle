@@ -13,6 +13,7 @@ public class ShizuokaScript : CharaController
     void Awake()
     {
         base.Awake();
+        base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
     }
     void Start()
     {
@@ -50,7 +51,6 @@ public class ShizuokaScript : CharaController
         {
             base.audioManager.Shoot();
             GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-            obj.GetComponent<ShootObject>().charaController = this;
             obj.GetComponent<ShootObject>().SetShoot(base.lockObj.transform.position);
         }
     }

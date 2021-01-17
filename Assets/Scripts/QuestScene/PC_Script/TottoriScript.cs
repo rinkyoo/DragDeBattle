@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using System;
 using Common;
 
-public class AkitaScript : CharaController
+public class TottoriScript : CharaController
 {
     private CharaManager charaManager;
 
-    public GameObject HealEffect;
-
+    [SerializeField] GameObject healCircle;
+    [SerializeField] GameObject healEffect;
 
     void Awake()
     {
         base.Awake();
+        healCircle.GetComponent<HealCollider>().charaController = this;
     }
     void Start()
     {
@@ -30,10 +29,10 @@ public class AkitaScript : CharaController
 
     public override void Attack()
     {
-        //攻撃対象のキャラが有効であれば
+        //対象キャラが有効であれば
         if (base.lockObj.activeSelf)
         {
-            base.animator.SetTrigger("Jump");
+            animator.SetTrigger("Jump");
         }
         else
         {
@@ -45,10 +44,15 @@ public class AkitaScript : CharaController
     //Animation内で実行
     void SetJumpAttack()
     {
-        if (base.lockObj != null)
+        if (base.lockObj == null) return;
+        base.audioManager.Water();
+        if (base.lockObj.CompareTag("PC_Field"))
         {
-            base.audioManager.Water();
-            HitAttack(base.lockObj); //AkitaScript内のHitAttackを実行
+            Instantiate(healCircle, base.lockObj.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
+        }
+        else
+        {
+            HitAttack(base.lockObj); //TottoriScript内のHitAttackを実行
         }
     }
 
@@ -71,8 +75,8 @@ public class AkitaScript : CharaController
             CharaController cc = charaManager.GetCharaController(i);
             if (!cc.IsInField()) continue; //フィールド上に存在していない場合は無視
             cc.Healed(cs.str * 3);
-            GameObject healEffect = Instantiate(HealEffect, new Vector3(0, 0, 0), Quaternion.Euler(-90f, 0f, 0f));
-            healEffect.transform.SetParent(cc.gameObject.transform, false);
+            GameObject effect = Instantiate(healEffect, new Vector3(0, 0, 0), Quaternion.Euler(-90f, 0f, 0f));
+            effect.transform.SetParent(cc.gameObject.transform, false);
 
             base.questController.ResumeBattle(); //時間を戻す
 
@@ -81,12 +85,15 @@ public class AkitaScript : CharaController
 
     public override void HitAttack(GameObject obj)
     {
-        if (obj == lockObj)
+        if (obj.CompareTag("PC_Field"))
         {
-            cs.GetSP(1);
-            spSlider.value = cs.nowSP;
-
-            if (obj.CompareTag("Enemy"))
+            obj.GetComponent<CharaController>().Healed(cs.str * 1);
+            GameObject effect = Instantiate(healEffect, new Vector3(0, 0, 0), Quaternion.Euler(-90f, 0f, 0f));
+            effect.transform.SetParent(obj.transform, false);
+        }
+        else if (obj.CompareTag("Enemy"))
+        {
+            if (obj == lockObj)
             {
                 //敵位置に攻撃エフェクトを表示
                 Vector3 targetPosi = base.lockObj.transform.position;
@@ -94,12 +101,6 @@ public class AkitaScript : CharaController
                 Instantiate(base.attackObj, targetPosi, Quaternion.Euler(-90f, 0f, 0f));
 
                 base.HitAttack(obj);
-            }
-            else if (obj.CompareTag("PC_Field"))
-            {
-                obj.GetComponent<CharaController>().Healed(cs.str * 1);
-                GameObject healEffect = Instantiate(HealEffect, new Vector3(0, 0, 0), Quaternion.Euler(-90f, 0f, 0f));
-                healEffect.transform.SetParent(obj.transform, false);
             }
         }
     }

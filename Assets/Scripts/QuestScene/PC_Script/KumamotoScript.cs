@@ -16,8 +16,8 @@ public class KumamotoScript : CharaController
     void Awake()
     {
         base.Awake();
+        base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
         attackCollider = attackObj.GetComponent<BoxCollider>();
-        base.attackObj.GetComponent<MeleeObject>().charaController = this;
     }
 
     void Start()

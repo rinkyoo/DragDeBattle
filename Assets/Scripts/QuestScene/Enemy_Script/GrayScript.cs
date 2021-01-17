@@ -38,7 +38,7 @@ public class GrayScript : EnemyController
         {
             //base.audioManager.Shoot();
             GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-            obj.GetComponent<EnemyShootObject>().enemyController = this;
+            obj.GetComponent<EnemyAttackCollider>().enemyController = this;
             obj.GetComponent<EnemyShootObject>().SetShoot(base.lockObj.transform.position);
         }
     }

@@ -7,11 +7,13 @@ public class TokyoScript : CharaController
 {
     private CharaManager charaManager;
 
-    public GameObject HealEffect;
+    [SerializeField] GameObject HealEffect;
 
     void Awake()
     {
         base.Awake();
+        base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
+        base.attackObj.GetComponent<HealCollider>().charaController = this;
     }
     void Start()
     {
@@ -45,7 +47,6 @@ public class TokyoScript : CharaController
         if (base.lockObj != null)
         {
             GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
-            obj.GetComponent<ThrowObject>().charaController = this;
             obj.GetComponent<ThrowObject>().SetThrow(base.lockObj.transform.position);
         }
     }

@@ -29,6 +29,6 @@ public class PinkScript : EnemyController
     void SetCircleAttack()
     {
         GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 1f, 0), Quaternion.Euler(0,0,0));
-        obj.GetComponent<EnemyCircleObject>().enemyController = this;
+        obj.GetComponent<EnemyAttackCollider>().enemyController = this;
     }
 }

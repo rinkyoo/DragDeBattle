@@ -10,6 +10,7 @@ public class YamaguchiScript : CharaController
     void Awake()
     {
         base.Awake();
+        base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
     }
     void Start()
     {
@@ -40,7 +41,6 @@ public class YamaguchiScript : CharaController
         if (base.lockObj != null)
         {
             GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-            obj.GetComponent<ThrowObject>().charaController = this;
             obj.GetComponent<ThrowObject>().SetThrow(base.lockObj.transform.position);
         }
     }

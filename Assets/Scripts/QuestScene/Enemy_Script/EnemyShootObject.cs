@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class EnemyShootObject : MonoBehaviour
 {
-    [HideInInspector] public EnemyController enemyController;
-
     //進む方向ベクトル
     Vector3 moveDirection;
 
     bool isShooted = false;
-
-    public GameObject damageEffect;
-
 
     public void SetShoot(Vector3 posi)
     {
@@ -34,14 +29,6 @@ public class EnemyShootObject : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (enemyController == null) return;
-        if (collider.gameObject.CompareTag("PC_Field")) //PC全てに攻撃を適用
-        {
-            enemyController.HitAttack(collider.gameObject);
-            GameObject effect = Instantiate(damageEffect) as GameObject;
-            effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
-        }
-
         if (collider.gameObject.CompareTag("Wall"))
         {
             Destroy(this.gameObject);

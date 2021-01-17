@@ -1,24 +1,21 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMeleeObject : MonoBehaviour
+public class EnemyAttackCollider : MonoBehaviour
 {
     [HideInInspector] public EnemyController enemyController;
-    public GameObject damageEffect;
+    [SerializeField] GameObject damageEffect;
 
-    void Awake()
-    {
-        enemyController = this.transform.root.gameObject.GetComponent<EnemyController>();
-    }
 
     void OnTriggerEnter(Collider collider)
     {
+        if (enemyController == null) return;
         if (collider.gameObject.CompareTag("PC_Field"))
         {
-            if (collider.gameObject == enemyController.lockObj) //ÉçÉbÉNëŒè€ÇÃPCÇ…ÇµÇ©çUåÇÇÕîΩâfÇ≥ÇÍÇ»Ç¢
+            enemyController.HitAttack(collider.gameObject);
+            if (damageEffect != null)
             {
-                enemyController.HitAttack(collider.gameObject);
                 GameObject effect = Instantiate(damageEffect) as GameObject;
                 effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
             }

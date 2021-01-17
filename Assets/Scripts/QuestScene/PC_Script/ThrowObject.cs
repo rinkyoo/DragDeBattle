@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ThrowObject : MonoBehaviour
 {
-    [HideInInspector] public CharaController charaController;
-
-    public GameObject DamageEffect;
-
     Vector3 offset;
     Vector3 target; //ë_Ç§ìGÇÃç¿ïW
 
@@ -65,20 +61,6 @@ public class ThrowObject : MonoBehaviour
     
     void OnTriggerEnter(Collider collider)
     {
-        if (charaController == null) return;
-        if (collider.gameObject.CompareTag("Enemy"))
-        {
-
-            if (collider.gameObject == charaController.lockObj) //ÉçÉbÉNëŒè€ÇÃìGÇµÇ©çUåÇÇµÇ»Ç¢
-            {
-                charaController.HitAttack(collider.gameObject);
-                GameObject effect = Instantiate(DamageEffect) as GameObject;
-                effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
-                Destroy(this.gameObject);
-                return;
-            }
-        }
-
         if (collider.gameObject.CompareTag("Field") || collider.gameObject.CompareTag("Wall"))
         {
             Destroy(this.gameObject);

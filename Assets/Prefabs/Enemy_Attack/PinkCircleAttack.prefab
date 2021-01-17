@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4169907655687374999}
   - component: {fileID: -8918029283691959100}
   - component: {fileID: 4326454976522322537}
+  - component: {fileID: 5533487915839917401}
   m_Layer: 0
   m_Name: PinkCircleAttack
   m_TagString: Untagged
@@ -110,3 +111,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5533487915839917401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169907655687374996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e703c03bdb79be14c9542702b4a1a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyController: {fileID: 0}
+  damageEffect: {fileID: 347028340141000812, guid: f32e94e4ff51e4718bb01007c9f8d505,
+    type: 3}

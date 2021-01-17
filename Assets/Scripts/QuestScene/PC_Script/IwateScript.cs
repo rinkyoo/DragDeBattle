@@ -13,6 +13,7 @@ public class IwateScript : CharaController
     void Awake()
     {
         base.Awake();
+        base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
     }
     void Start()
     {
@@ -35,7 +36,7 @@ public class IwateScript : CharaController
             {
                 if(nowChangedAngle % 60 == 0)base.audioManager.Shoot();
                 GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-                obj.GetComponent<ShootObject>().charaController = this;
+                obj.GetComponent<PCAttackCollider>().charaController = this;
                 obj.GetComponent<ShootObject>().SetShoot(transform.position + transform.rotation * new Vector3(10f, 0, 0));
             }
         }
@@ -66,7 +67,6 @@ public class IwateScript : CharaController
         {
             base.audioManager.Shoot();
             GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-            obj.GetComponent<ShootObject>().charaController = this;
             obj.GetComponent<ShootObject>().SetShoot(base.lockObj.transform.position);
         }
     }

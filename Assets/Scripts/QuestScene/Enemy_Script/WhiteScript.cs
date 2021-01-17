@@ -6,6 +6,7 @@ public class WhiteScript : EnemyController
 {
     void Awake()
     {
+        base.attackObj.GetComponent<EnemyAttackCollider>().enemyController = this;
         base.Awake();
     }
 

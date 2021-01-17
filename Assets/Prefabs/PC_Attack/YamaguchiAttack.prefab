@@ -4870,6 +4870,7 @@ GameObject:
   - component: {fileID: 199717178991696432}
   - component: {fileID: -3563247760173967603}
   - component: {fileID: 4954793805361447696}
+  - component: {fileID: 1863004315309887223}
   m_Layer: 0
   m_Name: YamaguchiAttack
   m_TagString: Untagged
@@ -9687,9 +9688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e65e8ff13ce48bb86782587bf0a91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaController: {fileID: 0}
-  DamageEffect: {fileID: 8345390656786283038, guid: 5d4dfa9ad69644b3786d754f654861bc,
-    type: 3}
 --- !u!135 &4954793805361447696
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9703,6 +9701,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1863004315309887223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565353676965534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4641d541ef3f7a49922161ffce4dbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charaController: {fileID: 0}
+  damageEffect: {fileID: 8345390656786283038, guid: 5d4dfa9ad69644b3786d754f654861bc,
+    type: 3}
 --- !u!1 &1638818574369114
 GameObject:
   m_ObjectHideFlags: 0

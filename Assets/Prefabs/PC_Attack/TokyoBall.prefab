@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7262630740421509537}
   - component: {fileID: 7829745225256694064}
   - component: {fileID: 6822511104814085312}
+  - component: {fileID: -878601722596020957}
   m_Layer: 0
   m_Name: TokyoBall
   m_TagString: Untagged
@@ -107,9 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e65e8ff13ce48bb86782587bf0a91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaController: {fileID: 0}
-  DamageEffect: {fileID: 6054570379466264236, guid: f94e0b6d0ae1cd84cb009fcba77f6043,
-    type: 3}
 --- !u!114 &6822511104814085312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,5 +120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889de4463496b4c3a88e90fd93b651c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealEffect: {fileID: 599073991233343743, guid: 39daec6bcd5acac4584ededd7472f753,
+  charaController: {fileID: 0}
+--- !u!114 &-878601722596020957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326915954067239852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4641d541ef3f7a49922161ffce4dbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charaController: {fileID: 0}
+  damageEffect: {fileID: 6054570379466264236, guid: f94e0b6d0ae1cd84cb009fcba77f6043,
     type: 3}

@@ -222,6 +222,7 @@ MonoBehaviour:
   spSlider: {fileID: 0}
   lockObj: {fileID: 0}
   attackObj: {fileID: 6340314899625404827}
+  isHealer: 0
 --- !u!136 &6338221922646461539
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -946,7 +947,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.089893855, y: 0.04166724, z: 1.4168828}
   m_Center: {x: -0.002242971, y: 0.00000050759746, z: 0.50876206}
---- !u!114 &1509415824027349020
+--- !u!114 &6784675389687245105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -955,7 +956,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6340314899625404827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cff1095e8b31d468f2f6b25fcad5fa, type: 3}
+  m_Script: {fileID: 11500000, guid: e4641d541ef3f7a49922161ffce4dbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charaController: {fileID: 0}
@@ -1458,7 +1459,7 @@ Animator:
   m_GameObject: {fileID: 7916492567682781156}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 710bb3a1ce812a642b2cb12a02da2b05, type: 3}
-  m_Controller: {fileID: 9100000, guid: c2bb141f960294c13836233ab2092b75, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

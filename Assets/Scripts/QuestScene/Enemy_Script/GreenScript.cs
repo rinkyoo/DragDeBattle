@@ -6,13 +6,13 @@ public class GreenScript : EnemyController
 {
     void Awake()
     {
+        base.attackObj.GetComponent<EnemyAttackCollider>().enemyController = this;
         base.Awake();
     }
 
     void Start()
     {
         base.Start();
-        base.attackCollider = base.attackObj.GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()

@@ -39,7 +39,7 @@ public class BlueScript : EnemyController
         if (base.lockObj != null)
         {
             GameObject obj = Instantiate(base.attackObj, transform.position + new Vector3(0f, 3f, 0), Quaternion.identity);
-            obj.GetComponent<EnemyThrowObject>().enemyController = this;
+            obj.GetComponent<EnemyAttackCollider>().enemyController = this;
             obj.GetComponent<EnemyThrowObject>().SetThrow(base.lockObj.transform.position);
         }
     }

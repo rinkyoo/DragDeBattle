@@ -18,7 +18,6 @@ using Debug = UnityEngine.Debug;
 */
 public class BoomerangObject : MonoBehaviour
 {
-    [HideInInspector] public CharaController charaController;
     [HideInInspector] public MieScript mieScript;
 
     Vector3 preLocalPosition; //武器オブジェクトのlocalPostioを保持しとく
@@ -34,8 +33,6 @@ public class BoomerangObject : MonoBehaviour
 
     bool isThrowing = false;
     bool returnFlag;
-
-    public GameObject damageEffect;
 
     public void Start()
     {
@@ -114,16 +111,5 @@ public class BoomerangObject : MonoBehaviour
         P2 = P2 + (new Vector3(x, 0, z) - P2Sub);
         P2.y = 3f;
         return P2;
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        if (charaController == null) return;
-        if (collider.gameObject.CompareTag("Enemy")) //ロック対象以外の敵にも攻撃を適用
-        {
-            charaController.HitAttack(collider.gameObject);
-            GameObject effect = Instantiate(damageEffect) as GameObject;
-            effect.transform.position = collider.ClosestPointOnBounds(this.transform.position);
-        }
     }
 }

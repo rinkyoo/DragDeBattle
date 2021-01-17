@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCircleObject : MonoBehaviour
+public class CircleHealObject : MonoBehaviour
 {
     private float expandRate = 1.05f;
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3425453992172904838}
   - component: {fileID: 2420567575160756911}
   - component: {fileID: -1633959710156531993}
+  - component: {fileID: 651984589687899996}
   m_Layer: 0
   m_Name: IwateAttack
   m_TagString: Untagged
@@ -106,6 +107,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b409b1be7e9882c45bfd606272c4ef62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &651984589687899996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745999991119193332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4641d541ef3f7a49922161ffce4dbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   charaController: {fileID: 0}
-  damageEffect: {fileID: 6054570379466264236, guid: f94e0b6d0ae1cd84cb009fcba77f6043,
+  damageEffect: {fileID: 1039816552800756, guid: 0b415c68d3bdb244e8d29bf0bba20f90,
     type: 3}

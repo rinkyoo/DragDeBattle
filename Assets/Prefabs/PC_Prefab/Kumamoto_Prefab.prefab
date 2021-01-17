@@ -407,7 +407,7 @@ Animator:
   m_GameObject: {fileID: 1000011298902030}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 911b37f1511b27f468d2f9afe5135891, type: 3}
-  m_Controller: {fileID: 9100000, guid: c2bb141f960294c13836233ab2092b75, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -638,6 +638,7 @@ MonoBehaviour:
   spSlider: {fileID: 0}
   lockObj: {fileID: 0}
   attackObj: {fileID: 8197548994130940304}
+  isHealer: 0
 --- !u!136 &-278811726880367799
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1416,7 +1417,7 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.048779793, y: 0.00093743205, z: -0.00088973343}
     m_Extent: {x: 0.0621996, y: 0.14124504, z: 0.10092156}
   m_DirtyAABB: 0
---- !u!114 &4773271572693767706
+--- !u!114 &6845870511565238136
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1425,7 +1426,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8197548994130940304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cff1095e8b31d468f2f6b25fcad5fa, type: 3}
+  m_Script: {fileID: 11500000, guid: e4641d541ef3f7a49922161ffce4dbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charaController: {fileID: 0}

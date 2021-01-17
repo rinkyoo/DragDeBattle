@@ -764,7 +764,7 @@ Animator:
   m_GameObject: {fileID: 172672}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b2e9ccdbbafee48449806d54570d9d63, type: 3}
-  m_Controller: {fileID: 9100000, guid: c2bb141f960294c13836233ab2092b75, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1109,6 +1109,7 @@ MonoBehaviour:
   spSlider: {fileID: 0}
   lockObj: {fileID: 0}
   attackObj: {fileID: 7377032970428300298}
+  isHealer: 0
   isThrowing: 0
 --- !u!136 &-1447141929129739934
 CapsuleCollider:
@@ -1583,6 +1584,21 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.22425449, y: 0.0023326278, z: -0.05514229}
     m_Extent: {x: 0.23159319, y: 0.22699863, z: 0.25670576}
   m_DirtyAABB: 0
+--- !u!114 &7786763265589093377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7377032970428300298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4641d541ef3f7a49922161ffce4dbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charaController: {fileID: 0}
+  damageEffect: {fileID: 6054570379466264236, guid: f94e0b6d0ae1cd84cb009fcba77f6043,
+    type: 3}
 --- !u!114 &9125041636214348376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,10 +1611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833f47e85408cb248b30a8ea96de82ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaController: {fileID: 0}
   mieScript: {fileID: 0}
-  damageEffect: {fileID: 6054570379466264236, guid: f94e0b6d0ae1cd84cb009fcba77f6043,
-    type: 3}
 --- !u!1001 &4738976946039120187
 PrefabInstance:
   m_ObjectHideFlags: 0

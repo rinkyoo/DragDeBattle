@@ -52,7 +52,7 @@ public class CharaController : MonoBehaviour
     State preState;
     private bool isInAttackRange = false;
     private bool auto = false;
-    public bool isHealer = false;
+    [HideInInspector] public bool isHealer = false;
 
     public void Awake()
     {
@@ -231,7 +231,8 @@ public class CharaController : MonoBehaviour
     //攻撃を適用したいときの処理
     public virtual void HitAttack(GameObject enemyObj)
     {
-        questController.SetPCAttackEvent(this, enemyObj.GetComponent<EnemyController>());
+        if(enemyObj == lockObj)
+            questController.SetPCAttackEvent(this, enemyObj.GetComponent<EnemyController>());
     }
     //実際に攻撃が適用された際の処理（EnemyへのダメージはQuestControllerから行う）
     public virtual void ApplyHitAttack(bool isEnemyDied)

@@ -704,7 +704,7 @@ Animator:
   m_GameObject: {fileID: 1000012487558966}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 172f0b01cc0b91d45805d03c5e12bc30, type: 3}
-  m_Controller: {fileID: 9100000, guid: c2bb141f960294c13836233ab2092b75, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1231,7 +1231,7 @@ AudioSource:
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
-  BypassListenerEffects: 1
+  BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
@@ -1370,6 +1370,7 @@ MonoBehaviour:
   lockObj: {fileID: 0}
   attackObj: {fileID: 7326915954067239852, guid: 412ef04126fac4ff3ac67027778f787c,
     type: 3}
+  isHealer: 0
   HealEffect: {fileID: 599073991233343743, guid: 39daec6bcd5acac4584ededd7472f753,
     type: 3}
 --- !u!136 &3324928288761817933

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20df2f0699cc7f644bd66c7116f6c0e2, type: 3}
-  m_Name: Tokyo
+  m_Name: Tottori
   m_EditorClassIdentifier: 
-  id: 6
-  name: Tokyo
-  prefab: {fileID: 1000014099315342, guid: cd06875f070f5524cbac813567f9c3f9, type: 3}
-  icon: {fileID: 21300000, guid: c76612e44aa8d4cda823259c6893cf1b, type: 3}
+  id: 12
+  name: Tottori
+  prefab: {fileID: 1000011193529124, guid: 52b496102f078ce4d9643baed6290984, type: 3}
+  icon: {fileID: 21300000, guid: be76bffbaf8918743b34ec4f7360d875, type: 3}
   level: 1
   nextEXP: 2
   plusNextEXP: 0
@@ -30,10 +30,10 @@ MonoBehaviour:
   addVit: 1
   agi: 1
   speed_atk: 2
-  range_atk: 60
+  range_atk: 40
   maxLevel: 100
   level1NextEXP: 100
   level1PlusNextEXP: 100
   level1HP: 800
-  level1STR: 60
+  level1STR: 40
   level1VIT: 5

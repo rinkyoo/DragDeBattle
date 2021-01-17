@@ -7,6 +7,7 @@ public class BlackScript : EnemyController
     void Awake()
     {
         base.Awake();
+        base.attackObj.GetComponent<EnemyAttackCollider>().enemyController = this;
     }
 
     void Start()

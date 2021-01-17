@@ -39,7 +39,7 @@ public class NiigataScript : CharaController
     }
 
     //Animationì‡Ç≈é¿çs
-    void SetWaterAttack()
+    void SetJumpAttack()
     {
         if (base.lockObj != null)
         {

@@ -12,7 +12,7 @@ public class MieScript : CharaController
     void Awake()
     {
         base.Awake();
-        base.attackObj.GetComponent<BoomerangObject>().charaController = this;
+        base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
         base.attackObj.GetComponent<BoomerangObject>().mieScript = this;
     }
     void Start()
