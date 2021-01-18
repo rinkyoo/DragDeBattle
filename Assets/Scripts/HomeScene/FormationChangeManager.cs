@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using StateManager;
-using Common;
+using QuestCommon;
 
 //変更する編成の選択画面を管理
 public class FormationChangeManager : MonoBehaviour

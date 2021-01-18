@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using System;
-using Common;
+using QuestCommon;
 
 public class AkitaScript : CharaController
 {

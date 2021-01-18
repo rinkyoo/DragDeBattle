@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using StateManager;
 using DG.Tweening;
-using Common;
+using QuestCommon;
 
 public class CharaIconController : MonoBehaviour
 {

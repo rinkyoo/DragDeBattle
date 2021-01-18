@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using Common;
+using QuestCommon;
 using System.Diagnostics;
 
 //編成するキャラの選択画面を管理

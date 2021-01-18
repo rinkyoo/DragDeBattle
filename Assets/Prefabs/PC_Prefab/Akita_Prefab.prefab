@@ -989,8 +989,9 @@ MonoBehaviour:
   hpSlider: {fileID: 0}
   spSlider: {fileID: 0}
   lockObj: {fileID: 0}
-  attackObj: {fileID: 599073991233343743, guid: 39daec6bcd5acac4584ededd7472f753,
+  attackObj: {fileID: 3560180447155265203, guid: 432887405f5454f429281aba9fc9478d,
     type: 3}
+  isHealer: 0
   HealEffect: {fileID: 599073991233343743, guid: 39daec6bcd5acac4584ededd7472f753,
     type: 3}
 --- !u!54 &3825676592554781958

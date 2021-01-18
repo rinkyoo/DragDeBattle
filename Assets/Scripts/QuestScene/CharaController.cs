@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Common;
+using QuestCommon;
 
 public class CharaController : MonoBehaviour
 {
@@ -212,10 +212,6 @@ public class CharaController : MonoBehaviour
                 questController.DespornPC();
                 break;
             case State.Wait:
-                waitingTime = Define.waitTime;
-                gameObject.transform.position = Define.initialPosi;
-                charaIconController.SetWaitGageImage();
-                questController.ReturnPC();
                 break;
             case State.Icon:
                 break;
@@ -290,20 +286,26 @@ public class CharaController : MonoBehaviour
         lockObj = obj;
     }
 
-    //PCを手持ちに戻すしたとき
+    //PCを手持ちに戻すとき
     public void Return()
     {
-        SetState(State.Wait);
+        waitingTime = Define.waitTime;
+        gameObject.transform.position = Define.initialPosi;
         gameObject.GetComponent<CharaController>().animator.enabled = false;
+        charaIconController.SetWaitGageImage();
+        questController.ReturnPC();
+        StartCoroutine("AutoHeal");
+        SetState(State.Wait);
     }
 
     public void SetStateNone()
     {
         SetState(State.None);
     }
-    //animation上で実行
-    void SetStateIdle()
+    //召喚時のanimation内で実行
+    void EndAppearAnimation()
     {
+        StopCoroutine("AutoHeal");
         SetState(State.Idle);
     }
 
@@ -349,6 +351,17 @@ public class CharaController : MonoBehaviour
         Destroy(buffEffect);
     }
     #endregion
+
+    //手持ちにいるときの自動回復
+    IEnumerator AutoHeal()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Define.healTime);
+
+            Healed(Define.healValue);
+        }
+    }
 
     //Animation内で実行
     void Desporn()

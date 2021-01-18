@@ -909,7 +909,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.9117646
-        functionName: SetStateIdle
+        functionName: EndAppearAnimation
         data: 
         objectReferenceParameter: {fileID: 1000013404843354, guid: 3d4be7b9a6a4f0e4c810a931370c6348,
           type: 3}

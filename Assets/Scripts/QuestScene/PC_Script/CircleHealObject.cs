@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CircleHealObject : MonoBehaviour
 {
-    private float expandRate = 1.05f;
+    private float expandRate = 1.08f;
 
     void FixedUpdate()
     {
         transform.localScale = transform.localScale * expandRate;
-        if (transform.localScale.x >= 7f)
+        if (transform.localScale.x >= 5f)
         {
             Destroy(this.gameObject);
         }

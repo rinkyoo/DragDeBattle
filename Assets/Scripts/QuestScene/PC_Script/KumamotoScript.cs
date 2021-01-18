@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Diagnostics;
-using Common;
+using QuestCommon;
 
 public class KumamotoScript : CharaController
 {

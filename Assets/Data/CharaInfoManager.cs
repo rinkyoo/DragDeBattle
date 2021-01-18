@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Diagnostics;
-using Common;
+using QuestCommon;
 
 public class CharaInfoManager : MonoBehaviour
 {

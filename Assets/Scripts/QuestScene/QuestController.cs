@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using DG.Tweening;
 using StateManager;
-using Common;
+using QuestCommon;
 using System;
 
 public class QuestController : MonoBehaviour

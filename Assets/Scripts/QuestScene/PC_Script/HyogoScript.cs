@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Diagnostics;
 using DG.Tweening;
-using Common;
+using QuestCommon;
 
 public class HyogoScript : CharaController
 {

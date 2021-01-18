@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using DG.Tweening;
 using StateManager;
-using Common;
+using QuestCommon;
 
 public class QuestManager : MonoBehaviour
 {
