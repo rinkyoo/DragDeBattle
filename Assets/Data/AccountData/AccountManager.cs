@@ -54,6 +54,18 @@ public class AccountManager : MonoBehaviour
         writer.Close();
     }
 
+    public int GetLevel()
+    {
+        return accountData.level;
+    }
+    public int GetExp()
+    {
+        return accountData.exp;
+    }
+    public int GetNextExp()
+    {
+        return accountData.nextExp;
+    }
     public void PlusExp(int plusExp)
     {
         accountData.exp += plusExp;
@@ -67,9 +79,22 @@ public class AccountManager : MonoBehaviour
         if (levelText != null)
         {
             levelText.text = accountData.level.ToString();
-            float temp = accountData.exp - (accountData.nextExp - accountData.plusNextExp);
-            levelGageImage.fillAmount = temp / accountData.plusNextExp;
+            levelGageImage.fillAmount = GetExpGageValue();
         }
+    }
+    public float GetExpGageValue()
+    {
+        float temp = accountData.exp - (accountData.nextExp - accountData.plusNextExp);
+        return temp / accountData.plusNextExp;
+    }
+    public void ResetLevelClicked()
+    {
+        accountData.level = 1;
+        accountData.exp = 0;
+        accountData.nextExp = AccountDefine.firstNextExp;
+        accountData.plusNextExp = AccountDefine.firstPlusNextExp;
+        SaveAccountData();
+        SceneManager.LoadScene("Home");
     }
 
     public void PlusCoin(int plusNum)

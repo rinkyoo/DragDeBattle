@@ -61,6 +61,23 @@ public class DataHolder : MonoBehaviour
         accountManager.SaveClearedData(playQuest);
     }
 
+
+    public int GetLevel()
+    {
+        return accountManager.GetLevel();
+    }
+    public int GetExp()
+    {
+        return accountManager.GetExp();
+    }
+    public int GetNextExp()
+    {
+        return accountManager.GetNextExp();
+    }
+    public float GetExpGageValue()
+    {
+        return accountManager.GetExpGageValue();
+    }
     public void PlusExp(int exp)
     {
         accountManager.PlusExp(exp);

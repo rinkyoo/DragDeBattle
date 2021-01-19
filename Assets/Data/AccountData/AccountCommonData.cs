@@ -7,7 +7,7 @@ namespace AccountCommonData
     public static class AccountDefine
     {
         public const int maxLevel = 100; //最大プレイヤーレベル
-        public const float rateNextExp = 1.1f; //クエストで使用するキャラ数
+        public const float rateNextExp = 1.1f;
 
         public const int firstNextExp = 100;
         public const int firstPlusNextExp = 100;
