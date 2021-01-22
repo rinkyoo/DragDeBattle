@@ -9,8 +9,9 @@ public class IconTouchUI : MonoBehaviour
 {
     private QuestController questController;
     private CharaManager cm;
-    Chara_Info charaInfo;
-    CharaController cc;
+    private Chara_Info charaInfo;
+    private CharaController cc;
+    private AudioManager audioManager;
     
     [SerializeField] public GameObject PCInfoPanel;
     [SerializeField] Image IconImage;
@@ -33,6 +34,7 @@ public class IconTouchUI : MonoBehaviour
     {
         questController = GameObject.Find("QuestController").GetComponent<QuestController>();
         cm = GameObject.Find("CharaScript").GetComponent<CharaManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     
     void Update()
@@ -122,6 +124,8 @@ public class IconTouchUI : MonoBehaviour
         
         skillTextFlag = true;
         PCInfoPanel.SetActive(false);
+
+        audioManager.SkillPanel();
     }
 
     public void ReturnClicked()

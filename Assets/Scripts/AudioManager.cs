@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip lastEnemyDie;
     [SerializeField] AudioClip questFailed;
     [SerializeField] AudioClip system24;
+    [SerializeField] AudioClip levelGage;
+    [SerializeField] AudioClip skillPanel;
 
     AudioSource[] audioSource;
 
@@ -122,5 +124,13 @@ public class AudioManager : MonoBehaviour
     public void System24()
     {
         audioSource[1].PlayOneShot(system24);
+    }
+    public void LevelGage()
+    {
+        audioSource[1].PlayOneShot(levelGage);
+    }
+    public void SkillPanel()
+    {
+        audioSource[1].PlayOneShot(skillPanel);
     }
 }

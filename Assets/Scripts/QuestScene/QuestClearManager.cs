@@ -123,7 +123,8 @@ public class QuestClearManager : MonoBehaviour
         for (int i=beforeLevel;i<dataHolder.GetLevel();i++)
         {
             int j = i;
-            seq.Append(expSlider.DOValue(1f, 0.5f, false))
+            seq.AppendCallback(() => { audioManager.LevelGage(); })
+                .Append(expSlider.DOValue(1f, 0.5f, false))
                 .AppendCallback(() =>
                 {
                     nowLevelText.text = (j + 1).ToString();
@@ -133,7 +134,8 @@ public class QuestClearManager : MonoBehaviour
         }
         //経験値獲得後のレベルのスライダーのアニメーション設定
         float sliderValue = (float)(dataHolder.GetExp()) / dataHolder.GetNextExp();
-        seq.Append(expSlider.DOValue(dataHolder.GetExpGageValue(), 1f, false))
+        seq.AppendCallback(() => { audioManager.LevelGage(); })
+            .Append(expSlider.DOValue(dataHolder.GetExpGageValue(), 1f, false))
             .AppendCallback(() =>
             {
                 nextExpText.text = (dataHolder.GetNextExp() - dataHolder.GetExp()).ToString();
