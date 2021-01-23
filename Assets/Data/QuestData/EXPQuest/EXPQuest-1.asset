@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61480ee909d9c47d39a4a3801f03606d, type: 3}
-  m_Name: Level1-4
+  m_Name: EXPQuest-1
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: 54261b00509db49f3827adf781ca91f7, type: 2}
+  - {fileID: 11400000, guid: faef750d49b360344ab8a75ae2571be1, type: 2}
+  - {fileID: 11400000, guid: faef750d49b360344ab8a75ae2571be1, type: 2}
+  questName: "\u7D4C\u9A13\u5024\u30AF\u30A8\u30B9\u30C8\u521D\u7D1A"

@@ -7,7 +7,13 @@ public class Quest_Enemy : ScriptableObject
 {
     [SerializeField]
     private List<Enemy_Wave> enemyWave = new List<Enemy_Wave>();
-    
+
+    [SerializeField] private string questName;
+    public string QuestName
+    {
+        get{ return questName; }
+    }
+
     public List<Enemy_Wave> GetWaveList()
     {
         return enemyWave;

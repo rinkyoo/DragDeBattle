@@ -15,3 +15,4 @@ MonoBehaviour:
   enemyWave:
   - {fileID: 11400000, guid: 54261b00509db49f3827adf781ca91f7, type: 2}
   - {fileID: 11400000, guid: 4f24293a8339b474aad859f842a448a5, type: 2}
+  questName: Level 1-1

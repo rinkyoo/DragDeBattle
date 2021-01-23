@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21373b6d758d946d085a36cadf5cd109, type: 3}
-  m_Name: Level2
+  m_Name: EXPQuests
   m_EditorClassIdentifier: 
   quests:
-  - {fileID: 11400000, guid: f0060651368db4f5da1d91fb62b7de3a, type: 2}
+  - {fileID: 11400000, guid: 2d03aeca268ec8944a6f84c232e31bd8, type: 2}
+  - {fileID: 11400000, guid: 1c8efcda1b83d784c89e631e66b3367b, type: 2}
+  setName: "\u7D4C\u9A13\u5024\u30A2\u30A4\u30C6\u30E0\u30AF\u30A8"

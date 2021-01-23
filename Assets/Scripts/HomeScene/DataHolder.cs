@@ -12,6 +12,7 @@ public class DataHolder : MonoBehaviour
     private Chara_Info[] formationChara = new Chara_Info[7];
     private Quest_Enemy questEnemy;
     private int[] playQuest = new int[2];
+    private string playQuestType = "";
     
     void Awake()
     {
@@ -46,21 +47,21 @@ public class DataHolder : MonoBehaviour
         return questEnemy;
     }
     
-    public int[] GetClearedQuest()
+    public int[] GetClearedQuest(string questType)
     {
-        return accountManager.GetClearedQuest();
+        return accountManager.GetClearedQuest(questType);
     }
 
-    public void SetPlayQuest(int level,int questNum)
+    public void SetPlayQuest(string questType,int level,int questNum)
     {
+        playQuestType = questType;
         playQuest = new int[2] { level, questNum };
     }
 
     public void SaveClearData()
     {
-        accountManager.SaveClearedData(playQuest);
+        accountManager.SaveClearedData(playQuestType,playQuest);
     }
-
 
     public int GetLevel()
     {

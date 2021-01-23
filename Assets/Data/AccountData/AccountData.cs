@@ -17,11 +17,9 @@ public class AccountData
     //所持コイン
     public int coin;
 
-    //[0] : クリア済みクエストのLevel ・　[1] : クリア済クエストのクエスト番号
-    public int[] clearedQuest = new int[2];
+    //クエストのクリア状況データ
+    public ClearedQuestData clearedQuest = new ClearedQuestData();
 
     //経験値アイテムの所持データ
     public ExpItemData expItemData = new ExpItemData();
-
-
 }

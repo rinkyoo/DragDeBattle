@@ -108,18 +108,19 @@ public class AccountManager : MonoBehaviour
         return accountData.coin;
     }
 
-    public void SaveClearedData(int[] questData)
+    public void SaveClearedData(string questType,int[] questData)
     {
-        if(accountData.clearedQuest[0] < questData[0])
+        int[] clearedQuest = accountData.clearedQuest.GetClearedQuest(questType);
+        if (clearedQuest[0] < questData[0])
         {
-            accountData.clearedQuest = questData;
+            SetClearedQuest(questType, questData);
             SaveAccountData();
         }
-        else if (accountData.clearedQuest[0] == questData[0])
+        else if (clearedQuest[0] == questData[0])
         {
-            if(accountData.clearedQuest[1] <= questData[1])
+            if(clearedQuest[1] <= questData[1])
             {
-                accountData.clearedQuest = questData;
+                SetClearedQuest(questType, questData);
                 SaveAccountData();
             }
         }
@@ -134,22 +135,30 @@ public class AccountManager : MonoBehaviour
         return accountData.expItemData;
     }
 
-    public int[] GetClearedQuest()
+    public int[] GetClearedQuest(string questType)
     {
-        return accountData.clearedQuest;
+        return accountData.clearedQuest.GetClearedQuest(questType);
     }
 
     public void AllQuestClearClicked()
     {
         audioManager.Button1();
-        SaveClearedData(new int[2] { 100, 100 });
+        SetClearedQuest("normal", new int[2] { 100, 100 });
+        SetClearedQuest("training", new int[2] { 100, 100 });
+        SaveAccountData();
         SceneManager.LoadScene("Home");
     }
     public void ResetClearedQuestClicked()
     {
         audioManager.Button1();
-        accountData.clearedQuest = new int[2] { 0, 0 };
+        SetClearedQuest("normal", new int[2] { 0, 0 });
+        SetClearedQuest("training", new int[2] { 0, 0 });
         SaveAccountData();
         SceneManager.LoadScene("Home");
+    }
+
+    void SetClearedQuest(string questType,int[] clearedQuest)
+    {
+        accountData.clearedQuest.SetClearedQuest(questType,clearedQuest);
     }
 }

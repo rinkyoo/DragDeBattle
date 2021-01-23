@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61480ee909d9c47d39a4a3801f03606d, type: 3}
-  m_Name: Level1-2
+  m_Name: Level1-4
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}
-  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}
-  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}
+  - {fileID: 11400000, guid: 54261b00509db49f3827adf781ca91f7, type: 2}
+  questName: Level 1-4

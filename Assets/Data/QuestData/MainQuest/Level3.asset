@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21373b6d758d946d085a36cadf5cd109, type: 3}
-  m_Name: Level1
+  m_Name: Level3
   m_EditorClassIdentifier: 
   quests:
-  - {fileID: 11400000, guid: a74e56cb37f914ef1ad31089b633f0a7, type: 2}
-  - {fileID: 11400000, guid: bf0cda696863c4c629a59be1c6739145, type: 2}
-  - {fileID: 11400000, guid: c18cdb9cf6a684496887d3eae18af845, type: 2}
-  - {fileID: 11400000, guid: 7a675ead4fc5141c9aaf1c61ed3e20dc, type: 2}
-  - {fileID: 11400000, guid: b1a24c4dee4244c54a305d7de1970012, type: 2}
+  - {fileID: 11400000, guid: 3aabd774969c246bf8c2388ffdf87f87, type: 2}
+  - {fileID: 11400000, guid: 76a161183fbb2421c8800681a1849766, type: 2}
+  setName: Level 3

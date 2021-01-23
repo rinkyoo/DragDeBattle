@@ -7,6 +7,7 @@ using TMPro;
 using DG.Tweening;
 using StateManager;
 using QuestCommon;
+using AccountCommonData;
 
 public class QuestManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class QuestManager : MonoBehaviour
     }
     #endregion
 
+    //QuestSceneでも使用するデータを保持
     private DataHolder dataHolder;
     //編成情報を取得、保存する用
     private CharaInfoManager charaInfoManager;
@@ -28,10 +30,15 @@ public class QuestManager : MonoBehaviour
     AudioManager audioManager;
 
     int[] clearedQuest = new int[2];
-    //クエスト情報を保持
-    [SerializeField] List<Quest_Set> questSet;
-    //サポートキャラ情報
-    private List<Chara_Info> charaList = new List<Chara_Info>();
+    //クエスト情報をInspectorから設定*****************************
+    [System.SerializableAttribute]
+    public class QuestList
+    {
+        public List<Quest_Group> questList = new List<Quest_Group>();
+    }
+    [SerializeField] List<QuestList> allQuestGroup;
+    //************************************************************
+    private string playQuestType = "";
     //編成するサポートキャラを保持
     private Chara_Info supportChara;
     //編成キャラ情報
@@ -41,15 +48,15 @@ public class QuestManager : MonoBehaviour
     float preXPosi; //編成Panelのドラッグ時に使用
     int nowFormation; //表示中の編成番号
     const float dragMaxValue = 840f; //編成パネルのドラッグ可能範囲
-    const float slideXValue = 420f; //編成パネルを切り替える基準値
+    const float slideXValue = 420f; //編成パネルの切り替え基準値
 
     private AsyncOperation async;
 
     #region GameObject関連
     [SerializeField] GameObject[] charaPanel = new GameObject[Define.ptNum];
     [SerializeField] GameObject QuestPanel;
-    [SerializeField] GameObject levelView;
-    [SerializeField] GameObject levelContent;
+    [SerializeField] GameObject groupView;
+    [SerializeField] GameObject groupContent;
     [SerializeField] GameObject questView;
     [SerializeField] GameObject questContent;
     [SerializeField] Button QButton;
@@ -67,25 +74,26 @@ public class QuestManager : MonoBehaviour
         dataHolder = GameObject.Find("DataHolder").GetComponent<DataHolder>();
         charaInfoManager = GameObject.Find("CharaInfoManager").GetComponent<CharaInfoManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
+    void QuestInit()
+    {
+        int questTypeNum = AccountDefine.questType[playQuestType];
+        List<Quest_Group> questGroup = allQuestGroup[questTypeNum].questList;
         dataHolder.SetAccountManager();
 
         //編成キャラ用・ジャグ配列の初期化
-        for (int i=0;i<Define.ptNum;i++)
+        for (int formNum = 0; formNum < Define.ptNum; formNum++)
         {
-            formationChara[i]=new Chara_Info[Define.charaNum];
+            formationChara[formNum] = new Chara_Info[Define.charaNum];
         }
-    }
 
-    void Start()
-    {
-        
         #region クリア済みのクエストレベル（clearedLevel）を取得
-        clearedQuest = dataHolder.GetClearedQuest();
+        clearedQuest = dataHolder.GetClearedQuest(playQuestType);
         int clearedLevel = clearedQuest[0];
-        if (clearedLevel <= questSet.Count && clearedLevel > 0)
+        if (clearedLevel <= questGroup.Count && clearedLevel > 0)
         {
-            if (clearedQuest[1] != questSet[clearedLevel - 1].GetQuestSet().Count)
+            if (clearedQuest[1] != questGroup[clearedLevel - 1].GetQuestList().Count)
             {
                 clearedLevel -= 1;
             }
@@ -93,12 +101,12 @@ public class QuestManager : MonoBehaviour
         #endregion
         //レベル選択画面のボタンを設定
         int i =0;
-        foreach (Quest_Set set in questSet)
+        foreach (Quest_Group group in questGroup)
         {
             i++;
-            Button levelButton = Instantiate(QButton,levelContent.transform.position,Quaternion.identity) as Button;
-            levelButton.GetComponentInChildren<TextMeshProUGUI>().text = "Level "+i.ToString();
-            levelButton.transform.SetParent(levelContent.transform);
+            Button levelButton = Instantiate(QButton,groupContent.transform.position,Quaternion.identity) as Button;
+            levelButton.GetComponentInChildren<TextMeshProUGUI>().text = group.SetName;
+            levelButton.transform.SetParent(groupContent.transform);
             levelButton.transform.localScale = new Vector3(1f, 1f, 1f);
             #region 全クリしてないレベルボタンの設定
             if (i > clearedLevel)
@@ -111,12 +119,12 @@ public class QuestManager : MonoBehaviour
                 }
             }
             #endregion
-            Quest_Set tempSet = set;
+            Quest_Group tempGroup = group;
             int j=i;
             levelButton.onClick.AddListener(()=>
             {
                 DeleteChildren(questContent.transform);
-                SetQuestView(tempSet.GetQuestSet(),j);
+                SetQuestView(tempGroup.GetQuestList(),j);
             });
         }
         
@@ -130,7 +138,7 @@ public class QuestManager : MonoBehaviour
         {
             i++;
             Button questButton = Instantiate(QButton,questContent.transform.position,Quaternion.identity) as Button;
-            questButton.GetComponentInChildren<TextMeshProUGUI>().text = "Level " + level.ToString() + " - " + i.ToString();
+            questButton.GetComponentInChildren<TextMeshProUGUI>().text = quest.QuestName;
             questButton.transform.SetParent(questContent.transform);
             questButton.transform.localScale = new Vector3(1f, 1f, 1f);
             #region クリアしてないクエストボタンの設定
@@ -155,12 +163,12 @@ public class QuestManager : MonoBehaviour
             questButton.onClick.AddListener(()=>
             {
                 DeleteChildren(supportContent.transform);
-                dataHolder.SetPlayQuest(level, j);
+                dataHolder.SetPlayQuest(playQuestType, level, j);
                 SetQuestButton(setQuest);
             });
         }
 
-        RightMovePanel(levelView.gameObject,questView.gameObject);
+        RightMovePanel(groupView.gameObject,questView.gameObject);
     }
 
     void SetQuestButton(Quest_Enemy quest)
@@ -174,7 +182,7 @@ public class QuestManager : MonoBehaviour
     //サポート選択画面のボタンを設定
     public void SetSupportView()
     {
-        charaList = GameObject.Find("CharaInfoManager").GetComponent<CharaInfoManager>().GetSupportList();
+        List<Chara_Info> charaList = GameObject.Find("CharaInfoManager").GetComponent<CharaInfoManager>().GetSupportList();
         Sprite pc_icon_texture;
         int i=0;
         foreach(Chara_Info chara in charaList)
@@ -208,12 +216,10 @@ public class QuestManager : MonoBehaviour
         for(int i=0;i<Define.charaNum-1;i++)
         {
             charaIcon = charaPanel[1].transform.Find("Chara"+(i+1).ToString()).gameObject;
-            //pc_icon_texture = Resources.Load("PC_Image/"+formationChara[0][i].Icon,typeof(Sprite)) as Sprite;
-            charaIcon.GetComponent<Image>().sprite = formationChara[0][i].Icon;// pc_icon_texture;
+            charaIcon.GetComponent<Image>().sprite = formationChara[0][i].Icon;
         }
         //サポートキャラ情報の表示
-        //pc_icon_texture = Resources.Load("PC_Image/"+schara.Icon,typeof(Sprite)) as Sprite;
-        supportIcon.GetComponent<Image>().sprite = schara.Icon;// pc_icon_texture;
+        supportIcon.GetComponent<Image>().sprite = schara.Icon;
         //編成番号の表示
         charaPanel[1].transform.Find("FormationName").gameObject.GetComponent<Text>().text = "＜編成"+(0+1).ToString()+"＞";
         
@@ -237,7 +243,6 @@ public class QuestManager : MonoBehaviour
         for(int i=0;i<Define.charaNum-1;i++)
         {
             charaIcon = charaPanel[2].transform.Find("Chara"+(i+1).ToString()).gameObject;
-            //pc_icon_texture = Resources.Load("PC_Image/"+formationChara[temp][i].Icon,typeof(Sprite)) as Sprite;
             charaIcon.GetComponent<Image>().sprite = formationChara[temp][i].Icon;//pc_icon_texture;
         }
         charaPanel[2].transform.Find("FormationName").gameObject.GetComponent<Text>().text = "＜編成"+(temp+1).ToString()+"＞";
@@ -253,7 +258,6 @@ public class QuestManager : MonoBehaviour
         for(int i=0;i<Define.charaNum-1;i++)
         {
             charaIcon = charaPanel[0].transform.Find("Chara"+(i+1).ToString()).gameObject;
-            //pc_icon_texture = Resources.Load("PC_Image/"+formationChara[temp][i].Icon,typeof(Sprite)) as Sprite;
             charaIcon.GetComponent<Image>().sprite = formationChara[temp][i].Icon;// pc_icon_texture;
         }
         charaPanel[0].transform.Find("FormationName").gameObject.GetComponent<Text>().text = "＜編成"+(temp+1).ToString()+"＞";
@@ -391,9 +395,18 @@ public class QuestManager : MonoBehaviour
     }
 
     //ホーム画面上のクエストボタンを押した際の処理
-    public void QuestClicked()
+    public void NormalQuestClicked()
     {
         audioManager.Button1();
+        playQuestType = "normal";
+        QuestInit();
+        QuestPanel.SetActive(true);
+    }
+    public void TrainingQuestClicked()
+    {
+        audioManager.Button1();
+        playQuestType = "training";
+        QuestInit();
         QuestPanel.SetActive(true);
     }
 
@@ -402,12 +415,13 @@ public class QuestManager : MonoBehaviour
     public void BackToHomeClicked()
     {
         audioManager.Button1();
+        DeleteChildren(groupContent.transform);
         QuestPanel.SetActive(false);
     }
     //クエスト選択画面ー＞レベル選択画面へ遷移
     public void BackToLevelClicked()
     {
-        LeftMovePanel(questView.gameObject, levelView.gameObject);
+        LeftMovePanel(questView.gameObject, groupView.gameObject);
     }
     //サポート選択画面ー＞クエスト選択画面へ遷移
     public void BackToQuestClicked()
