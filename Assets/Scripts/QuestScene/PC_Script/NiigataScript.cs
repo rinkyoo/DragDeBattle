@@ -9,17 +9,18 @@ public class NiigataScript : CharaController
 {
     private CharaManager charaManager;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

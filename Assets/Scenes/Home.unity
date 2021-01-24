@@ -19780,7 +19780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Group Select
+  m_text: Quest Select
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ca77fafc2d98b40bebf20edcf05ded1a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 5f25a785bbac04d0e8748c8b320fbe23, type: 2}

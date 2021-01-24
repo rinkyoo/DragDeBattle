@@ -29,7 +29,6 @@ public class BoomerangObject : MonoBehaviour
     float distance; //lockPosiとprePosiとの距離を保持
     float ratio; //ベジェ曲線のパラメータ（０～１f）
     float totalTime; //ratioの計算用
-    int P2angle = 30; //点P2の座標計算で使用する角度
 
     bool isThrowing = false;
     bool returnFlag;

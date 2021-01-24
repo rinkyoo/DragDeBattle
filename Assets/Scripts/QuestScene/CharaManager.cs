@@ -27,7 +27,6 @@ public class CharaManager : MonoBehaviour
         charas = setCharas;
         //Canvas上に編成キャラを表示
         GameObject pc_icon;
-        Sprite pc_icon_texture;
         for(int i=0;i<Define.charaNum;i++){
             pc_icon = GameObject.Find("QuestCanvas/PC_Panel/PC"+(i+1).ToString()+"_Panel/PC_Icon");
             pc_icon.GetComponent<Image>().sprite = charas[i].Icon;

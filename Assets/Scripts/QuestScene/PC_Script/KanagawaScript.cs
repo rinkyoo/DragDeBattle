@@ -11,20 +11,20 @@ public class KanagawaScript : CharaController
 
     private Collider attackCollider;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
         attackCollider = attackObj.GetComponent<BoxCollider>();
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

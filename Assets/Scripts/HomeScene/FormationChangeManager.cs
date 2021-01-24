@@ -65,7 +65,6 @@ public class FormationChangeManager : MonoBehaviour
     {
         formationChara = charaInfoManager.GetFormationChara();
         GameObject charaButton;
-        Sprite pc_icon_texture;
 
         nowFormation = 0;
         for(int i=0;i<Define.charaNum-1;i++)
@@ -121,7 +120,6 @@ public class FormationChangeManager : MonoBehaviour
     void SetLeftFormation()
     {
         GameObject charaButton;
-        Sprite pc_icon_texture;
         int temp;
         if(nowFormation == 0) temp = Define.ptNum-1;
         else temp = nowFormation-1;
@@ -148,7 +146,6 @@ public class FormationChangeManager : MonoBehaviour
         formationChara[changeFormation][changeNumber] = newChara;
         //パネル表示の更新
         GameObject charaButton;
-        Sprite pc_icon_texture;
         charaButton = charaPanel[1].transform.Find("Chara"+(changeNumber+1).ToString()).gameObject;
         charaButton.GetComponent<Image>().sprite = formationChara[changeFormation][changeNumber].Icon;
     }

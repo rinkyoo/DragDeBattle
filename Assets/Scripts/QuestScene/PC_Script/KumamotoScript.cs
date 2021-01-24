@@ -13,20 +13,20 @@ public class KumamotoScript : CharaController
     private float skillPower = 500f;
     private bool isInSkill = false;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
         attackCollider = attackObj.GetComponent<BoxCollider>();
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

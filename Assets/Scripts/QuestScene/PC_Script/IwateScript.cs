@@ -10,17 +10,18 @@ public class IwateScript : CharaController
     int chageAngle = 24;
     int nowChangedAngle = 0;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
         if(isRotate)

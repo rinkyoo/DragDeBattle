@@ -10,17 +10,18 @@ public class ShizuokaScript : CharaController
 {
     bool isInSkill = false;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

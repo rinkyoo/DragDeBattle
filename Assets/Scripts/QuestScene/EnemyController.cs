@@ -24,8 +24,6 @@ public class EnemyController : MonoBehaviour
     private int expItemKakuritsu = 0;
     #endregion
 
-    private bool dieAnimationFlag = true;
-
     public enum EState{
         Idle,
         Move,

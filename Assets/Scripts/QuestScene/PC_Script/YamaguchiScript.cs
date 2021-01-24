@@ -6,18 +6,18 @@ public class YamaguchiScript : CharaController
 {
     [SerializeField]
     private GameObject skillObj; //スキル発動時につかうオブジェクト
-    
-    void Awake()
+
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
     }
-    void Start()
+    new void Start()
     {
         base.Start();
     }
-    
-    void FixedUpdate()
+
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

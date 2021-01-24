@@ -12,18 +12,19 @@ public class AkitaScript : CharaController
     public GameObject HealEffect;
 
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
         base.isHealer = true;
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

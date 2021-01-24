@@ -183,7 +183,6 @@ public class QuestManager : MonoBehaviour
     public void SetSupportView()
     {
         List<Chara_Info> charaList = GameObject.Find("CharaInfoManager").GetComponent<CharaInfoManager>().GetSupportList();
-        Sprite pc_icon_texture;
         int i=0;
         foreach(Chara_Info chara in charaList)
         {
@@ -208,9 +207,7 @@ public class QuestManager : MonoBehaviour
     {
         formationChara = charaInfoManager.GetFormationChara();
         supportChara = schara; //使用するサポートキャラ情報を保持
-        
         GameObject charaIcon;
-        Sprite pc_icon_texture;
         
         nowFormation = 0;
         for(int i=0;i<Define.charaNum-1;i++)
@@ -236,7 +233,6 @@ public class QuestManager : MonoBehaviour
     void SetRightFormation()
     {
         GameObject charaIcon;
-        Sprite pc_icon_texture;
         int temp;
         if(nowFormation == Define.ptNum-1) temp = 0;
         else temp = nowFormation+1;
@@ -251,7 +247,6 @@ public class QuestManager : MonoBehaviour
     void SetLeftFormation()
     {
         GameObject charaIcon;
-        Sprite pc_icon_texture;
         int temp;
         if(nowFormation == 0) temp = Define.ptNum-1;
         else temp = nowFormation-1;

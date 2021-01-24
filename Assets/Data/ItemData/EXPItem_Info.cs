@@ -17,7 +17,7 @@ public class ExpItem_Info : ScriptableObject
     }
     //アイテム名
     [SerializeField]
-    private string name;
+    new private string name;
     public string Name
     {
         get { return name; }

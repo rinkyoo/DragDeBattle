@@ -9,18 +9,19 @@ public class MieScript : CharaController
     [HideInInspector] public bool isThrowing = false;
     bool isSkill = false;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
         base.attackObj.GetComponent<BoomerangObject>().mieScript = this;
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         if (isThrowing) return;
         base.FixedUpdate();

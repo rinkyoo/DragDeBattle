@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GrayScript : EnemyController
 {
-    void Awake()
+    new void Awake()
     {
         base.Awake();
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

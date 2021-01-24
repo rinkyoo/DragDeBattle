@@ -85,7 +85,7 @@ public class QuestClearManager : MonoBehaviour
         dataHolder.SaveAccountData();
         #endregion
     }
-
+    //クエスト結果の表示
     void AppearResult()
     {
         clearText.SetActive(false);
@@ -156,9 +156,31 @@ public class QuestClearManager : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0) || (Input.touchCount > 0))
             {
-                seq.Complete();
+                CompleteSeq();
             }
         }
+    }
+
+    void CompleteSeq()
+    {
+        seq.Kill();
+        audioManager.System24();
+
+        Vector3 temp = resultObj.transform.localPosition;
+        temp.y = 0;
+        resultObj.transform.localPosition = temp;
+        resultPanel.GetComponent<Image>().fillAmount = 1f;
+        titleObj.SetActive(true);
+        timeObj.SetActive(true);
+        coinObj.SetActive(true);
+        itemScrollView.SetActive(true);
+        expObj.SetActive(true);
+        nowLevelText.text = (dataHolder.GetLevel()).ToString();
+        nextLevelText.text = (dataHolder.GetLevel()+1).ToString();
+        expSlider.value = dataHolder.GetExpGageValue();
+        nextExpText.text = (dataHolder.GetNextExp() - dataHolder.GetExp()).ToString();
+        nextExpObj.gameObject.SetActive(true);
+        goHomeButton.SetActive(true);
     }
 
     public void GoHomeButtonClicked()

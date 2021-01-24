@@ -10,19 +10,20 @@ public class TottoriScript : CharaController
     [SerializeField] GameObject healCircle;
     [SerializeField] GameObject healEffect;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         healCircle.GetComponent<HealCollider>().charaController = this;
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
         base.isHealer = true;
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

@@ -42,7 +42,6 @@ public class QuestController : MonoBehaviour
 
     #region 画面タップ時のray関連
     private RaycastHit hit;
-    int FieldLayerMask = 1 << 9;
     int PCLayerMask = 1 << 10;
     int fANDeLayerMask = 1 << 9 | 1 << 11; //FieldとEnemy用
     private float borderY = 450.0f; //アイコン表示PanelとFieldの境のY座標

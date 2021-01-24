@@ -9,20 +9,21 @@ public class TokyoScript : CharaController
 
     [SerializeField] GameObject HealEffect;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<PCAttackCollider>().charaController = this;
         base.attackObj.GetComponent<HealCollider>().charaController = this;
     }
-    void Start()
+
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
         base.isHealer = true;
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

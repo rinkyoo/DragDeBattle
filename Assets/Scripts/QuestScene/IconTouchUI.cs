@@ -75,7 +75,6 @@ public class IconTouchUI : MonoBehaviour
         cc = cm.GetCharaController(name);
         
         IconImage.sprite = charaInfo.Icon;
-        string temp;
         PCName.text = charaInfo.Name;
         HP.text = cc.cs.nowHP.ToString() + "  /  " + cc.cs.maxHP.ToString();
         SP.text = cc.cs.nowSP.ToString() + "  /  " + cc.cs.maxSP.ToString();

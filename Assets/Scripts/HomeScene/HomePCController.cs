@@ -20,7 +20,6 @@ public class HomePCController : MonoBehaviour
     private QuerySDEmotionalController emotionalController;
 
     private RaycastHit hit;
-    int PCLayerMask = 1 << 10;
 
     private List<string> animationList = new List<string>() {"Waiwai","Clione","Tukkomi"};
 

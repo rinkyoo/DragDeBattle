@@ -19,7 +19,7 @@ public class Chara_Info : ScriptableObject
     }
     //キャラ名
     [SerializeField]
-    private string name;
+    new private string name;
     public string Name
     {
         get { return name; }

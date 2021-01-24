@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class BlackScript : EnemyController
 {
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         base.attackObj.GetComponent<EnemyAttackCollider>().enemyController = this;
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }

@@ -13,19 +13,19 @@ public class HyogoScript : CharaController
 
     [SerializeField] GameObject damageEffect;
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         attackCollider = gameObject.GetComponent<SphereCollider>();
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
         charaManager = GameObject.Find("CharaScript").GetComponent<CharaManager>();
     }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
         base.FixedUpdate();
     }
