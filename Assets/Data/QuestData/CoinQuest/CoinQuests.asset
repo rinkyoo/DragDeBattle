@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21373b6d758d946d085a36cadf5cd109, type: 3}
-  m_Name: EXPQuests
+  m_Name: CoinQuests
   m_EditorClassIdentifier: 
   quests:
-  - {fileID: 11400000, guid: 2d03aeca268ec8944a6f84c232e31bd8, type: 2}
-  - {fileID: 11400000, guid: 1c8efcda1b83d784c89e631e66b3367b, type: 2}
-  setName: "\u7D4C\u9A13\u5024\u30AF\u30A8\u30B9\u30C8"
+  - {fileID: 11400000, guid: 916c35592c91e7141a99ea8b9918c196, type: 2}
+  - {fileID: 11400000, guid: 176ade874e4cfd8429d39b03656f7446, type: 2}
+  setName: "\u30B3\u30A4\u30F3\u30AF\u30A8\u30B9\u30C8"

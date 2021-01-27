@@ -12,7 +12,7 @@ namespace AccountCommonData
         public const int firstNextExp = 100;
         public const int firstPlusNextExp = 100;
 
-        public static readonly Dictionary<string, int> questType = new Dictionary<string, int>{ { "normal", 0 }, { "training", 1 } };
+        public static readonly Dictionary<string, int> questType = new Dictionary<string, int>{ { "normal", 0 }, { "exp", 1 }, { "coin", 2 }, { "expItem", 3 } };
     }
 }
 

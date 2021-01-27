@@ -144,7 +144,9 @@ public class AccountManager : MonoBehaviour
     {
         audioManager.Button1();
         SetClearedQuest("normal", new int[2] { 100, 100 });
-        SetClearedQuest("training", new int[2] { 100, 100 });
+        SetClearedQuest("exp", new int[2] { 100, 100 });
+        SetClearedQuest("coin", new int[2] { 100, 100 });
+        SetClearedQuest("expItem", new int[2] { 100, 100 });
         SaveAccountData();
         SceneManager.LoadScene("Home");
     }
@@ -152,7 +154,9 @@ public class AccountManager : MonoBehaviour
     {
         audioManager.Button1();
         SetClearedQuest("normal", new int[2] { 0, 0 });
-        SetClearedQuest("training", new int[2] { 0, 0 });
+        SetClearedQuest("exp", new int[2] { 0, 0 });
+        SetClearedQuest("coin", new int[2] { 0, 0 });
+        SetClearedQuest("expItem", new int[2] { 0, 0 });
         SaveAccountData();
         SceneManager.LoadScene("Home");
     }

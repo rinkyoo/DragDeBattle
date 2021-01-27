@@ -9,7 +9,9 @@ public class ClearedQuestData : ISerializationCallbackReceiver
     public Dictionary<string, int[]> clearedQuestDic = new Dictionary<string, int[]>()
     {
         {"normal",new int[2]{0,0 } },
-        {"training",new int[2]{0,0 } }
+        {"exp",new int[2]{0,0 } },
+        {"coin",new int[2]{0,0 } },
+        {"expItem",new int[2]{0,0 } }
     };
 
     //DictionaryをJsonUtilityで使用するためのList

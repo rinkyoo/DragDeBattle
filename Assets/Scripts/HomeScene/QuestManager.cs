@@ -29,7 +29,6 @@ public class QuestManager : MonoBehaviour
     //SE用
     AudioManager audioManager;
 
-    int[] clearedQuest = new int[2];
     //クエスト情報をInspectorから設定*****************************
     [System.SerializableAttribute]
     public class QuestList
@@ -38,7 +37,6 @@ public class QuestManager : MonoBehaviour
     }
     [SerializeField] List<QuestList> allQuestGroup;
     //************************************************************
-    private string playQuestType = "";
     //編成するサポートキャラを保持
     private Chara_Info supportChara;
     //編成キャラ情報
@@ -76,9 +74,9 @@ public class QuestManager : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-    void QuestInit()
+    void QuestInit(string questType)
     {
-        int questTypeNum = AccountDefine.questType[playQuestType];
+        int questTypeNum = AccountDefine.questType[questType];
         List<Quest_Group> questGroup = allQuestGroup[questTypeNum].questList;
         dataHolder.SetAccountManager();
 
@@ -89,7 +87,7 @@ public class QuestManager : MonoBehaviour
         }
 
         #region クリア済みのクエストレベル（clearedLevel）を取得
-        clearedQuest = dataHolder.GetClearedQuest(playQuestType);
+        int[] clearedQuest = dataHolder.GetClearedQuest(questType);
         int clearedLevel = clearedQuest[0];
         if (clearedLevel <= questGroup.Count && clearedLevel > 0)
         {
@@ -99,7 +97,7 @@ public class QuestManager : MonoBehaviour
             }
         }
         #endregion
-        //レベル選択画面のボタンを設定
+        //グループ選択画面のボタンを設定
         int i =0;
         foreach (Quest_Group group in questGroup)
         {
@@ -121,20 +119,22 @@ public class QuestManager : MonoBehaviour
             #endregion
             Quest_Group tempGroup = group;
             int j=i;
+            string tempType = questType;
             levelButton.onClick.AddListener(()=>
             {
                 DeleteChildren(questContent.transform);
-                SetQuestView(tempGroup.GetQuestList(),j);
+                SetQuestView(tempGroup.GetQuestList(),j,tempType);
             });
         }
         
     }
 
-    void SetQuestView(List<Quest_Enemy> quests,int level)
+    void SetQuestView(List<Quest_Enemy> quests,int level,string questType)
     {
         //クエスト選択画面のボタンを設定
         int i =0;
-        foreach(Quest_Enemy quest in quests)
+        int[] clearedQuest = dataHolder.GetClearedQuest(questType);
+        foreach (Quest_Enemy quest in quests)
         {
             i++;
             Button questButton = Instantiate(QButton,questContent.transform.position,Quaternion.identity) as Button;
@@ -160,10 +160,11 @@ public class QuestManager : MonoBehaviour
             #endregion
             Quest_Enemy setQuest = quest;
             int j = i;
+            string tempType = questType;
             questButton.onClick.AddListener(()=>
             {
                 DeleteChildren(supportContent.transform);
-                dataHolder.SetPlayQuest(playQuestType, level, j);
+                dataHolder.SetPlayQuest(questType, level, j);
                 SetQuestButton(setQuest);
             });
         }
@@ -393,15 +394,15 @@ public class QuestManager : MonoBehaviour
     public void NormalQuestClicked()
     {
         audioManager.Button1();
-        playQuestType = "normal";
-        QuestInit();
+        QuestInit("normal");
         QuestPanel.SetActive(true);
     }
     public void TrainingQuestClicked()
     {
         audioManager.Button1();
-        playQuestType = "training";
-        QuestInit();
+        QuestInit("exp");
+        QuestInit("coin");
+        QuestInit("expItem");
         QuestPanel.SetActive(true);
     }
 

@@ -546,7 +546,7 @@ RectTransform:
   m_Children:
   - {fileID: 1924656346}
   m_Father: {fileID: 496133725}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2174,11 +2174,11 @@ RectTransform:
   m_Children:
   - {fileID: 910065988}
   m_Father: {fileID: 496133725}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 281.00165, y: -439}
+  m_AnchoredPosition: {x: 281.00165, y: -426.99973}
   m_SizeDelta: {x: 227.6, y: 124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196071260
@@ -3453,6 +3453,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 480c97cd1382d4322b61195ecdd60403, type: 2}
   - questList:
     - {fileID: 11400000, guid: 9a9a8530b15a0e84b8865b467692ce0e, type: 2}
+  - questList:
+    - {fileID: 11400000, guid: 211e560b508eec54e818b9c56f9d7a36, type: 2}
+  - questList:
+    - {fileID: 11400000, guid: aa476baef236bc646849f75be1357c94, type: 2}
   charaPanel:
   - {fileID: 423999568}
   - {fileID: 714373581}
@@ -5287,11 +5291,11 @@ RectTransform:
   m_Children:
   - {fileID: 1353781512}
   m_Father: {fileID: 496133725}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 281, y: -286}
+  m_AnchoredPosition: {x: 281, y: -274}
   m_SizeDelta: {x: 227.6, y: 124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489039791
@@ -5414,11 +5418,11 @@ RectTransform:
   m_Children:
   - {fileID: 1868277466}
   - {fileID: 962163419}
+  - {fileID: 489039790}
+  - {fileID: 196071258}
   - {fileID: 1603636835}
   - {fileID: 1669354946}
   - {fileID: 52096593}
-  - {fileID: 489039790}
-  - {fileID: 196071258}
   - {fileID: 1336163177}
   m_Father: {fileID: 1883827291}
   m_RootOrder: 0
@@ -11223,7 +11227,7 @@ GameObject:
   - component: {fileID: 962163421}
   - component: {fileID: 962163420}
   m_Layer: 5
-  m_Name: SubQuestButton
+  m_Name: TrainingQuestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11246,7 +11250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 279.10022, y: -607}
+  m_AnchoredPosition: {x: 279.10022, y: -594.9995}
   m_SizeDelta: {x: 223.79901, y: 146.70288}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962163420
@@ -19016,7 +19020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7D20\u6750\n\u30AF\u30A8\u30B9\u30C8"
+  m_text: "\u80B2\u6210\n\u30AF\u30A8\u30B9\u30C8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44d9c808a920fd04bb49069e73c51dff, type: 2}
   m_sharedMaterial: {fileID: -8199559205495774072, guid: 44d9c808a920fd04bb49069e73c51dff,
@@ -20665,7 +20669,7 @@ RectTransform:
   m_Children:
   - {fileID: 1133370098}
   m_Father: {fileID: 496133725}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21844,7 +21848,7 @@ RectTransform:
   m_Children:
   - {fileID: 612730719}
   m_Father: {fileID: 496133725}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
