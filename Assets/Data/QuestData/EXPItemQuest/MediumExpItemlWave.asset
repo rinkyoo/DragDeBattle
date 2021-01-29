@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22b850973fffb40ae898554488f1051e, type: 3}
-  m_Name: EXPItemWave
+  m_Name: MediumExpItemlWave
   m_EditorClassIdentifier: 
   AppearTiming: 0
   AppearTime: 0
   EnemyInfo:
-  - {fileID: 11400000, guid: 3efed7f15f8e6430ab6c3e0d82750c23, type: 2}
-  - {fileID: 11400000, guid: 035a3427918c74966b87752edecc7389, type: 2}
+  - {fileID: 11400000, guid: 640bceacd77c020448ae731a91902032, type: 2}
+  - {fileID: 11400000, guid: 640bceacd77c020448ae731a91902032, type: 2}
   EnemyPosi:
   - {x: 20, y: 0, z: 80}
   - {x: 40, y: 0, z: 50}

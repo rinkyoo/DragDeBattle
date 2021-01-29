@@ -115,6 +115,7 @@ public class TrainingApplyManager : MonoBehaviour
             itemPanel.transform.localScale = new Vector3(1f, 1f, 1f);
             //アイテムアイコンを表示
             itemPanel.transform.Find("IconImage").gameObject.GetComponent<Image>().sprite = item.Icon;
+            itemPanel.transform.Find("IconImage").localScale = new Vector3(1.2f,1f,1f);
             //アイテムの所持数を表示
             itemPanel.transform.Find("ItemNum").gameObject.GetComponent<TextMeshProUGUI>().text = itemManager.GetExpItemNum(item.Name).ToString();
             #region Itemの増減用Event Triggerの設定

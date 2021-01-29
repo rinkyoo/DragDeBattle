@@ -15,8 +15,8 @@ MonoBehaviour:
   AppearTiming: 0
   AppearTime: 0
   EnemyInfo:
-  - {fileID: 11400000, guid: 9a352d7d2d3d845caab0b0f0d23b87a0, type: 2}
-  - {fileID: 11400000, guid: 9a352d7d2d3d845caab0b0f0d23b87a0, type: 2}
+  - {fileID: 11400000, guid: 8a2d2eadf5710e6488f2f4a10e3ec848, type: 2}
+  - {fileID: 11400000, guid: 8a2d2eadf5710e6488f2f4a10e3ec848, type: 2}
   EnemyPosi:
   - {x: 30, y: 0, z: 10}
   - {x: 15, y: 0, z: 100}

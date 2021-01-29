@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bc2ceec3e1a14519a4d5dbefd6308cc, type: 3}
-  m_Name: KappaPink
+  m_Name: ExpItemBigKappa
   m_EditorClassIdentifier: 
   chara_name: KappaPink
   prefab: {fileID: 7641089560107826178, guid: d389a534915f08641acba7e624bf05e2, type: 3}
   level: 0
-  hp: 800
+  hp: 1200
   sp: 2
-  str: 60
+  str: 65
   vit: 10
   agi: 1.5
   speed_atk: 2
   range_atk: 30
   dropExp: 10
-  dropCoin: 1000
+  dropCoin: 100
   dropExpItem: {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}
-  expItem_Kakuritsu: 20
+  expItem_Kakuritsu: 100

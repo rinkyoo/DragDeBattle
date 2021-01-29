@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b754a51c5a386c646906a094de896cfa, type: 3}
-  m_Name: BigEXP
+  m_Name: BigEXp
   m_EditorClassIdentifier: 
   id: 3
   name: BigEXP
-  icon: {fileID: 21300000, guid: f13cff6b84412584589c981503d3f293, type: 3}
+  icon: {fileID: 21300000, guid: 3707d50d7f93c0a4c9dfd111c5b1beb3, type: 3}
   expValue: 100
   coin: 100

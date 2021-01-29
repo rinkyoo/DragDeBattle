@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EXPItemQuest-1
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: 1977615c85586734f8a3889e84e568bd, type: 2}
-  - {fileID: 11400000, guid: 1977615c85586734f8a3889e84e568bd, type: 2}
+  - {fileID: 11400000, guid: bc16fc216b7449143a4cff34386fc84c, type: 2}
+  - {fileID: 11400000, guid: bc16fc216b7449143a4cff34386fc84c, type: 2}
   questName: "\u7D4C\u9A13\u5024\u30A2\u30A4\u30C6\u30E0\u30AF\u30A8\u521D\u7D1A"
