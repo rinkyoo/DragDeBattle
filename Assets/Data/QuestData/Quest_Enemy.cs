@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName="Quest",menuName="Create_Quest")]
 public class Quest_Enemy : ScriptableObject
 {
+
+    
+
     [SerializeField]
     private List<Enemy_Wave> enemyWave = new List<Enemy_Wave>();
 

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - {fileID: 11400000, guid: f0060651368db4f5da1d91fb62b7de3a, type: 2}
+  - {fileID: 11400000, guid: be0cf0539b758a3439d742e52bcf4733, type: 2}
+  - {fileID: 11400000, guid: 084ff6051cb28aa4f93daa79c2098cee, type: 2}
   setName: Level 2

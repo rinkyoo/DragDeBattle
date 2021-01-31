@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: CoinQuest-1
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: d42fd7cfae068fa41954953ec6ea29ba, type: 2}
-  - {fileID: 11400000, guid: d42fd7cfae068fa41954953ec6ea29ba, type: 2}
+  - AppearTiming: 0
+    AppearTime: 0
+    EnemyInfo:
+    - {fileID: 11400000, guid: ad3eb561352ab754ea11a163ca12278a, type: 2}
+    - {fileID: 11400000, guid: ad3eb561352ab754ea11a163ca12278a, type: 2}
+    EnemyPosi:
+    - {x: 30, y: 0, z: 10}
+    - {x: 5, y: 0, z: 30}
   questName: "\u30B3\u30A4\u30F3\u30AF\u30A8\u30B9\u30C8\u521D\u7D1A"

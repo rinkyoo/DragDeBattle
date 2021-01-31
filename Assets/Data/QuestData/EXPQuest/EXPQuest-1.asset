@@ -13,6 +13,20 @@ MonoBehaviour:
   m_Name: EXPQuest-1
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: faef750d49b360344ab8a75ae2571be1, type: 2}
-  - {fileID: 11400000, guid: faef750d49b360344ab8a75ae2571be1, type: 2}
+  - AppearTiming: 0
+    AppearTime: 0
+    EnemyInfo:
+    - {fileID: 11400000, guid: 8a2d2eadf5710e6488f2f4a10e3ec848, type: 2}
+    - {fileID: 11400000, guid: 8a2d2eadf5710e6488f2f4a10e3ec848, type: 2}
+    EnemyPosi:
+    - {x: 10, y: 0, z: 50}
+    - {x: 15, y: 0, z: 30}
+  - AppearTiming: 0
+    AppearTime: 0
+    EnemyInfo:
+    - {fileID: 11400000, guid: 8a2d2eadf5710e6488f2f4a10e3ec848, type: 2}
+    - {fileID: 11400000, guid: 8a2d2eadf5710e6488f2f4a10e3ec848, type: 2}
+    EnemyPosi:
+    - {x: 10, y: 0, z: 30}
+    - {x: 5, y: 0, z: 40}
   questName: "\u7D4C\u9A13\u5024\u30AF\u30A8\u30B9\u30C8\u521D\u7D1A"

@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bc2ceec3e1a14519a4d5dbefd6308cc, type: 3}
-  m_Name: KappaGray
+  m_Name: KappaYellow2
   m_EditorClassIdentifier: 
-  chara_name: KappaGray
-  prefab: {fileID: 7704801056696929345, guid: 093c4083016c0344e9a619ebd6a5fb52, type: 3}
+  chara_name: KappaYellow
+  prefab: {fileID: 5318934619437692287, guid: 68e1c873804404238a1ce78a7c7f5d75, type: 3}
   level: 0
-  hp: 800
+  hp: 1000
   sp: 2
-  str: 50
+  str: 60
   vit: 2
   agi: 1
-  speed_atk: 2
+  speed_atk: 1
   range_atk: 60
   dropExp: 10
-  dropCoin: 300
+  dropCoin: 500
   dropExpItem: {fileID: 11400000, guid: 0e64b53b295aeac45b05d1de0ee7a170, type: 2}
-  expItem_Kakuritsu: 90
+  expItem_Kakuritsu: 10

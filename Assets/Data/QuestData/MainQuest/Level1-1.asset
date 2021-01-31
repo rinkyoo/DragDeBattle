@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Level1-1
   m_EditorClassIdentifier: 
   enemyWave:
-  - {fileID: 11400000, guid: 54261b00509db49f3827adf781ca91f7, type: 2}
-  - {fileID: 11400000, guid: 4f24293a8339b474aad859f842a448a5, type: 2}
+  - AppearTiming: 0
+    AppearTime: 0
+    EnemyInfo:
+    - {fileID: 11400000, guid: 9a352d7d2d3d845caab0b0f0d23b87a0, type: 2}
+    - {fileID: 11400000, guid: 21709e9a2a32a459280da3677466fae2, type: 2}
+    EnemyPosi:
+    - {x: 10, y: 0, z: 100}
+    - {x: 20, y: 0, z: 90}
   questName: Level 1-1

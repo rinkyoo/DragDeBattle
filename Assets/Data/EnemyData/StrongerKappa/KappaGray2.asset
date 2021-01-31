@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bc2ceec3e1a14519a4d5dbefd6308cc, type: 3}
-  m_Name: KappaGray
+  m_Name: KappaGray2
   m_EditorClassIdentifier: 
   chara_name: KappaGray
   prefab: {fileID: 7704801056696929345, guid: 093c4083016c0344e9a619ebd6a5fb52, type: 3}
   level: 0
-  hp: 800
+  hp: 1200
   sp: 2
-  str: 50
+  str: 70
   vit: 2
   agi: 1
   speed_atk: 2

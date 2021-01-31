@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b850973fffb40ae898554488f1051e, type: 3}
-  m_Name: WavePink
+  m_Script: {fileID: 11500000, guid: 61480ee909d9c47d39a4a3801f03606d, type: 3}
+  m_Name: Level4-1
   m_EditorClassIdentifier: 
-  AppearTiming: 0
-  AppearTime: 0
-  EnemyInfo:
-  - {fileID: 11400000, guid: 3efed7f15f8e6430ab6c3e0d82750c23, type: 2}
-  EnemyPosi:
-  - {x: 10, y: 0, z: 50}
-  - {x: 20, y: 0, z: 100}
+  enemyWave:
+  - {fileID: 11400000, guid: b63c23d8e47388949861ebb22c5091b5, type: 2}
+  questName: Level 4-1

@@ -15,4 +15,5 @@ MonoBehaviour:
   quests:
   - {fileID: 11400000, guid: 3aabd774969c246bf8c2388ffdf87f87, type: 2}
   - {fileID: 11400000, guid: 76a161183fbb2421c8800681a1849766, type: 2}
+  - {fileID: 11400000, guid: b073e083330cf4e45ac07347561c1188, type: 2}
   setName: Level 3

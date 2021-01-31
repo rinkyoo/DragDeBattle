@@ -3451,6 +3451,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2dbb94230fe004a90aff1ec6ab65f571, type: 2}
     - {fileID: 11400000, guid: 588a7d0e44aa84cce95634029b639610, type: 2}
     - {fileID: 11400000, guid: 480c97cd1382d4322b61195ecdd60403, type: 2}
+    - {fileID: 11400000, guid: ae1b72135e8a7fc4686d38b5e0dab676, type: 2}
   - questList:
     - {fileID: 11400000, guid: 9a9a8530b15a0e84b8865b467692ce0e, type: 2}
   - questList:

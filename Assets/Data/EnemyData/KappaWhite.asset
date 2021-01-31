@@ -17,7 +17,7 @@ MonoBehaviour:
   level: 0
   hp: 1100
   sp: 2
-  str: 30
+  str: 60
   vit: 0
   agi: 1.5
   speed_atk: 1
