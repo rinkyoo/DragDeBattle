@@ -39,7 +39,8 @@ public class QuestClearManager : MonoBehaviour
     [SerializeField] Slider expSlider; //min maxの値はそれぞれ0,1で固定
     #endregion
 
-    Sequence seq = DOTween.Sequence();
+    Sequence seq;
+    bool isInSeq = false;
     int beforeLevel;
     int sliderValue;
 
@@ -89,9 +90,10 @@ public class QuestClearManager : MonoBehaviour
     void AppearResult()
     {
         clearText.SetActive(false);
+        isInSeq = true;
 
         seq = DOTween.Sequence();
-        seq.Append(resultObj.transform.DOLocalMoveY(0, 1))
+        seq.Append(resultObj.transform.DOLocalMoveY(500f, 1f))
             .Append(resultPanel.GetComponent<Image>().DOFillAmount(1, 1f))
             .InsertCallback(2f, () =>
              {
@@ -152,10 +154,11 @@ public class QuestClearManager : MonoBehaviour
 
     void Update()
     {
-        if(seq.IsPlaying())
+        if(isInSeq)
         {
             if(Input.GetMouseButtonDown(0) || (Input.touchCount > 0))
             {
+                isInSeq = false;
                 CompleteSeq();
             }
         }
@@ -167,7 +170,7 @@ public class QuestClearManager : MonoBehaviour
         audioManager.System24();
 
         Vector3 temp = resultObj.transform.localPosition;
-        temp.y = 0;
+        temp.y = 500f;
         resultObj.transform.localPosition = temp;
         resultPanel.GetComponent<Image>().fillAmount = 1f;
         titleObj.SetActive(true);

@@ -94,6 +94,7 @@ public class CharaIconController : MonoBehaviour
         posi.x += touch_manager.touch_position.x * canvasScale;
         posi.y += touch_manager.touch_position.y * canvasScale;
         transform.position = posi;
+        transform.localScale = transform.localScale * 1.2f;
     }
     public void Dragging()
     {
@@ -128,6 +129,7 @@ public class CharaIconController : MonoBehaviour
                     hitFieldFlag = true;
                     gameObject.SetActive(false);
                     transform.position = hit.point;
+                    transform.localScale = transform.localScale / 1.2f;
                     charaEffect.SetPCAppearParticle(hit.point);
                 })
                 .AppendInterval(0.4f)

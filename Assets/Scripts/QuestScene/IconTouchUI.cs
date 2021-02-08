@@ -46,22 +46,22 @@ public class IconTouchUI : MonoBehaviour
             if(SkillPanel.transform.localPosition.x < -30f)
             {
                 temp = SkillPanel.transform.localPosition;
-                temp.x += Time.unscaledDeltaTime * 1500f;
+                temp.x += Time.unscaledDeltaTime * 2000f;
                 SkillPanel.transform.localPosition = temp;
             }
             else if(SkillPanel.transform.localPosition.x < 30f)
             {
                 temp = SkillPanel.transform.localPosition;
-                temp.x += Time.unscaledDeltaTime * 50f;
+                temp.x += Time.unscaledDeltaTime * 100f;
                 SkillPanel.transform.localPosition = temp;
             }
-            else if(SkillPanel.transform.localPosition.x < 1000f)
+            else if(SkillPanel.transform.localPosition.x < 1600f)
             {
                 temp = SkillPanel.transform.localPosition;
-                temp.x += Time.unscaledDeltaTime * 1500f;
+                temp.x += Time.unscaledDeltaTime * 2000f;
                 SkillPanel.transform.localPosition = temp;
             }
-            else if(SkillPanel.transform.localPosition.x > 1000f)
+            else if(SkillPanel.transform.localPosition.x > 1600f)
             {
                 cc.Skill();
                 skillTextFlag = false;
