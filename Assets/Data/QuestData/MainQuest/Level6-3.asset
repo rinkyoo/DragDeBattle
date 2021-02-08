@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61480ee909d9c47d39a4a3801f03606d, type: 3}
+  m_Name: Level6-3
+  m_EditorClassIdentifier: 
+  enemyWave:
+  - AppearTiming: 0
+    AppearTime: 0
+    EnemyInfo:
+    - {fileID: 11400000, guid: 83901bd35be8cb64cb217b42b5de2b44, type: 2}
+    - {fileID: 11400000, guid: 26fa10dcb53f6c745b0d772bd358d92a, type: 2}
+    EnemyPosi:
+    - {x: 10, y: 0, z: 100}
+    - {x: 20, y: 0, z: 60}
+  - AppearTiming: 0
+    AppearTime: 1
+    EnemyInfo:
+    - {fileID: 11400000, guid: 468dbf2c9ee754b4c83ac9e6e2f31354, type: 2}
+    - {fileID: 11400000, guid: 83901bd35be8cb64cb217b42b5de2b44, type: 2}
+    - {fileID: 11400000, guid: 86c5e3b81487f7844bdee902569d5292, type: 2}
+    EnemyPosi:
+    - {x: 15, y: 0, z: 50}
+    - {x: 30, y: 0, z: 60}
+    - {x: 10, y: 0, z: 50}
+  - AppearTiming: 0
+    AppearTime: 2
+    EnemyInfo:
+    - {fileID: 11400000, guid: 468dbf2c9ee754b4c83ac9e6e2f31354, type: 2}
+    - {fileID: 11400000, guid: 6a8e83c57116f434992e9148b7e36b0a, type: 2}
+    - {fileID: 11400000, guid: 6995f240f5f332140bd3feea3aa08bcf, type: 2}
+    EnemyPosi:
+    - {x: 20, y: 0, z: 10}
+    - {x: 20, y: 0, z: 50}
+    - {x: 12, y: 0, z: 60}
+  questName: Level 6-3

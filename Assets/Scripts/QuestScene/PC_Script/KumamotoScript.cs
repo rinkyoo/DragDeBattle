@@ -70,13 +70,14 @@ public class KumamotoScript : CharaController
 
     public override void Skill()
     {
-        //Ž©g‚ÌUŒ‚‚ÉƒmƒbƒNƒoƒbƒNŒø‰Ê‚ð•t—^
-        isInSkill = true;
+        //Ž©g‚ÌUŒ‚—Í‚ð‚Q”{
+        int temp = base.cs.str;
+        base.cs.str += temp;
         base.SetBuffEffect();
         //Œø‰ÊŽžŠÔŒã‚É‰ðœi20•bŒãj
         StartCoroutine(DelayMethod(20f, () =>
         {
-            isInSkill = false;
+            base.cs.str -= temp;
             base.RemoveBuffEffect();
         }));
         

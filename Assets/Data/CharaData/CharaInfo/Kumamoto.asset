@@ -23,7 +23,7 @@ MonoBehaviour:
   hp: 0
   addHp: 5
   sp: 0
-  skillInfo: "20\u79D2\u9593\u81EA\u8EAB\u306E\u653B\u6483\u306B\u30CE\u30C3\u30AF\u30D0\u30C3\u30AF\u52B9\u679C\u3092\u4ED8\u4E0E"
+  skillInfo: "20\u79D2\u9593\u81EA\u8EAB\u306E\u653B\u6483\u529B\u3092\uFF12\u500D"
   str: 0
   addStr: 1
   vit: 0
@@ -34,6 +34,6 @@ MonoBehaviour:
   maxLevel: 100
   level1NextEXP: 100
   level1PlusNextEXP: 100
-  level1HP: 1300
+  level1HP: 1200
   level1STR: 150
   level1VIT: 5

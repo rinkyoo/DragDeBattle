@@ -30,7 +30,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: be2fdf483e18846f0b625672d5342d15, type: 2}
     - {fileID: 11400000, guid: 3efed7f15f8e6430ab6c3e0d82750c23, type: 2}
     EnemyPosi:
-    - {x: 20, y: 0, z: 150}
-    - {x: 30, y: 0, z: 2}
+    - {x: 20, y: 0, z: 140}
+    - {x: 30, y: 0, z: 10}
     - {x: 10, y: 0, z: 30}
   questName: Level 2-2

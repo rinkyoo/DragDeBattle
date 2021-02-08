@@ -10,17 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61480ee909d9c47d39a4a3801f03606d, type: 3}
-  m_Name: Level4-1
+  m_Name: Level4-2
   m_EditorClassIdentifier: 
   enemyWave:
   - AppearTiming: 0
     AppearTime: 0
     EnemyInfo:
-    - {fileID: 11400000, guid: 556434a4222dcdb44a667b746bdfa564, type: 2}
+    - {fileID: 11400000, guid: 608635032fb09eb4fa4a047d8d160573, type: 2}
     - {fileID: 11400000, guid: c3aa78f1a9b8fca438885478bd6a654c, type: 2}
-    - {fileID: 11400000, guid: 3f436170d5e00e74d9d199f33b32973b, type: 2}
     EnemyPosi:
-    - {x: 10, y: 0, z: 100}
-    - {x: 20, y: 0, z: 60}
-    - {x: 10, y: 0, z: 50}
-  questName: Level 4-1
+    - {x: 30, y: 0, z: 90}
+    - {x: 20, y: 0, z: 50}
+  - AppearTiming: 1
+    AppearTime: 0
+    EnemyInfo:
+    - {fileID: 11400000, guid: a26663a7685cfcb4eabf74eed839bd34, type: 2}
+    - {fileID: 11400000, guid: c3aa78f1a9b8fca438885478bd6a654c, type: 2}
+    EnemyPosi:
+    - {x: 30, y: 0, z: 90}
+    - {x: 20, y: 0, z: 50}
+  questName: Level 4-2
