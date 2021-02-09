@@ -93,7 +93,7 @@ public class QuestClearManager : MonoBehaviour
         isInSeq = true;
 
         seq = DOTween.Sequence();
-        seq.Append(resultObj.transform.DOLocalMoveY(500f, 1f))
+        seq.Append(resultObj.transform.DOLocalMoveY(-120f, 1f))
             .Append(resultPanel.GetComponent<Image>().DOFillAmount(1, 1f))
             .InsertCallback(2f, () =>
              {
@@ -170,7 +170,7 @@ public class QuestClearManager : MonoBehaviour
         audioManager.System24();
 
         Vector3 temp = resultObj.transform.localPosition;
-        temp.y = 500f;
+        temp.y = -120f;
         resultObj.transform.localPosition = temp;
         resultPanel.GetComponent<Image>().fillAmount = 1f;
         titleObj.SetActive(true);

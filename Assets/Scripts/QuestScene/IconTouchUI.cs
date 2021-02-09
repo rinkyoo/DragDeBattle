@@ -46,19 +46,19 @@ public class IconTouchUI : MonoBehaviour
             if(SkillPanel.transform.localPosition.x < -30f)
             {
                 temp = SkillPanel.transform.localPosition;
-                temp.x += Time.unscaledDeltaTime * 2000f;
+                temp.x += Time.unscaledDeltaTime * 1000f;
                 SkillPanel.transform.localPosition = temp;
             }
             else if(SkillPanel.transform.localPosition.x < 30f)
             {
                 temp = SkillPanel.transform.localPosition;
-                temp.x += Time.unscaledDeltaTime * 100f;
+                temp.x += Time.unscaledDeltaTime * 50f;
                 SkillPanel.transform.localPosition = temp;
             }
             else if(SkillPanel.transform.localPosition.x < 1600f)
             {
                 temp = SkillPanel.transform.localPosition;
-                temp.x += Time.unscaledDeltaTime * 2000f;
+                temp.x += Time.unscaledDeltaTime * 1000f;
                 SkillPanel.transform.localPosition = temp;
             }
             else if(SkillPanel.transform.localPosition.x > 1600f)
@@ -116,7 +116,7 @@ public class IconTouchUI : MonoBehaviour
     public void SkillClicked()
     {
         //スキル情報を表示するパネルの設定
-        SkillPanel.transform.localPosition = new Vector3(-1000f,500f,0f);
+        SkillPanel.transform.localPosition = new Vector3(-1000f,250f,0f);
         SkillIconImage.sprite = charaInfo.Icon;
         SkillText.text = charaInfo.Name + "\n     スキル発動！！";
         SkillInfoText.text = charaInfo.SkillInfo;
