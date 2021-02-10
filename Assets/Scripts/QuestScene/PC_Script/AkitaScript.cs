@@ -27,6 +27,11 @@ public class AkitaScript : CharaController
     new void FixedUpdate()
     {
         base.FixedUpdate();
+        if(base.lockObj != null && base.lockObj.CompareTag("PC_Field"))
+        {
+            if (!base.lockObj.GetComponent<CharaController>().IsInField())
+                base.SetState(State.Idle);
+        }
     }
 
     public override void Attack()
