@@ -24,15 +24,32 @@ public class AccountManager : MonoBehaviour
     void Awake()
     {
         //アカウントデータのPathを設定
-        path = Application.dataPath + "/Data/AccountData/AccountData.json";
-        //アカウント情報をロード
-        string datastr = "";
-        StreamReader reader;
-        reader = new StreamReader(path);
-        datastr = reader.ReadToEnd();
-        reader.Close();
+        //path = Application.dataPath + "/Data/AccountData/AccountData.json";
+        path = Application.persistentDataPath + "/AccountData/AccountData.json";
 
-        accountData =  JsonUtility.FromJson<AccountData>(datastr);
+        if(System.IO.File.Exists(path))
+        {
+            //アカウント情報をロード
+            string datastr = "";
+            StreamReader reader;
+            reader = new StreamReader(path);
+            datastr = reader.ReadToEnd();
+            reader.Close();
+
+            accountData = JsonUtility.FromJson<AccountData>(datastr);
+        }
+        else
+        {
+            System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/AccountData");
+            accountData = new AccountData();
+            ResetAccountData();
+            StreamWriter writer;
+            string jsonstr = JsonUtility.ToJson(accountData);
+            writer = new StreamWriter(path, false);
+            writer.Write(jsonstr);
+            writer.Flush();
+            writer.Close();
+        }
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
@@ -89,10 +106,7 @@ public class AccountManager : MonoBehaviour
     }
     public void ResetLevelClicked()
     {
-        accountData.level = 1;
-        accountData.exp = 0;
-        accountData.nextExp = AccountDefine.firstNextExp;
-        accountData.plusNextExp = AccountDefine.firstPlusNextExp;
+        ResetAccountData();
         SaveAccountData();
         SceneManager.LoadScene("Home");
     }
@@ -164,5 +178,13 @@ public class AccountManager : MonoBehaviour
     void SetClearedQuest(string questType,int[] clearedQuest)
     {
         accountData.clearedQuest.SetClearedQuest(questType,clearedQuest);
+    }
+
+    void ResetAccountData()
+    {
+        accountData.level = 1;
+        accountData.exp = 0;
+        accountData.nextExp = AccountDefine.firstNextExp;
+        accountData.plusNextExp = AccountDefine.firstPlusNextExp;
     }
 }

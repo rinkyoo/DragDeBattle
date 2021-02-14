@@ -44,7 +44,6 @@ public class QuestController : MonoBehaviour
     private RaycastHit hit;
     int PCLayerMask = 1 << 10;
     int fANDeLayerMask = 1 << 9 | 1 << 11; //FieldとEnemy用
-    private float borderY = 450.0f; //アイコン表示PanelとFieldの境のY座標
     #endregion
 
     #region 画面タップ用変数（PCをタップする時の）
@@ -205,10 +204,7 @@ public class QuestController : MonoBehaviour
         {
             /*タップ開始時の処理*/
             if (touch_state.touch_phase == TouchPhase.Began && Time.timeScale != 0f)
-            {
-                //Field外だったら無視
-                if(touch_manager.touch_position.y <= borderY) return;
-                
+            {   
                 Vector3 posi = touch_manager.touch_position;
                 Vector3 worldPosi = Camera.main.ScreenToWorldPoint(posi);
                 Ray ray = new Ray(worldPosi,Camera.main.transform.forward);

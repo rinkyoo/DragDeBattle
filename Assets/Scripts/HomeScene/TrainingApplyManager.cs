@@ -107,7 +107,7 @@ public class TrainingApplyManager : MonoBehaviour
         foreach(ExpItem_Info item in itemManager.GetExpItemList())
         {
             //所持数が０の場合はスキップ（アイテムパネルを表示しない）
-            if (itemManager.GetExpItemNum(item.Name) <= 0) continue;
+            //if (itemManager.GetExpItemNum(item.Name) <= 0) continue;
 
             GameObject itemPanel = Instantiate(expItemPanel,expItemContent.transform.position,Quaternion.identity) as GameObject;
             itemPanel.name = item.Name + "Panel";
@@ -359,6 +359,7 @@ public class TrainingApplyManager : MonoBehaviour
         trainingChara.Level = 1;
         trainingChara.NowEXP = 0;
         trainingChara.NextEXP = trainingChara.Level1NextEXP;
+        trainingChara.PlusNextEXP = trainingChara.Level1PlusNextEXP;
         trainingChara.HP = trainingChara.Level1HP;
         trainingChara.STR = trainingChara.Level1STR;
         trainingChara.VIT = trainingChara.Level1VIT;

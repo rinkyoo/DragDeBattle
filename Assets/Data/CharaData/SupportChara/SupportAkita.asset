@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20df2f0699cc7f644bd66c7116f6c0e2, type: 3}
-  m_Name: Yamaguchi
+  m_Name: SupportAkita
   m_EditorClassIdentifier: 
-  id: 7
-  name: Yamaguchi
-  prefab: {fileID: 1000014036581622, guid: b6fd34007d51e8648ae03bcb6de45946, type: 3}
-  icon: {fileID: 21300000, guid: e19c7fec6943f4dda99f87cf21f7b46e, type: 3}
+  id: 11
+  name: Akita
+  prefab: {fileID: 1000012674550932, guid: 629b7596b00f3b147b944525c845c66a, type: 3}
+  icon: {fileID: 21300000, guid: 52cb3ebe00e6e7e40ac095216cd4b151, type: 3}
   level: 1
   nextEXP: 2
   plusNextEXP: 0
   nowEXP: 0
-  hp: 0
+  hp: 2000
   addHp: 5
   sp: 0
-  skillInfo: "\u81EA\u8EAB\u3092\u4E2D\u5FC3\u306B\u5186\u72B6\u306B\u5E83\u304C\u3063\u3066\u3044\u304F\u7403\u3092\u51FA\u3059\u3002\u6575\u306B\u5F53\u305F\u308B\u3068\u653B\u6483\u529B*\uFF13\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
-  str: 0
+  skillInfo: "\u5168\u5473\u65B9\u30AD\u30E3\u30E9\u306EHP\u3092\u81EA\u8EAB\u306E\u653B\u6483\u529B\u306E300%\u5206\u56DE\u5FA9"
+  str: 250
   addStr: 1
   vit: 0
   addVit: 1
   agi: 1
-  speed_atk: 2
+  speed_atk: 1.5
   range_atk: 60
   maxLevel: 100
   level1NextEXP: 100
   level1PlusNextEXP: 100
-  level1HP: 300
-  level1STR: 200
+  level1HP: 600
+  level1STR: 40
   level1VIT: 5

@@ -19,7 +19,7 @@ public class CharaInfoManager : MonoBehaviour
     //編成キャラ情報
     private Chara_Info[][] formationChara = new Chara_Info[Define.ptNum][];
     //サポートキャラのリスト
-    private List<Chara_Info> supportList = new List<Chara_Info>();
+    [SerializeField] private List<Chara_Info> supportList = new List<Chara_Info>();
 
     void Awake()
     {
@@ -29,23 +29,44 @@ public class CharaInfoManager : MonoBehaviour
         {
             formationChara[i] = new Chara_Info[Define.charaNum];
         }
-        
+
         //全所持キャラ情報のロード
-        string path = Application.dataPath + "/Data/CharaData/MyChara/";
+        string path = Application.persistentDataPath + "/CharaData/MyChara/";
+
+        if (!System.IO.Directory.Exists(path))
+            System.IO.Directory.CreateDirectory(path);
+
         string[] files = Directory.GetFiles(path, "*.json", SearchOption.AllDirectories);
-        for(int i=0;i<files.Length;i++)
+        //データがある場合
+        if (files.Length > 0)
         {
-            charaList.Add(LoadMyChara(files[i]));
+            for (int i = 0; i < files.Length; i++)
+            {
+                charaList.Add(LoadMyChara(files[i]));
+            }
         }
-        //サポートキャラ情報のロード
-        path = Application.dataPath + "/Data/SupportData/";
-        files = Directory.GetFiles(path, "*.json", SearchOption.AllDirectories);
-        for(int i=0;i<files.Length;i++)
+        //データがない場合（新しくキャラデータを作成します）
+        else
         {
-            supportList.Add(LoadSupportInfo(files[i]));
+            foreach (Chara_Info chara in AllChara)
+            {
+                #region レベル１でのステを設定
+                chara.Level = 1;
+                chara.NowEXP = 0;
+                chara.NextEXP = chara.Level1NextEXP;
+                chara.PlusNextEXP = chara.Level1PlusNextEXP;
+                chara.HP = chara.Level1HP;
+                chara.STR = chara.Level1STR;
+                chara.VIT = chara.Level1VIT;
+                #endregion
+                SaveCharaInfo(chara);
+                charaList.Add(chara);
+            }
         }
         //編成情報のロード
-        for(int i=0;i<Define.ptNum;i++)
+        if (!System.IO.Directory.Exists(Application.persistentDataPath + "/FormationData"))
+            System.IO.Directory.CreateDirectory(Application.persistentDataPath + "/FormationData");
+        for (int i=0;i<Define.ptNum;i++)
         {
             FormationInfo temp = LoadFormationInfo(i+1);
             for(int j=0;j<Define.charaNum-1;j++)
@@ -73,46 +94,11 @@ public class CharaInfoManager : MonoBehaviour
         StreamWriter writer;
         string jsonstr = JsonUtility.ToJson(setMyChara);
         string name = setMyChara.Name;
-        writer = new StreamWriter(Application.dataPath + "/Data/CharaData/MyChara/MyChara" + name + ".json", false);
+        writer = new StreamWriter(Application.persistentDataPath + "/CharaData/MyChara/MyChara" + name + ".json", false);
         writer.Write(jsonstr);
         writer.Flush();
         writer.Close();
     }
-    /*
-    //キャラ情報の保存
-    public void SaveCharaInfo(MyChara newChara)
-    {
-        StreamWriter writer;
-        string jsonstr = JsonUtility.ToJson (newChara);
-        int id = newChara.ID;
-        writer = new StreamWriter(Application.dataPath + "/Data/CharaData/MyChara"+id.ToString()+".json", false);
-        writer.Write (jsonstr);
-        writer.Flush ();
-        writer.Close ();
-    }
-    //キャラ情報のロード(IDで）
-    public MyChara LoadCharaInfo(int i)
-    {
-        string datastr = "";
-        StreamReader reader;
-        reader = new StreamReader (Application.dataPath + "/Data/CharaData/MyChara"+i.ToString()+".json");
-        datastr = reader.ReadToEnd ();
-        reader.Close ();
-        
-        return JsonUtility.FromJson<MyChara> (datastr);
-    }
-    //キャラ情報ロード（Pathで）
-    public MyChara LoadCharaInfo(string path)
-    {
-        string datastr = "";
-        StreamReader reader;
-        reader = new StreamReader (path);
-        datastr = reader.ReadToEnd ();
-        reader.Close ();
-        
-        return JsonUtility.FromJson<CharaInfo> (datastr);
-    }
-    */
 
     Chara_Info SetCharaInfoStatus(Chara_Info setCharaInfo, MyChara setMyChara)
     {
@@ -143,24 +129,6 @@ public class CharaInfoManager : MonoBehaviour
         Chara_Info setCharaInfo = AllChara.Find(chara => chara.Name == setMyChara.Name);
         return SetCharaInfoStatus(setCharaInfo.Clone(), setMyChara);
     }
-
-    //***************************************************
-    //サポートキャラ情報のロード(Pathで）
-    Chara_Info LoadSupportInfo(string path)
-    {
-        string datastr = "";
-        StreamReader reader;
-        reader = new StreamReader (path);
-        datastr = reader.ReadToEnd ();
-        reader.Close ();
-
-        MyChara setMyChara = JsonUtility.FromJson<MyChara>(datastr);
-
-        Chara_Info setCharaInfo = AllChara.Find(chara => chara.Name == setMyChara.Name);
-
-        return SetCharaInfoStatus(setCharaInfo.Clone(), setMyChara);
-    }
-    //***************************************************
     //編成情報の保存
     public void SaveFormationInfo(Chara_Info[] charas,int i)
     {
@@ -174,21 +142,32 @@ public class CharaInfoManager : MonoBehaviour
         
         StreamWriter writer;
         string jsonstr = JsonUtility.ToJson (newFormation);
-        writer = new StreamWriter(Application.dataPath + "/Data/FormationData/Formation"+i.ToString()+".json", false);
+        writer = new StreamWriter(Application.persistentDataPath + "/FormationData/Formation"+i.ToString()+".json", false);
         writer.Write (jsonstr);
         writer.Flush ();
         writer.Close ();
+        
     }
     //編成情報のロード（編成番号で）
     FormationInfo LoadFormationInfo(int i)
     {
+        //編成情報がない場合は、手持ちの先頭から適当に編成する
+        if (!System.IO.File.Exists(Application.persistentDataPath + "/FormationData/Formation" + i.ToString() + ".json"))
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                formationChara[i - 1][j] = charaList[j];
+            }
+            SaveFormationInfo(formationChara[i - 1], i);
+        }
+
         string datastr = "";
         StreamReader reader;
-        reader = new StreamReader (Application.dataPath + "/Data/FormationData/Formation"+i.ToString()+".json");
-        datastr = reader.ReadToEnd ();
-        reader.Close ();
-        
-        return JsonUtility.FromJson<FormationInfo> (datastr);
+        reader = new StreamReader(Application.persistentDataPath + "/FormationData/Formation" + i.ToString() + ".json");
+        datastr = reader.ReadToEnd();
+        reader.Close();
+
+       return JsonUtility.FromJson<FormationInfo>(datastr);
     }
     //***************************************************
     
