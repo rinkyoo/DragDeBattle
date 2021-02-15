@@ -29,11 +29,12 @@ public class CharaIconController : MonoBehaviour
     Image waitGageImage;
 
     Vector3 canvasPosi = new Vector3();
-    float canvasScale;
     bool isDragging = false; //タッチとドラッグを区別するため
     bool ignoreDrag = false;
-    
+
+    int layerMask = 1 << 9;
     Vector3 initialPosi = new Vector3(-10f, 0f, 0f);
+    float borderPosi; //UIとフィールドの境目のY座標
 
     void Awake()
     {
@@ -50,10 +51,17 @@ public class CharaIconController : MonoBehaviour
         charaEffect = GameObject.Find("CharaScript").GetComponent<CharaEffect>();
         iconTouchUI = GameObject.Find("CharaScript").GetComponent<IconTouchUI>();
         charaController = gameObject.GetComponent<CharaController>();
-
+        
         var canvas = GameObject.Find("QuestCanvas");
         canvasPosi = canvas.GetComponent<CanvasInfo>().GetCanvasPosi();
-        canvasScale = canvas.GetComponent<CanvasInfo>().GetCanvasScale();
+        #region borderのスクリーン座標取得
+        Camera canvasCamera = canvas.GetComponentInParent<Canvas>().worldCamera;
+        var corners = new Vector3[4];
+        GameObject.Find("border").GetComponent<RectTransform>().GetWorldCorners(corners);
+        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[1]);
+        borderPosi = temp.y;
+        #endregion
+
         dragPanel = canvas.transform.Find("PCDragPanel/#" + transform.name).gameObject;
         waitGageImage = dragPanel.transform.Find("WaitGageImage").gameObject.GetComponent<Image>();
     }
@@ -88,22 +96,27 @@ public class CharaIconController : MonoBehaviour
 
         ignoreDrag = false;
         isDragging = true;
-        touch();
         questController.PauseBattle();
-        Vector3 posi = canvasPosi;
-        posi.x += touch_manager.touch_position.x * canvasScale;
-        posi.y += touch_manager.touch_position.y * canvasScale;
-        transform.position = posi;
-        transform.localScale = transform.localScale * 1.2f;
     }
     public void Dragging()
     {
         if(ignoreDrag)return;
         touch();
-        Vector3 posi = canvasPosi;
-        posi.x += touch_manager.touch_position.x * canvasScale;
-        posi.y += touch_manager.touch_position.y * canvasScale;
-        transform.position = posi;
+        Vector3 posi = touch_manager.touch_position;
+        posi.z = 0f;
+        Vector3 worldPosi = Camera.main.ScreenToWorldPoint(posi);
+        Ray ray = new Ray(worldPosi, Camera.main.transform.forward);
+        
+        foreach (RaycastHit hit in Physics.RaycastAll(ray, layerMask))
+        {
+            //フィールド上でドラッグ中はPCを表示
+            if (hit.transform.name == "Field" && posi.y > borderPosi)
+            {
+                transform.position = hit.point;
+                return;
+            }
+        }
+        transform.position = initialPosi;
     }
     public void EndDrag()
     {
@@ -113,23 +126,18 @@ public class CharaIconController : MonoBehaviour
         Vector3 posi = touch_manager.touch_position;
         posi.z = 0f;
         Vector3 worldPosi = Camera.main.ScreenToWorldPoint(posi);
-        int layerMask = 1 << 9;
         Ray ray = new Ray(worldPosi,Camera.main.transform.forward);
-        Debug.DrawRay (ray.origin, ray.direction * 400f, Color.red, 30, false);
-        bool hitFieldFlag = false;
-        foreach(RaycastHit hit in Physics.RaycastAll(ray,layerMask))
+        foreach (RaycastHit hit in Physics.RaycastAll(ray,layerMask))
         {
             //フィールド上でドラッグ終了した場合はPC召喚
-            if(hit.transform.name == "Field")
+            if (hit.transform.name == "Field" && posi.y > borderPosi)
             {
                 Sequence seq = DOTween.Sequence();
                 seq.AppendCallback(()=>
                 {
                     charaController.SetStateNone();
-                    hitFieldFlag = true;
                     gameObject.SetActive(false);
                     transform.position = hit.point;
-                    transform.localScale = transform.localScale / 1.2f;
                     charaEffect.SetPCAppearParticle(hit.point);
                 })
                 .AppendInterval(0.4f)
@@ -138,13 +146,12 @@ public class CharaIconController : MonoBehaviour
                     SetPCInField();
                 });
                 seq.Play();
+                questController.ResumeBattle();
+                return;
             }
         }
-        //フィールド外でドラッグ終了した場合は初期位置に戻す
-        if(!hitFieldFlag)
-        {
-            transform.position = initialPosi;
-        }
+
+        transform.position = initialPosi;
         questController.ResumeBattle();
     }
     #endregion
