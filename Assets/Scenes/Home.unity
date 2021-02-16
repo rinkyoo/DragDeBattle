@@ -7996,7 +7996,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 553052539}
   m_HandleRect: {fileID: 553052538}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11210,7 +11210,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 6bc1702749fdbd24e8e6d0b1a1a941be, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0.2
   priority: 0
 --- !u!135 &957066590
 SphereCollider:

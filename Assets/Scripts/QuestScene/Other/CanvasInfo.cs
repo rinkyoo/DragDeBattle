@@ -61,8 +61,6 @@ public class CanvasInfo : MonoBehaviour
                 Vector3 setPosi = wallLeft.transform.position;
                 setPosi.x = x;
                 wallLeft.transform.position = setPosi;
-                print(hit.point + " : " + setPosi);
-
             }
         }
         //RightWall

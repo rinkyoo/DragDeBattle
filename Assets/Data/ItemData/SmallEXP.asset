@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   name: SmallEXP
   icon: {fileID: 21300000, guid: 605c0811927fe6149aedf3116de44bcf, type: 3}
-  expValue: 1
+  expValue: 100
   coin: 10

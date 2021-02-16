@@ -183,7 +183,7 @@ public class QuestManager : MonoBehaviour
     //サポート選択画面のボタンを設定
     public void SetSupportView()
     {
-        List<Chara_Info> charaList = GameObject.Find("CharaInfoManager").GetComponent<CharaInfoManager>().GetSupportList();
+        List<Chara_Info> charaList = charaInfoManager.GetSupportList();//GameObject.Find("CharaInfoManager").GetComponent<CharaInfoManager>().GetSupportList();
         int i=0;
         foreach(Chara_Info chara in charaList)
         {

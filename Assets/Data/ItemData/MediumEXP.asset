@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 2
   name: MediumEXP
   icon: {fileID: 21300000, guid: 776ba7b0b564e0b41be10479ed2a827a, type: 3}
-  expValue: 30
+  expValue: 400
   coin: 30

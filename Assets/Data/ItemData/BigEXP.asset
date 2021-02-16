@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 3
   name: BigEXP
   icon: {fileID: 21300000, guid: 3707d50d7f93c0a4c9dfd111c5b1beb3, type: 3}
-  expValue: 100
+  expValue: 1000
   coin: 100
