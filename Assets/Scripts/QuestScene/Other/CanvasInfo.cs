@@ -4,6 +4,84 @@ using UnityEngine;
 
 public class CanvasInfo : MonoBehaviour
 {
+    [SerializeField] GameObject wallDown;
+    [SerializeField] GameObject wallLeft;
+    [SerializeField] GameObject wallRight;
+
+    Camera canvasCamera;
+
+    float borderDownPosi;
+    float borderLeftPosi;
+    float borderRightPosi;
+
+    void Awake()
+    {
+        canvasCamera = GetComponentInParent<Canvas>().worldCamera;
+
+        #region フィールドとUIの境目の座標を取得
+        var corners = new Vector3[4];
+        GameObject.Find("border").GetComponent<RectTransform>().GetWorldCorners(corners);
+        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[1]);
+        borderDownPosi = temp.y;
+        GameObject.Find("LeftWallImageBack").GetComponent<RectTransform>().GetWorldCorners(corners);
+        temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[2]);
+        borderLeftPosi = temp.x;
+        GameObject.Find("RightWallImageBack").GetComponent<RectTransform>().GetWorldCorners(corners);
+        temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[0]);
+        borderRightPosi = temp.x;
+        #endregion
+
+        #region フィールド上の壁を境目の座標に移動
+        int layerMask = 1 << 9;
+        Camera mainCamera = GameObject.Find("QuestMainCamera").GetComponent<Camera>();
+        //DownWall
+        Vector3 posi = new Vector3(50f, borderDownPosi, 0);
+        Vector3 worldPosi = mainCamera.ScreenToWorldPoint(posi);
+        Ray ray = new Ray(worldPosi, mainCamera.transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * 300f, Color.red, 30f, false);
+        foreach (RaycastHit hit in Physics.RaycastAll(ray, layerMask))
+        {
+            if (hit.transform.gameObject.CompareTag("Field"))
+            {
+                float z = hit.point.z - (wallDown.transform.localScale.z / 1.7f);
+                Vector3 setPosi = wallDown.transform.position;
+                setPosi.z = z;
+                wallDown.transform.position = setPosi;
+            }
+        }
+        //LeftWall
+        posi = new Vector3(borderLeftPosi, 100f, 0);
+        worldPosi = mainCamera.ScreenToWorldPoint(posi);
+        ray = new Ray(worldPosi, mainCamera.transform.forward);
+        foreach (RaycastHit hit in Physics.RaycastAll(ray, layerMask))
+        {
+            if (hit.transform.gameObject.CompareTag("Field"))
+            {
+                float x = hit.point.x - (wallLeft.transform.localScale.x / 1.7f);
+                Vector3 setPosi = wallLeft.transform.position;
+                setPosi.x = x;
+                wallLeft.transform.position = setPosi;
+                print(hit.point + " : " + setPosi);
+
+            }
+        }
+        //RightWall
+        posi = new Vector3(borderRightPosi, 100f, 0);
+        worldPosi = mainCamera.ScreenToWorldPoint(posi);
+        ray = new Ray(worldPosi, mainCamera.transform.forward);
+        foreach (RaycastHit hit in Physics.RaycastAll(ray, layerMask))
+        {
+            if (hit.transform.gameObject.CompareTag("Field"))
+            {
+                float x = hit.point.x + (wallRight.transform.localScale.x / 1.7f);
+                Vector3 setPosi = wallRight.transform.position;
+                setPosi.x = x;
+                wallRight.transform.position = setPosi;
+            }
+        }
+        #endregion
+    }
+
     public Vector3 GetCanvasPosi()
     {
         var rect = this.GetComponent<RectTransform>();
@@ -20,30 +98,16 @@ public class CanvasInfo : MonoBehaviour
         return rect.localScale.x;
     }
 
-    public float GetBorderUpPosi()
+    public float GetBorderDownPosi()
     {
-        Camera canvasCamera = GetComponentInParent<Canvas>().worldCamera;
-        var corners = new Vector3[4];
-        GameObject.Find("border").GetComponent<RectTransform>().GetWorldCorners(corners);
-        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[1]);
-        return temp.y;
+        return borderDownPosi;
     }
-
     public float GetBorderLeftPosi()
     {
-        Camera canvasCamera = GetComponentInParent<Canvas>().worldCamera;
-        var corners = new Vector3[4];
-        GameObject.Find("LeftWallImageBack").GetComponent<RectTransform>().GetWorldCorners(corners);
-        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[2]);
-        return temp.x;
+        return borderLeftPosi;
     }
-
     public float GetBorderRightPosi()
     {
-        Camera canvasCamera = GetComponentInParent<Canvas>().worldCamera;
-        var corners = new Vector3[4];
-        GameObject.Find("RightWallImageBack").GetComponent<RectTransform>().GetWorldCorners(corners);
-        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[0]);
-        return temp.x;
+        return borderRightPosi;
     }
 }

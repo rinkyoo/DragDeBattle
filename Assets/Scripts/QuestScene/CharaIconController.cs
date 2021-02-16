@@ -34,7 +34,7 @@ public class CharaIconController : MonoBehaviour
 
     int layerMask = 1 << 9;
     Vector3 initialPosi = new Vector3(-10f, 0f, 0f);
-    float borderUpPosi; //UIとフィールドの境目のY座標（下側）
+    float borderDownPosi; //UIとフィールドの境目のY座標（下側）
     float borderLeftPosi; //UIとフィールドの境目のX座標（左側）
     float borderRightPosi; //UIとフィールドの境目のX座標（右側）
 
@@ -54,21 +54,15 @@ public class CharaIconController : MonoBehaviour
         iconTouchUI = GameObject.Find("CharaScript").GetComponent<IconTouchUI>();
         charaController = gameObject.GetComponent<CharaController>();
 
+        #region フィールドとUIとの境目の座標を取得
         GameObject canvas = GameObject.Find("QuestCanvas");
         CanvasInfo canvasInfo = canvas.GetComponent<CanvasInfo>();
         canvasPosi = canvasInfo.GetCanvasPosi();
-        borderUpPosi = canvasInfo.GetBorderUpPosi();
+        borderDownPosi = canvasInfo.GetBorderDownPosi();
         borderLeftPosi = canvasInfo.GetBorderLeftPosi();
         borderRightPosi = canvasInfo.GetBorderRightPosi();
-        /*
-        #region borderのスクリーン座標取得
-        Camera canvasCamera = canvas.GetComponentInParent<Canvas>().worldCamera;
-        var corners = new Vector3[4];
-        GameObject.Find("border").GetComponent<RectTransform>().GetWorldCorners(corners);
-        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[1]);
-        borderPosi = temp.y;
         #endregion
-        */
+
         dragPanel = canvas.transform.Find("PCDragPanel/#" + transform.name).gameObject;
         waitGageImage = dragPanel.transform.Find("WaitGageImage").gameObject.GetComponent<Image>();
     }
@@ -117,7 +111,7 @@ public class CharaIconController : MonoBehaviour
         foreach (RaycastHit hit in Physics.RaycastAll(ray, layerMask))
         {
             //フィールド上でドラッグ中はPCを表示
-            if (hit.transform.name == "Field" && posi.y > borderUpPosi)
+            if (hit.transform.name == "Field" && posi.y > borderDownPosi && posi.x > borderLeftPosi && posi.x < borderRightPosi)
             {
                 transform.position = hit.point;
                 return;
@@ -137,7 +131,7 @@ public class CharaIconController : MonoBehaviour
         foreach (RaycastHit hit in Physics.RaycastAll(ray,layerMask))
         {
             //フィールド上でドラッグ終了した場合はPC召喚
-            if (hit.transform.name == "Field" && posi.y > borderUpPosi && posi.x > borderLeftPosi && posi.x < borderRightPosi)
+            if (hit.transform.name == "Field" && posi.y > borderDownPosi && posi.x > borderLeftPosi && posi.x < borderRightPosi)
             {
                 Sequence seq = DOTween.Sequence();
                 seq.AppendCallback(()=>

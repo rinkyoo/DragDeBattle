@@ -55,7 +55,7 @@ public class QuestController : MonoBehaviour
     bool isDieProcessing = false; //敵キャラが同時に死亡した際に必要、処理を１回のみにしたいから
     string pcName; //PC+キャラ番号
     string enemyName; //Enemy+敵番号
-    private float borderUpPosi;
+    private float borderDownPosi;
     private float borderLeftPosi;
     private float borderRightPosi;
     #endregion
@@ -108,7 +108,7 @@ public class QuestController : MonoBehaviour
 
         #region フィールドとUIとの境目の座標を取得
         CanvasInfo canvasInfo = GameObject.Find("QuestCanvas").GetComponent<CanvasInfo>();
-        borderUpPosi = canvasInfo.GetBorderUpPosi();
+        borderDownPosi = canvasInfo.GetBorderDownPosi();
         borderLeftPosi = canvasInfo.GetBorderLeftPosi();
         borderRightPosi = canvasInfo.GetBorderRightPosi();
         #endregion
@@ -310,7 +310,7 @@ public class QuestController : MonoBehaviour
                     else
                     {
                         var posi = touch_manager.touch_position;
-                        if (posi.y > borderUpPosi && posi.x > borderLeftPosi && posi.x < borderRightPosi)
+                        if (posi.y > borderDownPosi && posi.x > borderLeftPosi && posi.x < borderRightPosi)
                             charaManager.SetMovePosi(pcName,movePosi);
                     }
                 }
