@@ -55,6 +55,9 @@ public class QuestController : MonoBehaviour
     bool isDieProcessing = false; //敵キャラが同時に死亡した際に必要、処理を１回のみにしたいから
     string pcName; //PC+キャラ番号
     string enemyName; //Enemy+敵番号
+    private float borderUpPosi;
+    private float borderLeftPosi;
+    private float borderRightPosi;
     #endregion
 
     #region 画面演出に使用するオブジェクト
@@ -103,7 +106,14 @@ public class QuestController : MonoBehaviour
         audioManager.QuestBGM();
         dropParent = new GameObject("DropParent").transform;
 
-        //画面を明転かつ、敵キャラ配置******************************************
+        #region フィールドとUIとの境目の座標を取得
+        CanvasInfo canvasInfo = GameObject.Find("QuestCanvas").GetComponent<CanvasInfo>();
+        borderUpPosi = canvasInfo.GetBorderUpPosi();
+        borderLeftPosi = canvasInfo.GetBorderLeftPosi();
+        borderRightPosi = canvasInfo.GetBorderRightPosi();
+        #endregion
+
+        #region 画面を明転かつ、敵キャラ配置
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
             {
@@ -118,8 +128,9 @@ public class QuestController : MonoBehaviour
                 sceneLoadPanel.SetActive(false);
             });
         seq.Play();
-        //***********************************************************************
+        #endregion
     }
+
     #region Start()内で実行する関数
     //Enemy死亡時にも実行する ==========================================
     public void SetQuestEnemy()
@@ -241,10 +252,11 @@ public class QuestController : MonoBehaviour
                     Vector3 worldPosi = Camera.main.ScreenToWorldPoint(posi);
                     Ray ray = new Ray(worldPosi,Camera.main.transform.forward);
                     bool flag = false;
-                    foreach(RaycastHit hit in Physics.RaycastAll(ray,fANDeLayerMask))
+
+                    foreach (RaycastHit hit in Physics.RaycastAll(ray,fANDeLayerMask))
                     {
                         //PCから出る矢印的なものを更新
-                        if(hit.transform.name == "Field")
+                        if(hit.transform.gameObject.CompareTag("Field"))
                         {
                             fieldEffect.UpdateLineRen(hit.point);
                             movePosi = hit.point;
@@ -297,7 +309,9 @@ public class QuestController : MonoBehaviour
                     }
                     else
                     {
-                        charaManager.SetMovePosi(pcName,movePosi);
+                        var posi = touch_manager.touch_position;
+                        if (posi.y > borderUpPosi && posi.x > borderLeftPosi && posi.x < borderRightPosi)
+                            charaManager.SetMovePosi(pcName,movePosi);
                     }
                 }
             }

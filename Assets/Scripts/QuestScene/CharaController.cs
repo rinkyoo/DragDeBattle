@@ -116,7 +116,7 @@ public class CharaController : MonoBehaviour
                 //movePosiに向かって進む
                 transform.position += transform.forward * Time.deltaTime * 10f * cs.agi;
                 
-                if(Vector3.Distance(transform.position,movePosi) <= 0.1f){
+                if(Vector3.Distance(transform.position,movePosi) <= 0.3f){
                     SetState(State.Idle);
                 }
                 break;

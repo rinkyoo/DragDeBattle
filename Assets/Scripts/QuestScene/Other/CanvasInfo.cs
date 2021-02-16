@@ -19,4 +19,31 @@ public class CanvasInfo : MonoBehaviour
         var rect = this.GetComponent<RectTransform>();
         return rect.localScale.x;
     }
+
+    public float GetBorderUpPosi()
+    {
+        Camera canvasCamera = GetComponentInParent<Canvas>().worldCamera;
+        var corners = new Vector3[4];
+        GameObject.Find("border").GetComponent<RectTransform>().GetWorldCorners(corners);
+        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[1]);
+        return temp.y;
+    }
+
+    public float GetBorderLeftPosi()
+    {
+        Camera canvasCamera = GetComponentInParent<Canvas>().worldCamera;
+        var corners = new Vector3[4];
+        GameObject.Find("LeftWallImageBack").GetComponent<RectTransform>().GetWorldCorners(corners);
+        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[2]);
+        return temp.x;
+    }
+
+    public float GetBorderRightPosi()
+    {
+        Camera canvasCamera = GetComponentInParent<Canvas>().worldCamera;
+        var corners = new Vector3[4];
+        GameObject.Find("RightWallImageBack").GetComponent<RectTransform>().GetWorldCorners(corners);
+        var temp = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[0]);
+        return temp.x;
+    }
 }
