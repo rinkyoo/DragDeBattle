@@ -187,4 +187,29 @@ public class AccountManager : MonoBehaviour
         accountData.nextExp = AccountDefine.firstNextExp;
         accountData.plusNextExp = AccountDefine.firstPlusNextExp;
     }
+
+    public void ResetCoinItemClicked()
+    {
+        accountData.coin = 0;
+        accountData.expItemData.ExpItemNum = new Dictionary<string, int>()
+        {
+            {"SmallEXP",0 },
+            {"MediumEXP",0 },
+            {"BigEXP",0 }
+        };
+        SaveAccountData();
+        SceneManager.LoadScene("Home");
+    }
+    public void SetCoinItemClicked()
+    {
+        accountData.coin = 100000;
+        accountData.expItemData.ExpItemNum = new Dictionary<string, int>()
+        {
+            {"SmallEXP",100 },
+            {"MediumEXP",100 },
+            {"BigEXP",100 }
+        };
+        SaveAccountData();
+        SceneManager.LoadScene("Home");
+    }
 }
