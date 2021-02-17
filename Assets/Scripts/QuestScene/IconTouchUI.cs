@@ -12,7 +12,7 @@ public class IconTouchUI : MonoBehaviour
     private Chara_Info charaInfo;
     private CharaController cc;
     private AudioManager audioManager;
-    
+
     [SerializeField] public GameObject PCInfoPanel;
     [SerializeField] Image IconImage;
     [SerializeField] TextMeshProUGUI PCName;
@@ -26,7 +26,7 @@ public class IconTouchUI : MonoBehaviour
     [SerializeField] GameObject SkillPanel;
     [SerializeField] TextMeshProUGUI SkillText;
     [SerializeField] TextMeshProUGUI SkillInfoText;
-    
+
     [HideInInspector] public bool skillTextFlag = false;
     [SerializeField] Image SkillIconImage;
     
@@ -63,6 +63,7 @@ public class IconTouchUI : MonoBehaviour
             }
             else if(SkillPanel.transform.localPosition.x > 1600f)
             {
+                cc.SPReset();
                 cc.Skill();
                 skillTextFlag = false;
             }

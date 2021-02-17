@@ -22,7 +22,7 @@ MonoBehaviour:
   nowEXP: 0
   hp: 0
   addHp: 5
-  sp: 0
+  sp: 10
   skillInfo: "10\u79D2\u9593\u653B\u6483\u4E0D\u80FD\u306B\u306A\u308A\u3001\u5168\u3066\u306E\u6575\u306E\u653B\u6483\u5BFE\u8C61\u3092\u81EA\u8EAB\u306B\u3059\u308B"
   str: 0
   addStr: 1

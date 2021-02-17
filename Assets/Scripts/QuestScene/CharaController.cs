@@ -260,6 +260,11 @@ public class CharaController : MonoBehaviour
         /*キャラ毎のスクリプトで実行*/
         questController.ResumeBattle();//スキル処理を設定していない場合は、何もせずにバトル続行
     }
+    public void SPReset()
+    {
+        cs.nowSP = 0;
+        spSlider.value = cs.nowSP;
+    }
     public void Healed(int heal)
     {
         cs.Heal(heal);

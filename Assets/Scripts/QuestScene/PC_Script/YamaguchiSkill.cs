@@ -53,7 +53,7 @@ public class YamaguchiSkill : MonoBehaviour
                     {
                         hitList.Add(hit.gameObject);
                         GameObject effect = Instantiate(damageEffect) as GameObject;
-                        effect.transform.position = hit.gameObject.transform.position;//ClosestPointOnBounds(this.transform.position);
+                        effect.transform.position = hit.gameObject.transform.position;
                     }
                 }
             }
@@ -75,8 +75,8 @@ public class YamaguchiSkill : MonoBehaviour
                 Destroy(this.gameObject);
             }
             
-            angle += 0.05f;
-            radius += 0.05f;
+            angle += 0.08f;
+            radius += 0.08f;
         }
     }
     

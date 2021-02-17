@@ -472,6 +472,7 @@ public class QuestController : MonoBehaviour
 
     public void GoHomeButtonClicked()
     {
+        Time.timeScale = 1f;
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
