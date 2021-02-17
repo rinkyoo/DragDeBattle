@@ -22,7 +22,7 @@ MonoBehaviour:
     EnemyPosi:
     - {x: 20, y: 0, z: 30}
     - {x: 10, y: 0, z: 60}
-    - {x: 10, y: 0, z: 10}
+    - {x: 10, y: 0, z: 12}
   - AppearTiming: 1
     AppearTime: 0
     EnemyInfo:

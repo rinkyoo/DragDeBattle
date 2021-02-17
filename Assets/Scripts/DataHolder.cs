@@ -10,7 +10,7 @@ public class DataHolder : MonoBehaviour
 
     private static bool created = false;
     private Chara_Info[] formationChara = new Chara_Info[7];
-    private Quest_Enemy questEnemy;
+    private Quest_Data questData;
     private int[] playQuest = new int[2];
     private string playQuestType = "";
     
@@ -38,13 +38,13 @@ public class DataHolder : MonoBehaviour
         return formationChara;
     }
     
-    public void SetQuestEnemy(Quest_Enemy qe)
+    public void SetQuestData(Quest_Data quest)
     {
-        questEnemy = qe;
+        questData = quest;
     }
-    public Quest_Enemy GetQuestEnemy()
+    public Quest_Data GetQuestData()
     {
-        return questEnemy;
+        return questData;
     }
     
     public int[] GetClearedQuest(string questType)

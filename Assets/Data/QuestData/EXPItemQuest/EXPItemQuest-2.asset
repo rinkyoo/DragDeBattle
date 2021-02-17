@@ -38,3 +38,13 @@ MonoBehaviour:
     - {x: 15, y: 0, z: 40}
     - {x: 20, y: 0, z: 10}
   questName: "\u7D4C\u9A13\u5024\u30A2\u30A4\u30C6\u30E0\u30AF\u30A8\u4E2D\u7D1A"
+  clearCoin: 0
+  clearExpItem:
+  - {fileID: 11400000, guid: 6d0cd8ec41d9dcb4ebc359de9c8dae7a, type: 2}
+  - {fileID: 11400000, guid: 6d0cd8ec41d9dcb4ebc359de9c8dae7a, type: 2}
+  - {fileID: 11400000, guid: 6d0cd8ec41d9dcb4ebc359de9c8dae7a, type: 2}
+  - {fileID: 11400000, guid: 6d0cd8ec41d9dcb4ebc359de9c8dae7a, type: 2}
+  - {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}
+  - {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}
+  - {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}
+  - {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}

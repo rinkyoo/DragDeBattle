@@ -100,8 +100,17 @@ public class QuestController : MonoBehaviour
     void Start()
     {
         charaManager.SetQuestChara(dataHolder.GetFormationChara()); //HomeSceneで選択した編成情報を取得
-        enemyWave = dataHolder.GetQuestEnemy().GetWaveList(); //敵キャラの情報を取得
+        #region クエスト情報の取得
+        Quest_Data questData = dataHolder.GetQuestData();
+        enemyWave = questData.GetWaveList(); //敵キャラの情報を取得
         waveNum = enemyWave.Count();
+        PlusExp(questData.ClearExp);
+        PlusCoin(questData.ClearCoin);
+        foreach(ExpItem_Info item in questData.ClearExpItem)
+        {
+            PlusExpItem(item);
+        }
+        #endregion
         SetBattleSpeedToggle();
         audioManager.QuestBGM();
         dropParent = new GameObject("DropParent").transform;

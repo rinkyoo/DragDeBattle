@@ -129,12 +129,12 @@ public class QuestManager : MonoBehaviour
         
     }
 
-    void SetQuestView(List<Quest_Enemy> quests,int level,string questType)
+    void SetQuestView(List<Quest_Data> quests,int level,string questType)
     {
         //クエスト選択画面のボタンを設定
         int i =0;
         int[] clearedQuest = dataHolder.GetClearedQuest(questType);
-        foreach (Quest_Enemy quest in quests)
+        foreach (Quest_Data quest in quests)
         {
             i++;
             Button questButton = Instantiate(QButton,questContent.transform.position,Quaternion.identity) as Button;
@@ -158,7 +158,7 @@ public class QuestManager : MonoBehaviour
                 }
             }
             #endregion
-            Quest_Enemy setQuest = quest;
+            Quest_Data setQuest = quest;
             int j = i;
             string tempType = questType;
             questButton.onClick.AddListener(()=>
@@ -172,9 +172,9 @@ public class QuestManager : MonoBehaviour
         RightMovePanel(groupView.gameObject,questView.gameObject);
     }
 
-    void SetQuestButton(Quest_Enemy quest)
+    void SetQuestButton(Quest_Data quest)
     {
-        dataHolder.SetQuestEnemy(quest);
+        dataHolder.SetQuestData(quest);
         SetSupportView();
 
         RightMovePanel(questView.gameObject,supportView.gameObject);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Quest_Group : ScriptableObject
 {
     [SerializeField]
-    private List<Quest_Enemy> quests = new List<Quest_Enemy>();
+    private List<Quest_Data> quests = new List<Quest_Data>();
 
     [SerializeField] private string setName;
     public string SetName
@@ -14,11 +14,11 @@ public class Quest_Group : ScriptableObject
         get { return setName; }
     }
 
-    public List<Quest_Enemy> GetQuestList()
+    public List<Quest_Data> GetQuestList()
     {
         return quests;
     }
-    public Quest_Enemy GetQuests(int i)
+    public Quest_Data GetQuests(int i)
     {
         return quests[i];
     }

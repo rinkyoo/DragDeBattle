@@ -19,6 +19,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9a352d7d2d3d845caab0b0f0d23b87a0, type: 2}
     - {fileID: 11400000, guid: 21709e9a2a32a459280da3677466fae2, type: 2}
     EnemyPosi:
-    - {x: 10, y: 0, z: 100}
+    - {x: 10, y: 0, z: 110}
     - {x: 20, y: 0, z: 90}
   questName: Level 1-1
+  clearExp: 0
+  clearCoin: 0
+  clearExpItem: []

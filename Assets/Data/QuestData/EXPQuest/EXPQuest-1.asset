@@ -30,3 +30,6 @@ MonoBehaviour:
     - {x: 10, y: 0, z: 30}
     - {x: 5, y: 0, z: 40}
   questName: "\u7D4C\u9A13\u5024\u30AF\u30A8\u30B9\u30C8\u521D\u7D1A"
+  clearExp: 200
+  clearCoin: 0
+  clearExpItem: []

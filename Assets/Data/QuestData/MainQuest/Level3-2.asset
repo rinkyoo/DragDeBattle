@@ -28,7 +28,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21709e9a2a32a459280da3677466fae2, type: 2}
     - {fileID: 11400000, guid: 035a3427918c74966b87752edecc7389, type: 2}
     EnemyPosi:
-    - {x: 5, y: 0, z: 10}
+    - {x: 5, y: 0, z: 15}
     - {x: 10, y: 0, z: 60}
     - {x: 2, y: 0, z: 100}
   - AppearTiming: 0

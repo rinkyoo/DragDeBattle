@@ -38,7 +38,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6a8e83c57116f434992e9148b7e36b0a, type: 2}
     - {fileID: 11400000, guid: 6995f240f5f332140bd3feea3aa08bcf, type: 2}
     EnemyPosi:
-    - {x: 20, y: 0, z: 10}
+    - {x: 20, y: 0, z: 12}
     - {x: 20, y: 0, z: 50}
     - {x: 12, y: 0, z: 60}
   questName: Level 6-3

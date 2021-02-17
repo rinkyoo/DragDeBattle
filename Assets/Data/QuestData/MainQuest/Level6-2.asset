@@ -30,7 +30,7 @@ MonoBehaviour:
     EnemyPosi:
     - {x: 15, y: 0, z: 50}
     - {x: 30, y: 0, z: 60}
-    - {x: 10, y: 0, z: 10}
+    - {x: 10, y: 0, z: 12}
   - AppearTiming: 0
     AppearTime: 1
     EnemyInfo:
@@ -38,7 +38,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 468dbf2c9ee754b4c83ac9e6e2f31354, type: 2}
     - {fileID: 11400000, guid: 6995f240f5f332140bd3feea3aa08bcf, type: 2}
     EnemyPosi:
-    - {x: 5, y: 0, z: 10}
+    - {x: 5, y: 0, z: 12}
     - {x: 20, y: 0, z: 110}
     - {x: 15, y: 0, z: 60}
   questName: Level 6-2
