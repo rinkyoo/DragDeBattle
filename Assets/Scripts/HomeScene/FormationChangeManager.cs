@@ -35,7 +35,7 @@ public class FormationChangeManager : MonoBehaviour
     int changeNumber; //変更するキャラの編成内での番号
 
     const float dragMaxValue = 840f; //編成パネルのドラッグ可能範囲
-    const float slideXValue = 420f; //編成パネルを切り替える基準値
+    const float slideXValue = 320f; //編成パネルを切り替える基準値
 
     #region GameObject関連
     [SerializeField] GameObject[] charaPanel;//編成キャラを表示するPanel// = new GameObject[Define.ptNum];
@@ -101,7 +101,6 @@ public class FormationChangeManager : MonoBehaviour
         for(int i=0;i<Define.charaNum-1;i++)
         {
             charaButton = charaPanel[2].transform.Find("Chara"+(i+1).ToString()).gameObject;
-            //pc_icon_texture = Resources.Load("PC_Image/"+formationChara[temp][i].Icon,typeof(Sprite)) as Sprite;
             pc_icon_texture = formationChara[temp][i].Icon;
             charaButton.GetComponent<Image>().sprite = pc_icon_texture;
             charaButton.GetComponent<Button>().onClick.RemoveAllListeners(); //処理が重複しないようにマウスイベントを全消去

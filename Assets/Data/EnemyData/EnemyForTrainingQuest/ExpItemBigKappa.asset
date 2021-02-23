@@ -21,7 +21,7 @@ MonoBehaviour:
   vit: 10
   agi: 1.5
   speed_atk: 2
-  range_atk: 30
+  range_atk: 25
   dropExp: 10
   dropCoin: 100
   dropExpItem: {fileID: 11400000, guid: b53f2c2ab97883c4098c25785fd40a54, type: 2}

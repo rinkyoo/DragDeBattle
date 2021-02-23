@@ -46,7 +46,7 @@ public class QuestManager : MonoBehaviour
     float preXPosi; //編成Panelのドラッグ時に使用
     int nowFormation; //表示中の編成番号
     const float dragMaxValue = 840f; //編成パネルのドラッグ可能範囲
-    const float slideXValue = 420f; //編成パネルの切り替え基準値
+    const float slideXValue = 320f; //編成パネルの切り替え基準値
 
     private AsyncOperation async;
 
