@@ -376,6 +376,7 @@ public class CharaController : MonoBehaviour
     public void QuestClear()
     {
         auto = false;
+        attackObj.SetActive(false);
         gameObject.GetComponent<CharaController>().animator.enabled = true;
         SetState(State.Idle);
         transform.rotation = Quaternion.Euler(0f, 180f, 0f);
