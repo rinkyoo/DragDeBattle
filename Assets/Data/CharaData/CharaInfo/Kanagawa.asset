@@ -31,6 +31,7 @@ MonoBehaviour:
   agi: 1
   speed_atk: 2
   range_atk: 6
+  charaInfoText: "\u8FD1\u63A5\u653B\u6483\u30AD\u30E3\u30E9"
   maxLevel: 100
   level1NextEXP: 100
   level1PlusNextEXP: 100

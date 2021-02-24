@@ -134,7 +134,7 @@ public class Chara_Info : ScriptableObject
         set { agi = value; }
         get { return agi;}
     }
-    //攻撃速度
+    //攻撃間隔
     [SerializeField]
     private float speed_atk;
     public float SpeedATK{
@@ -147,6 +147,13 @@ public class Chara_Info : ScriptableObject
     public float RangeATK{
         set { range_atk = value; }
         get { return range_atk;}
+    }
+    //キャラ特性の説明
+    [SerializeField]
+    private string charaInfoText;
+    public string CharaInfoText
+    {
+        get { return charaInfoText; }
     }
     //レベルの上限値
     [SerializeField]

@@ -41,7 +41,6 @@ public class FormationChangeManager : MonoBehaviour
     [SerializeField] GameObject[] charaPanel;//編成キャラを表示するPanel// = new GameObject[Define.ptNum];
     [SerializeField] GameObject formationPanel;
     [SerializeField] Button CharaButton; //変更するキャラを選択するボタン
-    [SerializeField] Image shutterImage; //画面切り替え時に使用
     #endregion
 
     void Awake()
@@ -78,7 +77,7 @@ public class FormationChangeManager : MonoBehaviour
             charaButton.GetComponent<Button>().onClick.AddListener(()=>
             {
                 changeFormation = 0;
-                changeNumber = j; //変更キャラの番号を格納
+                changeNumber = j; //変更キャラの番号を記憶
                 gameObject.GetComponent<CharaChangeManager>().SetPanel(formationChara[0],j); //キャラ選択画面へ移行
                 audioManager.Button1();
             });
@@ -138,17 +137,36 @@ public class FormationChangeManager : MonoBehaviour
         }
         charaPanel[0].transform.Find("FormationName").gameObject.GetComponent<Text>().text = "＜編成"+(temp+1).ToString()+"＞";
     }
-    
+    //編成キャラの変更
     public void ChangeChara(Chara_Info newChara)
     {
         //キャラの入れ替え
         formationChara[changeFormation][changeNumber] = newChara;
+        UpdateButtonIcon(changeNumber);
+        /*
         //パネル表示の更新
         GameObject charaButton;
         charaButton = charaPanel[1].transform.Find("Chara"+(changeNumber+1).ToString()).gameObject;
         charaButton.GetComponent<Image>().sprite = formationChara[changeFormation][changeNumber].Icon;
+        */
     }
-    
+    //同じ編成内でのキャラの変更（配置を交換させるだけ）
+    public void ChangeCharaInSameForm(int clickedNumber)
+    {
+        Chara_Info tempChara = formationChara[changeFormation][changeNumber];
+        formationChara[changeFormation][changeNumber] = formationChara[changeFormation][clickedNumber];
+        formationChara[changeFormation][clickedNumber] = tempChara;
+        UpdateButtonIcon(changeNumber);
+        UpdateButtonIcon(clickedNumber);
+    }
+    //charaPanel[1]のボタンのアイコンを更新（引数の番号に対応するもののみ）
+    void UpdateButtonIcon(int number)
+    {
+        GameObject charaButton;
+        charaButton = charaPanel[1].transform.Find("Chara" + (number + 1).ToString()).gameObject;
+        charaButton.GetComponent<Image>().sprite = formationChara[changeFormation][number].Icon;
+    }
+
     public void BeginDrag()
     {
         touch();
