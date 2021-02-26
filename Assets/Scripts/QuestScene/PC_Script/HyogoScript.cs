@@ -10,6 +10,7 @@ public class HyogoScript : CharaController
 {
     private CharaManager charaManager;
     private Collider attackCollider;
+    private float attackRange = 8f;
 
     [SerializeField] GameObject damageEffect;
 
@@ -55,18 +56,23 @@ public class HyogoScript : CharaController
              })
             .InsertCallback(0.1f, ()=>
             {
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 7f);
+                Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange);
                 for(int i=0;i<colliders.Length;i++)
                 {
                     if(colliders[i].gameObject.CompareTag("Enemy"))
                     {
                         GameObject effect = Instantiate(damageEffect) as GameObject;
                         effect.transform.position = colliders[i].gameObject.transform.position;
-                        base.HitAttack(colliders[i].gameObject);
+                        HitAttack(colliders[i].gameObject);
                     }
                 }
             });
         Seq.Play();
+    }
+
+    public override void HitAttack(GameObject enemyObj)
+    {
+        base.questController.SetPCAttackEvent(this, enemyObj.GetComponent<EnemyController>());
     }
 
     public override void Skill()

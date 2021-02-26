@@ -61,6 +61,12 @@ public class IwateScript : CharaController
             base.SetState(State.Idle);
         }
     }
+
+    public override void HitAttack(GameObject enemyObj)
+    {
+        base.questController.SetPCAttackEvent(this, enemyObj.GetComponent<EnemyController>());
+    }
+
     //animationì‡Ç≈é¿çs
     void SetShootAttack()
     {

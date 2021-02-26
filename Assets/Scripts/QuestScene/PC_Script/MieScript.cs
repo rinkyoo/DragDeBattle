@@ -38,6 +38,12 @@ public class MieScript : CharaController
             base.SetState(State.Idle);
         }
     }
+
+    public override void HitAttack(GameObject enemyObj)
+    {
+        base.questController.SetPCAttackEvent(this, enemyObj.GetComponent<EnemyController>());
+    }
+
     void SetBoomerangAttack()
     {
         if (base.lockObj != null)

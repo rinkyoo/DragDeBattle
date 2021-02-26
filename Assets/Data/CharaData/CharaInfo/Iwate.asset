@@ -31,9 +31,10 @@ MonoBehaviour:
   agi: 1.5
   speed_atk: 0.6
   range_atk: 60
+  charaInfoText: "\u76F4\u7DDA\u306B\u9032\u3080\u7403\u3092\u6295\u3052\u3066\u653B\u6483\u3092\u884C\u3046\u3002\u30ED\u30C3\u30AF\u4E2D\u306E\u6575\u4EE5\u5916\u306B\u3082\u653B\u6483\u306F\u9069\u7528\u3055\u308C\u308B\u3002\u653B\u6483\u9593\u9694\u304C\u77ED\u3044\u4EE3\u308F\u308A\u306B\u653B\u6483\u529B\u306F\u4F4E\u3081\u3002"
   maxLevel: 100
   level1NextEXP: 100
   level1PlusNextEXP: 100
   level1HP: 500
-  level1STR: 50
+  level1STR: 40
   level1VIT: 5
