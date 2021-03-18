@@ -236,8 +236,9 @@ public class QuestController : MonoBehaviour
                         pcName = hit.transform.name;
                         CharaController cc = charaManager.GetCharaController(pcName);
                         if (cc == null || cc.IsAuto() || !cc.IsInField()) return;
-
+                        //時間を停止
                         PauseBattle();
+                        //PCタッチ中のフラグを立てる
                         PCTouching = true;
                         befoPosi = hit.transform.position;
                         fieldEffect.SetLineRen(befoPosi);
@@ -301,9 +302,11 @@ public class QuestController : MonoBehaviour
             {
                 if(PCTouching)
                 {
+                    //時間停止を解除
                     ResumeBattle();
                     PCTouching = false;
                     fieldEffect.DeleteDragEffect();
+                    //Enemy or PCをロックする場合
                     if(enemyTouchFlag)
                     {                        
                         //ヒーラーキャラのみ味方をロック可能
@@ -316,6 +319,7 @@ public class QuestController : MonoBehaviour
                             charaManager.LockEnemy(pcName, enemyManager.GetEnemy(enemyName));
                         }
                     }
+                    //ただの座標移動の場合(EnemyやPCをロックしない場合）
                     else
                     {
                         var posi = touch_manager.touch_position;
@@ -336,13 +340,14 @@ public class QuestController : MonoBehaviour
 
     void LateUpdate()
     {
+        //攻撃処理の適用
         while(attackEventQueue.Count > 0)
         {
             Action attackEvent = attackEventQueue.Dequeue();
             attackEvent();
         }
     }
-    #region attackEventQueueに攻撃イベントを保存する関数
+    #region attackEventQueueに攻撃イベントを保存するための関数
     public void SetPCAttackEvent(CharaController cc, EnemyController ec)
     {
         attackEventQueue.Enqueue(() =>

@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class ClearedQuestData : ISerializationCallbackReceiver
 {
+    //クエストグループ毎にクエストのクリア状況を保持
     public Dictionary<string, int[]> clearedQuestDic = new Dictionary<string, int[]>()
     {
         {"normal",new int[2]{0,0 } },

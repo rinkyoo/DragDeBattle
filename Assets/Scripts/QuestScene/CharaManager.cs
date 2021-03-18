@@ -31,7 +31,7 @@ public class CharaManager : MonoBehaviour
             pc_icon = GameObject.Find("QuestCanvas/PC_Panel/PC"+(i+1).ToString()+"_Panel/PC_Icon");
             pc_icon.GetComponent<Image>().sprite = charas[i].Icon;
         }
-        //全キャラ分のプレハブを作成
+        //全キャラ分のプレハブを作成、アイコンの設定
         for(int i=0;i<Define.charaNum;i++)
         {
             instance = (GameObject)Instantiate(charas[i].Prefab,Define.initialPosi,Quaternion.Euler(0f, 180f, 0f));

@@ -70,8 +70,9 @@ public class CharaIconController : MonoBehaviour
     #region アイコンに適用するEvent Trigger関連
     public void PointerClick()
     {
-        if(isDragging || iconTouchUI.skillTextFlag || charaController.IsStateNone())
-            return; //ドラッグ中 or スキル演出中 or PC召喚中はクリック無効
+        //ドラッグ中 or スキル演出中 or PC召喚中はクリック無効
+        if (isDragging || iconTouchUI.skillTextFlag || charaController.IsStateNone())
+            return; 
         questController.PauseBattle();
         iconTouchUI.SetCharaInfoUI(transform.name);
     }
