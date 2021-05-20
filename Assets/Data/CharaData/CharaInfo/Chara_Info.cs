@@ -148,6 +148,13 @@ public class Chara_Info : ScriptableObject
         set { range_atk = value; }
         get { return range_atk;}
     }
+    //近距離OR遠距離
+    [SerializeField]
+    private string attackType;
+    public string AttackType
+    {
+        get { return attackType; }
+    }
     //キャラ特性の説明
     [SerializeField]
     private string charaInfoText;

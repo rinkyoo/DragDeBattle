@@ -31,6 +31,7 @@ MonoBehaviour:
   agi: 1
   speed_atk: 2
   range_atk: 50
+  attackType: "\u9060\u8DDD\u96E2"
   charaInfoText: "\u76F4\u7DDA\u306B\u9032\u3080\u7403\u3092\u6295\u3052\u3066\u653B\u6483\u3092\u884C\u3046\u3002\u30ED\u30C3\u30AF\u4E2D\u306E\u6575\u4EE5\u5916\u306B\u3082\u653B\u6483\u306F\u9069\u7528\u3055\u308C\u308B\u3002"
   maxLevel: 100
   level1NextEXP: 100

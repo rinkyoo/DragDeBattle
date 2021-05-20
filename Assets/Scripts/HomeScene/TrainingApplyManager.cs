@@ -209,7 +209,6 @@ public class TrainingApplyManager : MonoBehaviour
             sumCoinText.text = sumCoin.ToString();
             AddEXP(expValueDic[itemName] * addNum);
         }
-
         itemCounter.ExpItemNum[itemName] = newNum;
 
         //アイテム数が０ならアイテム数の表記なし
@@ -244,6 +243,11 @@ public class TrainingApplyManager : MonoBehaviour
         }
         else if(expValue < 0)
         {
+            if(sumCoin <= 0)
+            {
+                ItemResetButtonClicked();
+                return;
+            }
             int tempEXP;
             tempEXP = nowEXP + expValue - (nextEXP - plusNextEXPList.Last());
             //レベルが下がる場合
