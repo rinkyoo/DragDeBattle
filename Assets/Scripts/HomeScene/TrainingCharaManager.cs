@@ -119,7 +119,7 @@ public class TrainingCharaManager : MonoBehaviour
     {
         //フィルターの条件に沿ったキャラのみ抽出
         setButtonChara = buttonAndChara
-                        .Where(x => x.chara.AttackType == attackTypeFiter || attackTypeFiter == "All")
+                        .Where(x => attackTypeFiter.Contains(x.chara.AttackType) || attackTypeFiter == "All")
                         .Where(x => x.chara.Level >= levelFilter)
                         .ToList();
         foreach(Transform t in charaContent.transform)
@@ -137,17 +137,30 @@ public class TrainingCharaManager : MonoBehaviour
     //攻撃タイプのフィルター設定
     public void OnAllAttackToggleChanged()
     {
-        if (allAttackToggle.isOn) attackTypeFiter = "All";
+        if (allAttackToggle.isOn) return; //自身でチェックを外すことはできない
+
+        attackTypeFiter = "All";
+        allAttackToggle.isOn = true;
+        kinkyoriToggle.isOn = false;
+        enkyoriToggle.isOn = false;
         UpdateButtonCharaIndex();
     }
     public void OnKinkyoriToggleChanged()
     {
-        if (kinkyoriToggle.isOn) attackTypeFiter = "近距離";
+        if (kinkyoriToggle.isOn) attackTypeFiter += "近距離";
+        else attackTypeFiter = attackTypeFiter.Replace("近距離", "");
+
+        if (attackTypeFiter == "All") allAttackToggle.isOn = true;
+        else allAttackToggle.isOn = false;
         UpdateButtonCharaIndex();
     }
     public void OnEnkyoriAttackToggleChanged()
     {
-        if (enkyoriToggle.isOn) attackTypeFiter = "遠距離";
+        if (enkyoriToggle.isOn) attackTypeFiter += "遠距離";
+        else attackTypeFiter= attackTypeFiter.Replace("遠距離", "");
+
+        if (attackTypeFiter == "All") allAttackToggle.isOn = true;
+        else allAttackToggle.isOn = false;
         UpdateButtonCharaIndex();
     }
     //レベル制限でのフィルター設定
